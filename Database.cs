@@ -8,7 +8,7 @@ namespace Database
     using administrator = Account.Administrator;
     using useraccount = Account.User;
 
-    class Table
+    public class Table
     {
         private string name = "";
         private Hashtable rows = new Hashtable();
@@ -46,7 +46,7 @@ namespace Database
         }
     }
 
-    class Database
+    public class Database
     {
         // Design pattern: Singleton
         // The Database class is a singleton, meaning that there is only one instance of the database
@@ -55,7 +55,7 @@ namespace Database
         private Database() { }
         public static Database Instance { get { return instance; } }
 
-        private Personal.List<Table> tables = new Personal.List<Table>();
+        private List<Table> tables = new List<Table>();
 
         public void CreateNewTable(string name)
         {

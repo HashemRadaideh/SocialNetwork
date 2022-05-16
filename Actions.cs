@@ -1,6 +1,6 @@
 namespace Actions
 {
-    class Report
+    public class Report
     {
         private int reported = 0;
         private int reporter = 0;
@@ -18,7 +18,7 @@ namespace Actions
         public string Reason { get => reason; set => reason = value; }
     }
 
-    class Post
+    public class Post
     {
         private int author = 0;
         private string content = "";
@@ -39,7 +39,7 @@ namespace Actions
         }
     }
 
-    class Message
+    public class Message
     {
         private int sender = 0;
         private int receiver = 0;

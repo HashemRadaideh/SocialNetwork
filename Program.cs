@@ -4,9 +4,9 @@
     using administrator = Account.Administrator;
     using useraccount = Account.User;
 
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var db = database.Instance;
             // db.LoadDatabase();
@@ -16,10 +16,10 @@
             db.CreateNewTable("messages");
 
             var acc1 = new useraccount("HashemWasTaken", "0", true, "Hashem", "Al_Radaideh", "Irbid", 20);
-            var acc2 = new useraccount("HashemIsTaken", "1", true, "Hashem", "Al_Radaideh", "Irbid", 20, new Personal.List<Account.User>() { acc1 });
-            var acc3 = new useraccount("HashemTaken", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new Personal.List<Account.User>() { acc1, acc2 });
+            var acc2 = new useraccount("HashemIsTaken", "1", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<useraccount>() { acc1 });
+            var acc3 = new useraccount("HashemTaken", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<useraccount>() { acc1, acc2 });
             var acc4 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20);
-            var acc5 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new Personal.List<Account.User>() { acc1, acc2, acc3 });
+            var acc5 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<useraccount>() { acc1, acc2, acc3 });
 
             db.Add("users", acc1);
             db.Add("users", acc2);

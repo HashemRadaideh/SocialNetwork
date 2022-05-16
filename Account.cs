@@ -8,7 +8,7 @@ namespace Account
     using rep = Actions.Report;
     using msg = Actions.Message;
 
-    class Account
+    public class Account
     {
         private string username = "";
         private string password = "";
@@ -17,7 +17,7 @@ namespace Account
         private string lastName = "";
         private string location = "";
         private int age = 0;
-        private Personal.List<User>? friends = new Personal.List<User>();
+        private List<User>? friends = new List<User>();
 
         public string Username { get => username; set => username = value; }
         public string Password { get => password; set => password = value; }
@@ -26,7 +26,7 @@ namespace Account
         public string LastName { get => lastName; set => lastName = value; }
         public string Location { get => location; set => location = value; }
         public int Age { get => age; set => age = value; }
-        public Personal.List<User>? Friends { get => friends; set => friends = value; }
+        public List<User>? Friends { get => friends; set => friends = value; }
 
         public Account()
         {
@@ -37,7 +37,7 @@ namespace Account
             this.lastName = "";
             this.location = "";
             this.age = 0;
-            this.friends = new Personal.List<User>();
+            this.friends = new List<User>();
         }
 
         public Account(string username, string password, bool status, string firstName, string lastName, string location, int age)
@@ -49,10 +49,10 @@ namespace Account
             this.lastName = lastName;
             this.location = location;
             this.age = age;
-            this.friends = new Personal.List<User>();
+            this.friends = new List<User>();
         }
 
-        public Account(string username, string password, bool status, string firstName, string lastName, string location, int age, Personal.List<User>? friends)
+        public Account(string username, string password, bool status, string firstName, string lastName, string location, int age, List<User>? friends)
         {
             this.username = username;
             this.password = password;
@@ -75,8 +75,7 @@ namespace Account
             return $"Username: {Username}\nPassword: {Password}\nStatus: {Status}\nFirstName: {FirstName}\nLastName: {LastName}\nLocation: {Location}\nAge: {Age}\nFriends: {names}";
         }
     }
-
-    class Administrator : Account
+    public class Administrator : Account
     {
         /// <summary>
         /// Design pattern: Singleton
@@ -93,7 +92,7 @@ namespace Account
             this.LastName = "Admin";
             this.Location = "Private";
             this.Age = 0;
-            this.Friends = new Personal.List<User>();
+            this.Friends = new List<User>();
         }
         public static Administrator Instance { get { return instance; } }
 
@@ -197,11 +196,11 @@ namespace Account
         }
     }
 
-    class User : Account
+    public class User : Account
     {
         public User(string username, string password, bool status, string firstName, string lastName, string location, int age) : base(username, password, status, firstName, lastName, location, age) { }
 
-        public User(string username, string password, bool status, string firstName, string lastName, string location, int age, Personal.List<User>? friends) : base(username, password, status, firstName, lastName, location, age, friends) { }
+        public User(string username, string password, bool status, string firstName, string lastName, string location, int age, List<User>? friends) : base(username, password, status, firstName, lastName, location, age, friends) { }
 
         public void PostNewContent()
         {
