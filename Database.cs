@@ -1,3 +1,4 @@
+using Core;
 /// <summary>
 /// Database implementation for the Social Network project.
 /// </summary>
@@ -5,8 +6,8 @@ namespace Database
 {
     using System;
     using System.Collections;
-    using administrator = Account.Administrator;
-    using useraccount = Account.User;
+    using administrator = Administrator;
+    using useraccount = User;
 
     public class Table
     {
