@@ -1,4 +1,5 @@
 # Ignored dotnet build directories and obj directory
 bin
 obj
-.vs/
+/.vs
+/.vs/*
