@@ -1,12 +1,12 @@
 /// <summary>
 /// Account type implementation as the project description states.
 /// </summary>
-namespace Account
+namespace Core
 {
-    using database = Database.Database;
-    using msg = Actions.Message;
-    using pst = Actions.Post;
-    using rep = Actions.Report;
+    using database = Database;
+    using msg = Message;
+    using pst = Post;
+    using rep = Report;
 
     public class Account
     {
@@ -30,14 +30,14 @@ namespace Account
 
         public Account()
         {
-            this.username = "";
-            this.password = "";
-            this.status = false;
-            this.firstName = "";
-            this.lastName = "";
-            this.location = "";
-            this.age = 0;
-            this.friends = new List<User>();
+            username = "";
+            password = "";
+            status = false;
+            firstName = "";
+            lastName = "";
+            location = "";
+            age = 0;
+            friends = new List<User>();
         }
 
         public Account(string username, string password, bool status, string firstName, string lastName, string location, int age)
@@ -49,7 +49,7 @@ namespace Account
             this.lastName = lastName;
             this.location = location;
             this.age = age;
-            this.friends = new List<User>();
+            friends = new List<User>();
         }
 
         public Account(string username, string password, bool status, string firstName, string lastName, string location, int age, List<User>? friends)
@@ -67,8 +67,8 @@ namespace Account
         public override string? ToString()
         {
             var names = "";
-            var _ = this.friends ?? throw new ArgumentNullException(nameof(this.friends));
-            foreach (var friend in this.friends)
+            var _ = friends ?? throw new ArgumentNullException(nameof(friends));
+            foreach (var friend in friends)
             {
                 names += friend.Username + " ";
             }
@@ -85,14 +85,14 @@ namespace Account
         private static readonly Administrator instance = new Administrator();
         private Administrator() : base()
         {
-            this.Username = "admin";
-            this.Password = "0";
-            this.Status = true;
-            this.FirstName = "Admin";
-            this.LastName = "Admin";
-            this.Location = "Private";
-            this.Age = 0;
-            this.Friends = new List<User>();
+            Username = "admin";
+            Password = "0";
+            Status = true;
+            FirstName = "Admin";
+            LastName = "Admin";
+            Location = "Private";
+            Age = 0;
+            Friends = new List<User>();
         }
         public static Administrator Instance { get { return instance; } }
 
@@ -209,7 +209,7 @@ namespace Account
             string? content = Console.ReadLine();
             content = content ?? throw new ArgumentNullException(nameof(content));
 
-            database.Instance.Add("posts", new pst(this.Username, content)); // this.Username -> Poster's username, content -> content
+            database.Instance.Add("posts", new pst(Username, content)); // this.Username -> Poster's username, content -> content
         }
 
         public void SendMessage()
@@ -223,7 +223,7 @@ namespace Account
             string? content = Console.ReadLine();
             content = content ?? throw new ArgumentNullException(nameof(content));
 
-            database.Instance.Add("messages", new msg(this.Username, username, content)); // this.Username -> sender, username -> receiver, content -> message
+            database.Instance.Add("messages", new msg(Username, username, content)); // this.Username -> sender, username -> receiver, content -> message
         }
 
         public void ViewAllMyPosts()
@@ -234,7 +234,7 @@ namespace Account
             foreach (var row in table.Rows.Values)
             {
                 var post = (pst)row;
-                if (post.Author == db.IndexOf("users", this.Username))
+                if (post.Author == db.IndexOf("users", Username))
                 {
                     Console.WriteLine(row);
                 }
@@ -249,7 +249,7 @@ namespace Account
             foreach (var row in table.Rows.Values)
             {
                 var message = (msg)row;
-                if (message.Receiver == db.IndexOf("users", this.Username))
+                if (message.Receiver == db.IndexOf("users", Username))
                 {
                     Console.WriteLine(row);
                 }
@@ -264,7 +264,7 @@ namespace Account
             foreach (var row in table.Rows.Values)
             {
                 var post = (pst)row;
-                if (post.Author == db.IndexOf("users", this.Username))
+                if (post.Author == db.IndexOf("users", Username))
                 {
                     Console.WriteLine(row);
                 }
@@ -284,7 +284,7 @@ namespace Account
             foreach (var row in table.Rows.Values)
             {
                 var post = (pst)row;
-                if (post.Author == db.IndexOf("users", this.Username) && post.Content.Contains(filter))
+                if (post.Author == db.IndexOf("users", Username) && post.Content.Contains(filter))
                 {
                     Console.WriteLine(row);
                 }
@@ -295,7 +295,7 @@ namespace Account
         {
             // TODO: Send report to administrator
             var db = database.Instance;
-            var reporter = db.IndexOf("users", this.Username);
+            var reporter = db.IndexOf("users", Username);
 
             Console.Write("Enter Username: ");
             string? username = Console.ReadLine();

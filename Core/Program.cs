@@ -1,9 +1,7 @@
-﻿using Core;
-
-namespace SocialNetwork
+﻿namespace Core
 {
     using administrator = Administrator;
-    using database = Database.Database;
+    using database = Database;
     using useraccount = User;
 
     public class Program

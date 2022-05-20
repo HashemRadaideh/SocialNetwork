@@ -1,8 +1,7 @@
-using Core;
 /// <summary>
 /// Database implementation for the Social Network project.
 /// </summary>
-namespace Database
+namespace Core
 {
     using System;
     using System.Collections;
@@ -28,14 +27,14 @@ namespace Database
         public void AddData(object data)
         {
             id++;
-            this.rows.Add(id, data);
+            rows.Add(id, data);
         }
 
         public int IndexOf(object data)
         {
             int index = 0;
 
-            foreach (object val in this.rows.Values)
+            foreach (object val in rows.Values)
             {
                 if (val.Equals(data))
                 {
@@ -60,12 +59,12 @@ namespace Database
 
         public void CreateNewTable(string name)
         {
-            this.tables.Add(new Table(name));
+            tables.Add(new Table(name));
         }
 
         public Table? GetTable(string name)
         {
-            foreach (Table table in this.tables)
+            foreach (Table table in tables)
             {
                 if (table.Name.Equals(name))
                 {
@@ -78,7 +77,7 @@ namespace Database
 
         public void Add(string tableName, object data)
         {
-            var table = this.GetTable(tableName) ?? throw new Exception("Table does not exist");
+            var table = GetTable(tableName) ?? throw new Exception("Table does not exist");
             table.AddData(data);
         }
 

@@ -1,4 +1,4 @@
-namespace Actions
+namespace Core
 {
     public class Report
     {
