@@ -1,5 +1,17 @@
 # Ignored dotnet build directories and obj directory
 bin
 obj
+
+# visual studio .vs folder
+
+.vs
+.vs/
+.vs/*
+
 /.vs
+/.vs/
 /.vs/*
+
+./.vs
+./.vs/
+./.vs/*
