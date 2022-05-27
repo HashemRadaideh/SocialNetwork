@@ -1,61 +1,34 @@
 namespace Core
 {
-    public class Report
+    [Serializable]
+    internal class Post
     {
-        private int reported = 0;
-        private int reporter = 0;
-        private string reason = "";
+        private string Username;
+        private string Content;
+        private string Category;
 
-        public Report(int reporter, int reported, string reason)
+        public Post(string username, string content, string category)
         {
-            this.reporter = reporter;
-            this.reported = reported;
-            this.reason = reason;
-        }
-
-        public int Reported { get => reported; set => reported = value; }
-        public int Reporter { get => reporter; set => reporter = value; }
-        public string Reason { get => reason; set => reason = value; }
-    }
-
-    public class Post
-    {
-        private int author = 0;
-        private string content = "";
-        private string username;
-
-        public Post(string username, string content)
-        {
-            this.username = username;
-            this.content = content;
-        }
-
-        public string Content { get => content; set => content = value; }
-        public int Author { get => author; set => author = value; }
-
-        public override string ToString()
-        {
-            return $"u/{username}:\n{content}";
+            Username = username;
+            Content = content;
+            Category = category;
         }
     }
 
-    public class Message
+    [Serializable]
+    internal class Message
     {
-        private int sender = 0;
-        private int receiver = 0;
-        private string content = "";
-        private string username1;
-        private string username2;
+        private string sender;
+        private string reciever;
+        private string text;
+        string subject;
+        char priority;
+    }
 
-        public Message(string username1, string username2, string content)
-        {
-            this.username1 = username1;
-            this.username2 = username2;
-            this.content = content;
-        }
-
-        public int Sender { get => sender; set => sender = value; }
-        public int Receiver { get => receiver; set => receiver = value; }
-        public string Content { get => content; set => content = value; }
+    [Serializable]
+    internal class Report
+    {
+        private string reporter;
+        private string reported;
     }
 }

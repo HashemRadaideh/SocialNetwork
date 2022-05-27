@@ -5,25 +5,25 @@ The system maintains a database for all involved users accounts, messages, posts
 
 ### USER ACCOUNTS
 
-| Username | Password |  Status   | First Name | Last Name | Location | Age |   Friends   |
-| :------: | :------: | :-------: | :--------: | :-------: | :------: | :-: | :---------: |
-|   UN1    |    11    |  Active   |    Zaid    |   Ahmad   |  Irbid   | 28  |   UN2,UN3   |
-|   UN2    |    22    |  Active   |    Omar    |  Farook   |  Irbid   | 30  | UN1,UN3,UN5 |
-|   UN3    |    33    |  Active   |    Maha    |   Hani    |  Amman   | 42  | UN2,UN4,UN6 |
-|   UN4    |    44    |  Active   |   Hamzah   |    Ali    |  Zarqa   | 37  |   UN5,UN6   |
-|   UN5    |    55    |  Active   |   Salma    |  Waleed   |  Jerash  | 40  | UN1,UN3,UN4 |
-|   UN6    |    66    | Suspended |    Ali     |  Khaled   |  Amman   | 26  |   UN1,UN2   |
+| Username | Password | Status    | First Name | Last Name | Location | Age | Friends     |
+|:--------:|:--------:|:---------:|:----------:|:---------:|:--------:|:---:|:-----------:|
+| UN1      | 11       | Active    | Zaid       | Ahmad     | Irbid    | 28  | UN2,UN3     |
+| UN2      | 22       | Active    | Omar       | Farook    | Irbid    | 30  | UN1,UN3,UN5 |
+| UN3      | 33       | Active    | Maha       | Hani      | Amman    | 42  | UN2,UN4,UN6 |
+| UN4      | 44       | Active    | Hamzah     | Ali       | Zarqa    | 37  | UN5,UN6     |
+| UN5      | 55       | Active    | Salma      | Waleed    | Jerash   | 40  | UN1,UN3,UN4 |
+| UN6      | 66       | Suspended | Ali        | Khaled    | Amman    | 26  | UN1,UN2     |
 
 ### POSTS
 
-| Username |                    Content                     | Category |
-| :------: | :--------------------------------------------: | :------: |
-|   UN1    |         Liverpool beats Man. City 2-1          |  Sport   |
-|   UN1    | Apple expects to release iPhone 14 in October  |   News   |
-|   UN2    |            Expect snow next Sunday             | Weather  |
-|   UN3    |    Italy fails to qualify for the World Cup    |  Sport   |
-|   UN3    |     The deficit exceeds 2 million dollars      | Economy  |
-|   UN5    | The minimum wage has been raised to 300 dinars | Economy  |
+| Username | Content                                        | Category |
+|:--------:|:----------------------------------------------:|:--------:|
+| UN1      | Liverpool beats Man. City 2-1                  | Sport    |
+| UN1      | Apple expects to release iPhone 14 in October  | News     |
+| UN2      | Expect snow next Sunday                        | Weather  |
+| UN3      | Italy fails to qualify for the World Cup       | Sport    |
+| UN3      | The deficit exceeds 2 million dollars          | Economy  |
+| UN5      | The minimum wage has been raised to 300 dinars | Economy  |
 
 The system has only one administrator that logs in using the following credential:
 
@@ -42,10 +42,10 @@ The system is required to satisfy the main functional requirements for all users
 2. View all user accounts.
 3. Suspend user account.
 4. Activate user account.
-5. Post new content.
-
+   
 ### USER FUNCTIONS:
 
+5. Post new content.
 6. Send a message.
 7. View all my posts.
 8. View all received messages.

@@ -1,32 +1,10 @@
 ﻿namespace Core
 {
-    using administrator = Administrator;
-    using database = Database;
-    using useraccount = User;
-
-    public class Program
+    internal class Program
     {
         public static void Main(string[] args)
         {
-            var db = database.Instance;
-            // db.LoadDatabase();
-            db.CreateNewTable("users");
-            db.CreateNewTable("reports");
-            db.CreateNewTable("posts");
-            db.CreateNewTable("messages");
-
-            var acc1 = new useraccount("HashemWasTaken", "0", true, "Hashem", "Al_Radaideh", "Irbid", 20);
-            var acc2 = new useraccount("HashemIsTaken", "1", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<useraccount>() { acc1 });
-            var acc3 = new useraccount("HashemTaken", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<useraccount>() { acc1, acc2 });
-            var acc4 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20);
-            var acc5 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<useraccount>() { acc1, acc2, acc3 });
-
-            db.Add("users", acc1);
-            db.Add("users", acc2);
-            db.Add("users", acc3);
-            db.Add("users", acc4);
-            db.Add("users", acc5);
-
+            Database.Decode();
             while (true)
             {
                 Console.WriteLine("[1] Login as administrator");
@@ -41,9 +19,9 @@
                     case "1":
                         {
                             var (username, password) = GetLogin();
-                            var admin = db.Login(username, password);
+                            var admin = Database.Login(username, password);
 
-                            if (admin is not null && admin == administrator.Instance)
+                            if (admin is not null)
                             {
                                 AdminLoop();
                             }
@@ -57,11 +35,11 @@
                     case "2":
                         {
                             var (username, password) = GetLogin();
-                            var user = db.Login(username, password);
+                            var user = Database.Login(username, password);
 
                             if (user is not null)
                             {
-                                UserLoop((useraccount)user);
+                                UserLoop(user);
                             }
                             else
                             {
@@ -72,7 +50,7 @@
 
                     case "3":
                         Console.WriteLine("\nExiting...");
-                        // db.SaveDatabase();
+                        Database.Finish();
                         return;
 
                     default:
@@ -83,9 +61,10 @@
         }
 
 
-        public static void AdminLoop()
+        private static void AdminLoop()
         {
-            var admin = administrator.Instance;
+            // var admin = administrator.Instance;
+            var admin = new Administrator();
 
             while (true)
             {
@@ -127,7 +106,7 @@
             }
         }
 
-        public static void UserLoop(useraccount user)
+        private static void UserLoop(User user)
         {
             while (true)
             {
@@ -184,7 +163,7 @@
             }
         }
 
-        public static (string? username, string? password) GetLogin()
+        private static (string? username, string? password) GetLogin()
         {
             Console.Write("Enter username: ");
             var username = Console.ReadLine();
