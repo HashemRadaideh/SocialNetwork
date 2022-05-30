@@ -50,9 +50,9 @@ namespace Core
         public string LastName { get; set; } = "";
         public string Location { get; set; } = "";
         public int Age { get; set; } = 0;
-        public List<string> Friends { get; set; }
+        public List<User> Friends { get; set; }
 
-        public User(string username, string password, string status, string firstName, string lastName, string location, int age, List<string> friends)
+        public User(string username, string password, string status, string firstName, string lastName, string location, int age, List<User> friends)
         {
             this.Username = username;
             this.Password = password;
@@ -104,6 +104,22 @@ namespace Core
         {
             // TODO: Send report to administrator
             throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            var names = "No friends were found";
+            if (this.Friends.Count() > 0)
+            {
+                names = "";
+            }
+
+            foreach (var friend in this.Friends)
+            {
+                names += friend.Username + " ";
+            }
+
+            return $"Username: {this.Username}\nPassword: {this.Password}\nStatus: {this.Status}\nFirstName: {this.FirstName}\nLastName: {this.LastName}\nLocation: {this.Location}\nAge: {this.Age}\nFriends: {names}";
         }
     }
 }

@@ -17,32 +17,28 @@
                 switch (choice)
                 {
                     case "1":
-                        {
-                            var admin = GetLogin();
+                        var admin = GetLogin();
 
-                            if (admin is not null)
-                            {
-                                AdminLoop((Administrator)admin);
-                            }
-                            else
-                            {
-                                Console.WriteLine("\nInvalid username or password!\n");
-                            }
+                        if (admin is not null)
+                        {
+                            AdminLoop((Administrator)admin);
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nInvalid username or password!\n");
                         }
                         break;
 
                     case "2":
-                        {
-                            var user = GetLogin();
+                        var user = GetLogin();
 
-                            if (user is not null)
-                            {
-                                UserLoop((User)user);
-                            }
-                            else
-                            {
-                                Console.WriteLine("\nInvalid username or password!\n");
-                            }
+                        if (user is not null)
+                        {
+                            UserLoop((User)user);
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nInvalid username or password!\n");
                         }
                         break;
 
@@ -58,6 +54,10 @@
             }
         }
 
+        /// <summary>
+        /// Part of the main loop for the administrator.
+        /// </summary>
+        /// <param name="admin">The administrator.</param>
         private static void AdminLoop(Administrator admin)
         {
             while (true)
@@ -100,6 +100,10 @@
             }
         }
 
+        /// <summary>
+        /// Part of the main loop for the user.
+        /// </summary>
+        /// <param name="user">The user.</param>
         private static void UserLoop(User user)
         {
             while (true)
@@ -157,6 +161,10 @@
             }
         }
 
+        /// <summary>
+        /// Gets the login.
+        /// </summary>
+        /// <returns>The login.</returns>
         private static object? GetLogin()
         {
             Console.Write("Enter username: ");
