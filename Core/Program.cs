@@ -1,6 +1,6 @@
 ﻿namespace Core
 {
-    internal class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
@@ -18,12 +18,11 @@
                 {
                     case "1":
                         {
-                            var (username, password) = GetLogin();
-                            var admin = Database.Login(username, password);
+                            var admin = GetLogin();
 
                             if (admin is not null)
                             {
-                                AdminLoop();
+                                AdminLoop((Administrator)admin);
                             }
                             else
                             {
@@ -34,12 +33,11 @@
 
                     case "2":
                         {
-                            var (username, password) = GetLogin();
-                            var user = Database.Login(username, password);
+                            var user = GetLogin();
 
                             if (user is not null)
                             {
-                                UserLoop(user);
+                                UserLoop((User)user);
                             }
                             else
                             {
@@ -60,12 +58,8 @@
             }
         }
 
-
-        private static void AdminLoop()
+        private static void AdminLoop(Administrator admin)
         {
-            // var admin = administrator.Instance;
-            var admin = new Administrator();
-
             while (true)
             {
                 Console.WriteLine("\nWelcome back admin, What would you like to do?");
@@ -163,7 +157,7 @@
             }
         }
 
-        private static (string? username, string? password) GetLogin()
+        private static object? GetLogin()
         {
             Console.Write("Enter username: ");
             var username = Console.ReadLine();
@@ -188,9 +182,22 @@
                 }
             }
             while (key != ConsoleKey.Enter);
-
             Console.WriteLine();
-            return (username, password);
+
+            if (username == "admin" && password == "0")
+            {
+                return new Administrator();
+            }
+
+            foreach (var user in Database.Users)
+            {
+                if (user.Username == username && user.Password == password)
+                {
+                    return user;
+                }
+            }
+
+            return null;
         }
     }
 }

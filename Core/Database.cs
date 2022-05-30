@@ -26,7 +26,7 @@ namespace Core
     /// used to store the number of elements in each field of the database.
     /// </summary>
     [Serializable]
-    internal class Number
+    public class Number
     {
         public static int NumberOfUsers = 0;
         public static int NumberOfPosts = 0;
@@ -38,164 +38,201 @@ namespace Core
     /// Implementation of the Database class.
     /// </summary>
     [Serializable]
-    internal class Database
+    public class Database
     {
-        public static List<User> users = new List<User>();
-        public static List<Post> posts = new List<Post>();
-        public static List<Message> messages = new List<Message>();
-        public static List<Report> reports = new List<Report>();
+        public static List<User> Users = new List<User>();
+        public static List<Post> Posts = new List<Post>();
+        public static List<Message> Messages = new List<Message>();
+        public static List<Report> Reports = new List<Report>();
 
+        /// <summary>
+        /// Load the database and it's contents from the file.
+        /// </summary>
         public static void Decode()
         {
+            var path = System.IO.Directory.GetCurrentDirectory();
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream u = new FileStream("NumberOfUsers.txt", FileMode.Open, FileAccess.Read);
+
+            FileStream u = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfUsers.data", FileMode.Open, FileAccess.Read);
             Number.NumberOfUsers = (int)bf.Deserialize(u);
             u.Close();
 
-            FileStream p = new FileStream("NumberOfPosts.txt", FileMode.Open, FileAccess.Read);
+            FileStream p = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfPosts.data", FileMode.Open, FileAccess.Read);
             Number.NumberOfPosts = (int)bf.Deserialize(p);
             p.Close();
 
-            FileStream m = new FileStream("NumberOfMessages.txt", FileMode.Open, FileAccess.Read);
+            FileStream m = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfMessages.data", FileMode.Open, FileAccess.Read);
             Number.NumberOfMessages = (int)bf.Deserialize(m);
             m.Close();
 
-            FileStream r = new FileStream("NumberOfReports.txt", FileMode.Open, FileAccess.Read);
+            FileStream r = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfReports.data", FileMode.Open, FileAccess.Read);
             Number.NumberOfReports = (int)bf.Deserialize(r);
             r.Close();
 
-            FileStream fff = new FileStream("users.txt", FileMode.Open, FileAccess.Read);
-
-            User c;
+            FileStream usersData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\users.data", FileMode.Open, FileAccess.Read);
             for (int i = 0; i < Number.NumberOfUsers; i++)
             {
-                c = (User)bf.Deserialize(fff);
-                users.Add(c);
+                User c = (User)bf.Deserialize(usersData);
+                Users.Add(c);
             }
-            fff.Close();
+            usersData.Close();
 
-            FileStream ffff = new FileStream("posts.txt", FileMode.Open, FileAccess.Read);
-            Post g;
+            FileStream postsData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\posts.data", FileMode.Open, FileAccess.Read);
             for (int i = 0; i < Number.NumberOfPosts; i++)
             {
-                g = (Post)bf.Deserialize(ffff);
-                posts.Add(g);
+                Post g = (Post)bf.Deserialize(postsData);
+                Posts.Add(g);
             }
-            ffff.Close();
+            postsData.Close();
 
-            FileStream fffff = new FileStream("messages.txt", FileMode.Open, FileAccess.Read);
-            Message mm;
+            FileStream messagesData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\messages.data", FileMode.Open, FileAccess.Read);
             for (int i = 0; i < Number.NumberOfMessages; i++)
             {
-                mm = (Message)bf.Deserialize(fffff);
-                messages.Add(mm);
+                Message mm = (Message)bf.Deserialize(messagesData);
+                Messages.Add(mm);
             }
-            fffff.Close();
+            messagesData.Close();
 
-            FileStream ffffff = new FileStream("reports.txt", FileMode.Open, FileAccess.Read);
-            Report re;
+            FileStream reportsData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\reports.data", FileMode.Open, FileAccess.Read);
             for (int i = 0; i < Number.NumberOfReports; i++)
             {
-                re = (Report)bf.Deserialize(ffffff);
-                reports.Add(re);
+                Report re = (Report)bf.Deserialize(reportsData);
+                Reports.Add(re);
             }
-            ffffff.Close();
+            reportsData.Close();
         }
 
-        public static void Save(User u)
+        /// <summary>
+        /// Save the database and it's contents to the file.
+        /// </summary>
+        public static void Finish()
         {
-            users.Add(u);
+            var path = System.IO.Directory.GetCurrentDirectory();
+            BinaryFormatter bf = new BinaryFormatter();
+
+            FileStream usersData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\users.data", FileMode.Create, FileAccess.Write);
+            for (int i = 0; i < Number.NumberOfUsers; i++)
+            {
+                bf.Serialize(usersData, Users[i]);
+            }
+            usersData.Close();
+
+            FileStream usersNum = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfUsers.data", FileMode.Create, FileAccess.Write);
+            bf.Serialize(usersNum, Number.NumberOfUsers);
+            usersNum.Close();
+
+            FileStream postsData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\posts.data", FileMode.Create, FileAccess.Write);
+            for (int i = 0; i < Number.NumberOfPosts; i++)
+            {
+                bf.Serialize(postsData, Posts[i]);
+            }
+            postsData.Close();
+
+            FileStream postsNum = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfPosts.data", FileMode.Create, FileAccess.Write);
+            bf.Serialize(postsNum, Number.NumberOfPosts);
+            postsNum.Close();
+
+            FileStream messagesData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\messages.data", FileMode.Create, FileAccess.Write);
+            for (int i = 0; i < Number.NumberOfMessages; i++)
+            {
+                bf.Serialize(messagesData, Messages[i]);
+            }
+            messagesData.Close();
+
+            FileStream messagesNum = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfMessages.data", FileMode.Create, FileAccess.Write);
+            bf.Serialize(messagesNum, Number.NumberOfMessages);
+            messagesNum.Close();
+
+            FileStream reportsData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\reports.data", FileMode.Create, FileAccess.Write);
+            for (int i = 0; i < Number.NumberOfReports; i++)
+            {
+                bf.Serialize(reportsData, Messages[i]);
+            }
+            reportsData.Close();
+
+            FileStream reportsNum = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfReports.data", FileMode.Create, FileAccess.Write);
+            bf.Serialize(reportsNum, Number.NumberOfReports);
+            reportsNum.Close();
+        }
+
+        /// <summary>
+        /// Save given item to the database.
+        /// </summary>
+        /// <param name="user">user to save.</param>
+        public static void Save(User user)
+        {
+            Users.Add(user);
             Number.NumberOfUsers++;
         }
 
-        public static void Save(Post p)
+        /// <summary>
+        /// Save given item to the database.
+        /// </summary>
+        /// <param name="post">post to save.</param>
+        public static void Save(Post post)
         {
-            posts.Add(p);
+            Posts.Add(post);
             Number.NumberOfPosts++;
         }
 
-        public static void Save(Message m)
+        /// <summary>
+        /// Save given item to the database.
+        /// </summary>
+        /// <param name="message">message to save.</param>
+        public static void Save(Message message)
         {
-            messages.Add(m);
+            Messages.Add(message);
             Number.NumberOfMessages++;
         }
 
-        public static void Save(Report r)
+        /// <summary>
+        /// Save given item to the database.
+        /// </summary>
+        /// <param name="report">report to save.</param>
+        public static void Save(Report report)
         {
-            reports.Add(r);
+            Reports.Add(report);
             Number.NumberOfReports++;
         }
 
-        public static void Remove(User u)
+        /// <summary>
+        /// Save given item to the database.
+        /// </summary>
+        /// <param name="user">user to save.</param>
+        public static void Remove(User user)
         {
-            bool IsRemoved = users.Remove(u);
+            bool IsRemoved = Users.Remove(user);
             if (IsRemoved) Number.NumberOfUsers--;
         }
 
-        public static void Remove(Post p)
+        /// <summary>
+        /// Save given item to the database.
+        /// </summary>
+        /// <param name="post">post to remove.</param>
+        public static void Remove(Post post)
         {
-            bool IsRemoved = posts.Remove(p);
+            bool IsRemoved = Posts.Remove(post);
             if (IsRemoved) Number.NumberOfPosts--;
         }
 
-        public static void Remove(Message m)
+        /// <summary>
+        /// Save given item to the database.
+        /// </summary>
+        /// <param name="message">message to remove.</param>
+        public static void Remove(Message message)
         {
-            bool IsRemoved = messages.Remove(m);
+            bool IsRemoved = Messages.Remove(message);
             if (IsRemoved) Number.NumberOfMessages--;
         }
 
-        public static void Remove(Report r)
+        /// <summary>
+        /// Save given item to the database.
+        /// </summary>
+        /// <param name="report">report to remove.</param>
+        public static void Remove(Report report)
         {
-            bool IsRemoved = reports.Remove(r);
+            bool IsRemoved = Reports.Remove(report);
             if (IsRemoved) Number.NumberOfReports--;
-        }
-
-        public static void Finish()
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream f = new FileStream("users.txt", FileMode.Create, FileAccess.Write);
-            for (int i = 0; i < Number.NumberOfUsers; i++)
-            {
-                bf.Serialize(f, users[i]);
-            }
-            f.Close();
-
-            FileStream uu = new FileStream("NumberOfUsers.txt", FileMode.Create, FileAccess.Write);
-            bf.Serialize(uu, Number.NumberOfUsers);
-            uu.Close();
-
-            FileStream ff = new FileStream("posts.txt", FileMode.Create, FileAccess.Write);
-            for (int i = 0; i < Number.NumberOfPosts; i++)
-            {
-                bf.Serialize(ff, posts[i]);
-            }
-            ff.Close();
-
-            FileStream pp = new FileStream("NumberOfPosts.txt", FileMode.Create, FileAccess.Write);
-            bf.Serialize(pp, Number.NumberOfPosts);
-            pp.Close();
-
-            FileStream fff = new FileStream("messages.txt", FileMode.Create, FileAccess.Write);
-            for (int i = 0; i < Number.NumberOfMessages; i++)
-            {
-                bf.Serialize(fff, messages[i]);
-            }
-            fff.Close();
-
-            FileStream mm = new FileStream("NumberOfMessages.txt", FileMode.Create, FileAccess.Write);
-            bf.Serialize(mm, Number.NumberOfMessages);
-            mm.Close();
-
-            FileStream ffff = new FileStream("reports.txt", FileMode.Create, FileAccess.Write);
-            for (int i = 0; i < Number.NumberOfReports; i++)
-            {
-                bf.Serialize(ffff, messages[i]);
-            }
-            ffff.Close();
-
-            FileStream rr = new FileStream("NumberOfReports.txt", FileMode.Create, FileAccess.Write);
-            bf.Serialize(rr, Number.NumberOfReports);
-            rr.Close();
         }
     }
 }

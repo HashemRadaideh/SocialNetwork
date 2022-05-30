@@ -4,10 +4,10 @@
 namespace Core
 {
     [Serializable]
-    internal class Administrator
+    public class Administrator
     {
-        public string Username = "admin";
-        public int Password = 0;
+        public string Username { get; set; } = "admin";
+        public int Password { get; set; } = 0;
 
         public void RegisterNewUserAccount()
         {
@@ -41,27 +41,27 @@ namespace Core
     }
 
     [Serializable]
-    internal class User
+    public class User
     {
-        public string Username;
-        public int Password;
-        public string Status;
-        public string FirstName;
-        public string LastName;
-        public string Location;
-        public int Age;
-        public List<string> Friends;
+        public string Username { get; set; } = "";
+        public string Password { get; set; } = "";
+        public string Status { get; set; } = "";
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
+        public string Location { get; set; } = "";
+        public int Age { get; set; } = 0;
+        public List<string> Friends { get; set; }
 
-        public User(string username, int password, string status, string firstName, string lastName, string location, int age, List<string> friends)
+        public User(string username, string password, string status, string firstName, string lastName, string location, int age, List<string> friends)
         {
-            Username = username;
-            Password = password;
-            Status = status;
-            FirstName = firstName;
-            LastName = lastName;
-            Location = location;
-            Age = age;
-            Friends = friends;
+            this.Username = username;
+            this.Password = password;
+            this.Status = status;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Location = location;
+            this.Age = age;
+            this.Friends = friends;
         }
 
         public void PostNewContent()

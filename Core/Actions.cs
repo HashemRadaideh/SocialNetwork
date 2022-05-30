@@ -1,34 +1,34 @@
 namespace Core
 {
     [Serializable]
-    internal class Post
+    public class Post
     {
-        private string Username;
-        private string Content;
-        private string Category;
+        public string Username { get; set; } = "";
+        public string Content { get; set; } = "";
+        public string Category { get; set; } = "";
 
         public Post(string username, string content, string category)
         {
-            Username = username;
-            Content = content;
-            Category = category;
+            this.Username = username;
+            this.Content = content;
+            this.Category = category;
         }
     }
 
     [Serializable]
-    internal class Message
+    public class Message
     {
-        private string sender;
-        private string reciever;
-        private string text;
-        string subject;
-        char priority;
+        public string sender { get; set; } = "";
+        public string reciever { get; set; } = "";
+        public string text { get; set; } = "";
+        public string subject { get; set; } = "";
+        public string priority { get; set; } = "";
     }
 
     [Serializable]
-    internal class Report
+    public class Report
     {
-        private string reporter;
-        private string reported;
+        public string reporter { get; set; } = "";
+        public string reported { get; set; } = "";
     }
 }
