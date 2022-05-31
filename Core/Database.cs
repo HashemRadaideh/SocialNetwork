@@ -50,26 +50,26 @@ namespace Core
         /// </summary>
         public static void Decode()
         {
-            var path = System.IO.Directory.GetCurrentDirectory();
+            var path = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\..\\Dependencies\\";
             BinaryFormatter bf = new BinaryFormatter();
 
-            FileStream u = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfUsers.data", FileMode.Open, FileAccess.Read);
+            FileStream u = new FileStream(path + "NumberOfUsers.txt", FileMode.Open, FileAccess.Read);
             Number.NumberOfUsers = (int)bf.Deserialize(u);
             u.Close();
 
-            FileStream p = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfPosts.data", FileMode.Open, FileAccess.Read);
+            FileStream p = new FileStream(path + "NumberOfPosts.txt", FileMode.Open, FileAccess.Read);
             Number.NumberOfPosts = (int)bf.Deserialize(p);
             p.Close();
 
-            FileStream m = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfMessages.data", FileMode.Open, FileAccess.Read);
+            FileStream m = new FileStream(path + "NumberOfMessages.txt", FileMode.Open, FileAccess.Read);
             Number.NumberOfMessages = (int)bf.Deserialize(m);
             m.Close();
 
-            FileStream r = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfReports.data", FileMode.Open, FileAccess.Read);
+            FileStream r = new FileStream(path + "NumberOfReports.txt", FileMode.Open, FileAccess.Read);
             Number.NumberOfReports = (int)bf.Deserialize(r);
             r.Close();
 
-            FileStream usersData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\users.data", FileMode.Open, FileAccess.Read);
+            FileStream usersData = new FileStream(path + "users.txt", FileMode.Open, FileAccess.Read);
             for (int i = 0; i < Number.NumberOfUsers; i++)
             {
                 User c = (User)bf.Deserialize(usersData);
@@ -77,7 +77,7 @@ namespace Core
             }
             usersData.Close();
 
-            FileStream postsData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\posts.data", FileMode.Open, FileAccess.Read);
+            FileStream postsData = new FileStream(path + "posts.txt", FileMode.Open, FileAccess.Read);
             for (int i = 0; i < Number.NumberOfPosts; i++)
             {
                 Post g = (Post)bf.Deserialize(postsData);
@@ -85,7 +85,7 @@ namespace Core
             }
             postsData.Close();
 
-            FileStream messagesData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\messages.data", FileMode.Open, FileAccess.Read);
+            FileStream messagesData = new FileStream(path + "messages.txt", FileMode.Open, FileAccess.Read);
             for (int i = 0; i < Number.NumberOfMessages; i++)
             {
                 Message mm = (Message)bf.Deserialize(messagesData);
@@ -93,7 +93,7 @@ namespace Core
             }
             messagesData.Close();
 
-            FileStream reportsData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\reports.data", FileMode.Open, FileAccess.Read);
+            FileStream reportsData = new FileStream(path + "reports.txt", FileMode.Open, FileAccess.Read);
             for (int i = 0; i < Number.NumberOfReports; i++)
             {
                 Report re = (Report)bf.Deserialize(reportsData);
@@ -107,50 +107,50 @@ namespace Core
         /// </summary>
         public static void Finish()
         {
-            var path = System.IO.Directory.GetCurrentDirectory();
+            var path = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\..\\Dependencies\\";
             BinaryFormatter bf = new BinaryFormatter();
 
-            FileStream usersData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\users.data", FileMode.Create, FileAccess.Write);
+            FileStream usersData = new FileStream(path + "users.txt", FileMode.Create, FileAccess.Write);
             for (int i = 0; i < Number.NumberOfUsers; i++)
             {
                 bf.Serialize(usersData, Users[i]);
             }
             usersData.Close();
 
-            FileStream usersNum = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfUsers.data", FileMode.Create, FileAccess.Write);
+            FileStream usersNum = new FileStream(path + "NumberOfUsers.txt", FileMode.Create, FileAccess.Write);
             bf.Serialize(usersNum, Number.NumberOfUsers);
             usersNum.Close();
 
-            FileStream postsData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\posts.data", FileMode.Create, FileAccess.Write);
+            FileStream postsData = new FileStream(path + "posts.txt", FileMode.Create, FileAccess.Write);
             for (int i = 0; i < Number.NumberOfPosts; i++)
             {
                 bf.Serialize(postsData, Posts[i]);
             }
             postsData.Close();
 
-            FileStream postsNum = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfPosts.data", FileMode.Create, FileAccess.Write);
+            FileStream postsNum = new FileStream(path + "NumberOfPosts.txt", FileMode.Create, FileAccess.Write);
             bf.Serialize(postsNum, Number.NumberOfPosts);
             postsNum.Close();
 
-            FileStream messagesData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\messages.data", FileMode.Create, FileAccess.Write);
+            FileStream messagesData = new FileStream(path + "messages.txt", FileMode.Create, FileAccess.Write);
             for (int i = 0; i < Number.NumberOfMessages; i++)
             {
                 bf.Serialize(messagesData, Messages[i]);
             }
             messagesData.Close();
 
-            FileStream messagesNum = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfMessages.data", FileMode.Create, FileAccess.Write);
+            FileStream messagesNum = new FileStream(path + "NumberOfMessages.txt", FileMode.Create, FileAccess.Write);
             bf.Serialize(messagesNum, Number.NumberOfMessages);
             messagesNum.Close();
 
-            FileStream reportsData = new FileStream($"{path}\\..\\..\\..\\Dependencies\\reports.data", FileMode.Create, FileAccess.Write);
+            FileStream reportsData = new FileStream(path + "reports.txt", FileMode.Create, FileAccess.Write);
             for (int i = 0; i < Number.NumberOfReports; i++)
             {
                 bf.Serialize(reportsData, Messages[i]);
             }
             reportsData.Close();
 
-            FileStream reportsNum = new FileStream($"{path}\\..\\..\\..\\Dependencies\\NumberOfReports.data", FileMode.Create, FileAccess.Write);
+            FileStream reportsNum = new FileStream(path + "NumberOfReports.txt", FileMode.Create, FileAccess.Write);
             bf.Serialize(reportsNum, Number.NumberOfReports);
             reportsNum.Close();
         }
