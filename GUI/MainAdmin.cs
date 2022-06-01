@@ -2,11 +2,9 @@ using System.Runtime.InteropServices;
 
 namespace GUI
 {
-    public partial class MainWindow : Form
+    public partial class AdminMain : Form
     {
-        Account.User? CurrentUser;
-
-        public MainWindow()
+        public AdminMain()
         {
             InitializeComponent();
         }
@@ -78,6 +76,13 @@ namespace GUI
         private void WindowTitle_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void LogOut_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var login = new UserLogin();
+            login.Show();
         }
     }
 }

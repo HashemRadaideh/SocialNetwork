@@ -38,7 +38,7 @@ namespace GUI
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new LoginWindow());
+                Application.Run(new UserLogin());
                 db.Save();
                 return 0;
             }

@@ -101,8 +101,7 @@ namespace Account
 
         public void RegisterNewUserAccount(string username, string password, string firstName, string lastName, string location, int age)
         {
-
-            database.Instance.Add("users", new Account(username, password, true, firstName, lastName, location, age));
+            database.Instance.Add("users", new User(username, password, true, firstName, lastName, location, age));
         }
 
         public string ViewAllUserAccounts()
@@ -174,13 +173,11 @@ namespace Account
 
         public void PostNewContent(string content)
         {
-
             database.Instance.Add("posts", new pst(this.Username, content)); // this.Username -> Poster's username, content -> content
         }
 
         public void SendMessage(string username, string content)
         {
-
             database.Instance.Add("messages", new msg(this.Username, username, content)); // this.Username -> sender, username -> receiver, content -> message
         }
 
@@ -253,6 +250,7 @@ namespace Account
                     temp += row + "\n";
                 }
             }
+
             return temp;
         }
 
@@ -261,7 +259,6 @@ namespace Account
             // TODO: Send report to administrator
             var db = database.Instance;
             var reporter = db.IndexOf("users", this.Username);
-
             var reported = db.IndexOf("users", username);
 
             db.Add("reports", new rep(reporter, reported, content)); // this.Username -> reporter, content -> reports

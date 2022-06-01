@@ -56,23 +56,6 @@ namespace Database
         private static readonly Database instance = new Database();
         private Database()
         {
-            //CreateNewTable("users");
-            //CreateNewTable("reports");
-            //CreateNewTable("posts");
-            //CreateNewTable("messages");
-
-            //var acc1 = new useraccount("HashemWasTaken", "0", true, "Hashem", "Al_Radaideh", "Irbid", 20);
-            //var acc2 = new useraccount("HashemIsTaken", "1", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1 });
-            //var acc3 = new useraccount("HashemTaken", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2 });
-            //var acc4 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20);
-            //var acc5 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2, acc3 });
-
-            //Add("users", acc1);
-            //Add("users", acc2);
-            //Add("users", acc3);
-            //Add("users", acc4);
-            //Add("users", acc5);
-
             // Load database from binary formated file Database.dat
             Load();
         }
@@ -87,7 +70,7 @@ namespace Database
             // If the file does not exist, create a new database
             if (!System.IO.File.Exists("Database.dat"))
             {
-                Save();
+                CreateNewDatabase();
             }
             else
             {
@@ -112,6 +95,28 @@ namespace Database
 
         ~Database()
         {
+            Save();
+        }
+
+        private void CreateNewDatabase()
+        {
+            CreateNewTable("users");
+            CreateNewTable("reports");
+            CreateNewTable("posts");
+            CreateNewTable("messages");
+
+            var acc1 = new useraccount("HashemWasTaken", "0", true, "Hashem", "Al_Radaideh", "Irbid", 20);
+            var acc2 = new useraccount("HashemIsTaken", "1", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1 });
+            var acc3 = new useraccount("HashemTaken", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2 });
+            var acc4 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20);
+            var acc5 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2, acc3 });
+
+            Add("users", acc1);
+            Add("users", acc2);
+            Add("users", acc3);
+            Add("users", acc4);
+            Add("users", acc5);
+
             Save();
         }
 

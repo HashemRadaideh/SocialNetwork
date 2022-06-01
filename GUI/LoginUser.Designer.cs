@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class LoginWindow
+    partial class UserLogin
     {
         /// <summary>
         ///  Required designer variable.
@@ -94,7 +94,7 @@
             this.WindowTitle = new System.Windows.Forms.Label();
             this.LoginScreen = new System.Windows.Forms.Panel();
             this.Remember = new System.Windows.Forms.CheckBox();
-            this.SignUp = new System.Windows.Forms.Button();
+            this.LoingAsAdmin = new System.Windows.Forms.Button();
             this.SignIn = new System.Windows.Forms.Button();
             this.Password = new System.Windows.Forms.TextBox();
             this.Address = new System.Windows.Forms.TextBox();
@@ -166,7 +166,7 @@
             this.LoginScreen.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.LoginScreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
             this.LoginScreen.Controls.Add(this.Remember);
-            this.LoginScreen.Controls.Add(this.SignUp);
+            this.LoginScreen.Controls.Add(this.LoingAsAdmin);
             this.LoginScreen.Controls.Add(this.SignIn);
             this.LoginScreen.Controls.Add(this.Password);
             this.LoginScreen.Controls.Add(this.Address);
@@ -187,19 +187,19 @@
             this.Remember.Text = "Remember me";
             this.Remember.UseVisualStyleBackColor = true;
             // 
-            // SignUp
+            // LoingAsAdmin
             // 
-            this.SignUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.SignUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(24)))), ((int)(((byte)(36)))));
-            this.SignUp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.SignUp.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.SignUp.Location = new System.Drawing.Point(90, 253);
-            this.SignUp.Name = "SignUp";
-            this.SignUp.Size = new System.Drawing.Size(146, 23);
-            this.SignUp.TabIndex = 3;
-            this.SignUp.Text = "SignUp";
-            this.SignUp.UseVisualStyleBackColor = false;
-            this.SignUp.Click += new System.EventHandler(this.SignUp_Click);
+            this.LoingAsAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.LoingAsAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(24)))), ((int)(((byte)(36)))));
+            this.LoingAsAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.LoingAsAdmin.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.LoingAsAdmin.Location = new System.Drawing.Point(90, 253);
+            this.LoingAsAdmin.Name = "LoingAsAdmin";
+            this.LoingAsAdmin.Size = new System.Drawing.Size(146, 23);
+            this.LoingAsAdmin.TabIndex = 3;
+            this.LoingAsAdmin.Text = "Login as admin";
+            this.LoingAsAdmin.UseVisualStyleBackColor = false;
+            this.LoingAsAdmin.Click += new System.EventHandler(this.SignUp_Click);
             // 
             // SignIn
             // 
@@ -247,7 +247,7 @@
             this.MenuStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseDown_1);
             this.MenuStrip.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseMove_1);
             // 
-            // MainWindow
+            // UserLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -259,7 +259,7 @@
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(340, 350);
-            this.Name = "MainWindow";
+            this.Name = "UserLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainWindow_MouseDown);
@@ -277,7 +277,7 @@
         private Label WindowTitle;
         private Panel LoginScreen;
         private CheckBox Remember;
-        private Button SignUp;
+        private Button LoingAsAdmin;
         private Button SignIn;
         private TextBox Password;
         private TextBox Address;

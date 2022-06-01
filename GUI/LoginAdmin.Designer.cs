@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class MainWindow
+    partial class AdminLogin
     {
         /// <summary>
         ///  Required designer variable.
@@ -92,7 +92,13 @@
             this.Maximize = new System.Windows.Forms.Button();
             this.Minimize = new System.Windows.Forms.Button();
             this.WindowTitle = new System.Windows.Forms.Label();
+            this.LoginScreen = new System.Windows.Forms.Panel();
+            this.Remember = new System.Windows.Forms.CheckBox();
+            this.SignIn = new System.Windows.Forms.Button();
+            this.Password = new System.Windows.Forms.TextBox();
+            this.Address = new System.Windows.Forms.TextBox();
             this.MenuStrip = new System.Windows.Forms.Panel();
+            this.LoginScreen.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,6 +159,62 @@
             this.WindowTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.WindowTitle.Click += new System.EventHandler(this.WindowTitle_Click);
             // 
+            // LoginScreen
+            // 
+            this.LoginScreen.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LoginScreen.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoginScreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.LoginScreen.Controls.Add(this.Remember);
+            this.LoginScreen.Controls.Add(this.SignIn);
+            this.LoginScreen.Controls.Add(this.Password);
+            this.LoginScreen.Controls.Add(this.Address);
+            this.LoginScreen.Location = new System.Drawing.Point(260, 100);
+            this.LoginScreen.Name = "LoginScreen";
+            this.LoginScreen.Size = new System.Drawing.Size(330, 300);
+            this.LoginScreen.TabIndex = 5;
+            // 
+            // Remember
+            // 
+            this.Remember.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Remember.AutoSize = true;
+            this.Remember.ForeColor = System.Drawing.Color.White;
+            this.Remember.Location = new System.Drawing.Point(20, 198);
+            this.Remember.Name = "Remember";
+            this.Remember.Size = new System.Drawing.Size(104, 19);
+            this.Remember.TabIndex = 4;
+            this.Remember.Text = "Remember me";
+            this.Remember.UseVisualStyleBackColor = true;
+            // 
+            // SignIn
+            // 
+            this.SignIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.SignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(24)))), ((int)(((byte)(36)))));
+            this.SignIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SignIn.ForeColor = System.Drawing.Color.White;
+            this.SignIn.Location = new System.Drawing.Point(90, 223);
+            this.SignIn.Name = "SignIn";
+            this.SignIn.Size = new System.Drawing.Size(146, 23);
+            this.SignIn.TabIndex = 2;
+            this.SignIn.Text = "Sign in";
+            this.SignIn.UseVisualStyleBackColor = false;
+            this.SignIn.Click += new System.EventHandler(this.SignIn_Click);
+            // 
+            // Password
+            // 
+            this.Password.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Password.Location = new System.Drawing.Point(20, 161);
+            this.Password.Name = "Password";
+            this.Password.Size = new System.Drawing.Size(292, 23);
+            this.Password.TabIndex = 1;
+            // 
+            // Address
+            // 
+            this.Address.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Address.Location = new System.Drawing.Point(20, 130);
+            this.Address.Name = "Address";
+            this.Address.Size = new System.Drawing.Size(292, 23);
+            this.Address.TabIndex = 0;
+            // 
             // MenuStrip
             // 
             this.MenuStrip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -169,7 +231,7 @@
             this.MenuStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseDown_1);
             this.MenuStrip.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseMove_1);
             // 
-            // MainWindow
+            // AdminLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -177,13 +239,16 @@
             this.ClientSize = new System.Drawing.Size(853, 480);
             this.Controls.Add(this.WindowTitle);
             this.Controls.Add(this.MenuStrip);
+            this.Controls.Add(this.LoginScreen);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(340, 350);
-            this.Name = "MainWindow";
+            this.Name = "AdminLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainWindow_MouseDown);
+            this.LoginScreen.ResumeLayout(false);
+            this.LoginScreen.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -194,6 +259,11 @@
         private Button Maximize;
         private Button Minimize;
         private Label WindowTitle;
+        private Panel LoginScreen;
+        private CheckBox Remember;
+        private Button SignIn;
+        private TextBox Password;
+        private TextBox Address;
         private Panel MenuStrip;
     }
 }

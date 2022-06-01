@@ -2,11 +2,11 @@ using System.Runtime.InteropServices;
 
 namespace GUI
 {
-    public partial class LoginWindow : Form
+    public partial class UserLogin : Form
     {
         Account.User? CurrentUser;
 
-        public LoginWindow()
+        public UserLogin()
         {
             InitializeComponent();
         }
@@ -82,12 +82,6 @@ namespace GUI
         {
             WindowState = FormWindowState.Minimized;
         }
-
-        private void SignUp_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void WindowTitle_Click(object sender, EventArgs e)
         {
 
@@ -97,17 +91,28 @@ namespace GUI
         {
             var db = Database.Database.Instance;
             var user = db.Login(this.Address.Text, this.Password.Text);
-            if (user is not null)
+            if (user is not null && user != Account.Administrator.Instance)
             {
                 CurrentUser = (Account.User)user;
                 this.Hide();
-                var main = new MainWindow();
+                var main = new UserMain();
                 main.Show();
+            }
+            else if (user == Account.Administrator.Instance)
+            {
+                MessageBox.Show("Admin login detected, login from admin panel");
             }
             else
             {
-                MessageBox.Show("User was not found");
+                MessageBox.Show("Invalid username or password");
             }
+        }
+
+        private void SignUp_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var adminLogin = new AdminLogin();
+            adminLogin.Show();
         }
     }
 }
