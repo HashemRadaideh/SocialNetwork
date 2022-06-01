@@ -76,5 +76,145 @@ namespace GUI
             var login = new UserLogin();
             login.Show();
         }
+
+        private void ButtonCreateNewPost_Click(object sender, EventArgs e)
+        {
+            if (!PanelCreatePost.Visible)
+            {
+                PanelCreatePost.Visible = true;
+                PanelCreatePost.BringToFront();
+            }
+            else
+            {
+                PanelCreatePost.Visible = false;
+            }
+
+            PanelSendMessage.Visible = false;
+            PanelMyPosts.Visible = false;
+            PanelMyMessages.Visible = false;
+            PanelHome.Visible = false;
+            PanelHomeFiltered.Visible = false;
+            PanelSendReport.Visible = false;
+        }
+
+        private void ButtonSendMessage_Click(object sender, EventArgs e)
+        {
+            if (!PanelSendMessage.Visible)
+            {
+                PanelSendMessage.Visible = true;
+                PanelSendMessage.BringToFront();
+            }
+            else
+            {
+                PanelSendMessage.Visible = false;
+            }
+
+            PanelCreatePost.Visible = false;
+            PanelMyPosts.Visible = false;
+            PanelMyMessages.Visible = false;
+            PanelHome.Visible = false;
+            PanelHomeFiltered.Visible = false;
+            PanelSendReport.Visible = false;
+        }
+
+        private void ButtonViewAllMyPosts_Click(object sender, EventArgs e)
+        {
+            if (!PanelMyPosts.Visible)
+            {
+                PanelMyPosts.Visible = true;
+                PanelMyPosts.BringToFront();
+            }
+            else
+            {
+                PanelMyPosts.Visible = false;
+            }
+
+            PanelCreatePost.Visible = false;
+            PanelSendMessage.Visible = false;
+            PanelMyMessages.Visible = false;
+            PanelHome.Visible = false;
+            PanelHomeFiltered.Visible = false;
+            PanelSendReport.Visible = false;
+        }
+
+        private void ButtonMyMessages_Click(object sender, EventArgs e)
+        {
+            if (!PanelMyMessages.Visible)
+            {
+                PanelMyMessages.Visible = true;
+                PanelMyMessages.BringToFront();
+            }
+            else
+            {
+                PanelMyMessages.Visible = false;
+            }
+
+            PanelCreatePost.Visible = false;
+            PanelSendMessage.Visible = false;
+            PanelMyPosts.Visible = false;
+            PanelHome.Visible = false;
+            PanelHomeFiltered.Visible = false;
+            PanelSendReport.Visible = false;
+        }
+
+        private void ButtonHome_Click(object sender, EventArgs e)
+        {
+            if (!PanelHome.Visible)
+            {
+                PanelHome.Visible = true;
+                PanelHome.BringToFront();
+            }
+            else
+            {
+                PanelHome.Visible = false;
+            }
+
+            PanelCreatePost.Visible = false;
+            PanelSendMessage.Visible = false;
+            PanelMyPosts.Visible = false;
+            PanelMyMessages.Visible = false;
+            PanelHomeFiltered.Visible = false;
+            PanelSendReport.Visible = false;
+        }
+
+        private void ButtonFilteredHome_Click(object sender, EventArgs e)
+        {
+            if (!PanelHomeFiltered.Visible)
+            {
+                PanelHomeFiltered.Visible = true;
+                PanelHomeFiltered.BringToFront();
+            }
+            else
+            {
+                PanelHomeFiltered.Visible = false;
+            }
+
+            PanelCreatePost.Visible = false;
+            PanelSendMessage.Visible = false;
+            PanelMyPosts.Visible = false;
+            PanelMyMessages.Visible = false;
+            PanelHome.Visible = false;
+            PanelSendReport.Visible = false;
+        }
+
+        private void ButtonSendReport_Click(object sender, EventArgs e)
+        {
+            if (!PanelSendReport.Visible)
+            {
+                PanelSendReport.Visible = true;
+                PanelSendReport.BringToFront();
+            }
+            else
+            {
+                PanelSendReport.Visible = false;
+            }
+
+            PanelCreatePost.Visible = false;
+            PanelSendMessage.Visible = false;
+            PanelMyPosts.Visible = false;
+            PanelMyMessages.Visible = false;
+            PanelHome.Visible = false;
+            PanelHomeFiltered.Visible = false;
+        }
     }
 }

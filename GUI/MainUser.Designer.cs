@@ -94,14 +94,21 @@
             this.WindowTitle = new System.Windows.Forms.Label();
             this.MenuStrip = new System.Windows.Forms.Panel();
             this.SideBar = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.CreateNewPost = new System.Windows.Forms.Button();
+            this.ButtonMyMessages = new System.Windows.Forms.Button();
+            this.ButtonSendMessage = new System.Windows.Forms.Button();
+            this.ButtonSendReport = new System.Windows.Forms.Button();
+            this.ButtonCreateNewPost = new System.Windows.Forms.Button();
             this.LogOut = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.ViewAllMyPosts = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.ButtonFilteredHome = new System.Windows.Forms.Button();
+            this.ButtonViewAllMyPosts = new System.Windows.Forms.Button();
+            this.ButtonHome = new System.Windows.Forms.Button();
+            this.PanelCreatePost = new System.Windows.Forms.Panel();
+            this.PanelSendMessage = new System.Windows.Forms.Panel();
+            this.PanelMyPosts = new System.Windows.Forms.Panel();
+            this.PanelMyMessages = new System.Windows.Forms.Panel();
+            this.PanelHome = new System.Windows.Forms.Panel();
+            this.PanelHomeFiltered = new System.Windows.Forms.Panel();
+            this.PanelSendReport = new System.Windows.Forms.Panel();
             this.MenuStrip.SuspendLayout();
             this.SideBar.SuspendLayout();
             this.SuspendLayout();
@@ -183,78 +190,78 @@
             this.SideBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.SideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.SideBar.Controls.Add(this.button7);
-            this.SideBar.Controls.Add(this.button6);
-            this.SideBar.Controls.Add(this.button5);
-            this.SideBar.Controls.Add(this.CreateNewPost);
+            this.SideBar.Controls.Add(this.ButtonMyMessages);
+            this.SideBar.Controls.Add(this.ButtonSendMessage);
+            this.SideBar.Controls.Add(this.ButtonSendReport);
+            this.SideBar.Controls.Add(this.ButtonCreateNewPost);
             this.SideBar.Controls.Add(this.LogOut);
-            this.SideBar.Controls.Add(this.button4);
-            this.SideBar.Controls.Add(this.ViewAllMyPosts);
-            this.SideBar.Controls.Add(this.button3);
+            this.SideBar.Controls.Add(this.ButtonFilteredHome);
+            this.SideBar.Controls.Add(this.ButtonViewAllMyPosts);
+            this.SideBar.Controls.Add(this.ButtonHome);
             this.SideBar.Location = new System.Drawing.Point(1, 27);
             this.SideBar.Name = "SideBar";
             this.SideBar.Size = new System.Drawing.Size(198, 452);
             this.SideBar.TabIndex = 8;
             // 
-            // button7
+            // ButtonMyMessages
             // 
-            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonMyMessages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(12, 94);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(175, 23);
-            this.button7.TabIndex = 10;
-            this.button7.Text = "My messages";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.LogOut_Click);
+            this.ButtonMyMessages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonMyMessages.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonMyMessages.ForeColor = System.Drawing.Color.White;
+            this.ButtonMyMessages.Location = new System.Drawing.Point(12, 94);
+            this.ButtonMyMessages.Name = "ButtonMyMessages";
+            this.ButtonMyMessages.Size = new System.Drawing.Size(175, 23);
+            this.ButtonMyMessages.TabIndex = 10;
+            this.ButtonMyMessages.Text = "My messages";
+            this.ButtonMyMessages.UseVisualStyleBackColor = false;
+            this.ButtonMyMessages.Click += new System.EventHandler(this.ButtonMyMessages_Click);
             // 
-            // button6
+            // ButtonSendMessage
             // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonSendMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(12, 36);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(175, 23);
-            this.button6.TabIndex = 10;
-            this.button6.Text = "Send a message";
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.LogOut_Click);
+            this.ButtonSendMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonSendMessage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonSendMessage.ForeColor = System.Drawing.Color.White;
+            this.ButtonSendMessage.Location = new System.Drawing.Point(12, 36);
+            this.ButtonSendMessage.Name = "ButtonSendMessage";
+            this.ButtonSendMessage.Size = new System.Drawing.Size(175, 23);
+            this.ButtonSendMessage.TabIndex = 10;
+            this.ButtonSendMessage.Text = "Send a message";
+            this.ButtonSendMessage.UseVisualStyleBackColor = false;
+            this.ButtonSendMessage.Click += new System.EventHandler(this.ButtonSendMessage_Click);
             // 
-            // button5
+            // ButtonSendReport
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonSendReport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(12, 389);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(175, 23);
-            this.button5.TabIndex = 10;
-            this.button5.Text = "Report";
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.LogOut_Click);
+            this.ButtonSendReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonSendReport.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonSendReport.ForeColor = System.Drawing.Color.White;
+            this.ButtonSendReport.Location = new System.Drawing.Point(12, 389);
+            this.ButtonSendReport.Name = "ButtonSendReport";
+            this.ButtonSendReport.Size = new System.Drawing.Size(175, 23);
+            this.ButtonSendReport.TabIndex = 10;
+            this.ButtonSendReport.Text = "Report";
+            this.ButtonSendReport.UseVisualStyleBackColor = false;
+            this.ButtonSendReport.Click += new System.EventHandler(this.ButtonSendReport_Click);
             // 
-            // CreateNewPost
+            // ButtonCreateNewPost
             // 
-            this.CreateNewPost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonCreateNewPost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CreateNewPost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.CreateNewPost.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.CreateNewPost.ForeColor = System.Drawing.Color.White;
-            this.CreateNewPost.Location = new System.Drawing.Point(12, 7);
-            this.CreateNewPost.Name = "CreateNewPost";
-            this.CreateNewPost.Size = new System.Drawing.Size(175, 23);
-            this.CreateNewPost.TabIndex = 10;
-            this.CreateNewPost.Text = "Create new post";
-            this.CreateNewPost.UseVisualStyleBackColor = false;
-            this.CreateNewPost.Click += new System.EventHandler(this.LogOut_Click);
+            this.ButtonCreateNewPost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonCreateNewPost.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonCreateNewPost.ForeColor = System.Drawing.Color.White;
+            this.ButtonCreateNewPost.Location = new System.Drawing.Point(12, 7);
+            this.ButtonCreateNewPost.Name = "ButtonCreateNewPost";
+            this.ButtonCreateNewPost.Size = new System.Drawing.Size(175, 23);
+            this.ButtonCreateNewPost.TabIndex = 10;
+            this.ButtonCreateNewPost.Text = "Create new post";
+            this.ButtonCreateNewPost.UseVisualStyleBackColor = false;
+            this.ButtonCreateNewPost.Click += new System.EventHandler(this.ButtonCreateNewPost_Click);
             // 
             // LogOut
             // 
@@ -271,50 +278,113 @@
             this.LogOut.UseVisualStyleBackColor = false;
             this.LogOut.Click += new System.EventHandler(this.LogOut_Click);
             // 
-            // button4
+            // ButtonFilteredHome
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonFilteredHome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(12, 152);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(175, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Home filtered";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.LogOut_Click);
+            this.ButtonFilteredHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonFilteredHome.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonFilteredHome.ForeColor = System.Drawing.Color.White;
+            this.ButtonFilteredHome.Location = new System.Drawing.Point(12, 152);
+            this.ButtonFilteredHome.Name = "ButtonFilteredHome";
+            this.ButtonFilteredHome.Size = new System.Drawing.Size(175, 23);
+            this.ButtonFilteredHome.TabIndex = 10;
+            this.ButtonFilteredHome.Text = "Home filtered";
+            this.ButtonFilteredHome.UseVisualStyleBackColor = false;
+            this.ButtonFilteredHome.Click += new System.EventHandler(this.ButtonFilteredHome_Click);
             // 
-            // ViewAllMyPosts
+            // ButtonViewAllMyPosts
             // 
-            this.ViewAllMyPosts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonViewAllMyPosts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ViewAllMyPosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.ViewAllMyPosts.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ViewAllMyPosts.ForeColor = System.Drawing.Color.White;
-            this.ViewAllMyPosts.Location = new System.Drawing.Point(12, 65);
-            this.ViewAllMyPosts.Name = "ViewAllMyPosts";
-            this.ViewAllMyPosts.Size = new System.Drawing.Size(175, 23);
-            this.ViewAllMyPosts.TabIndex = 10;
-            this.ViewAllMyPosts.Text = "My posts";
-            this.ViewAllMyPosts.UseVisualStyleBackColor = false;
-            this.ViewAllMyPosts.Click += new System.EventHandler(this.LogOut_Click);
+            this.ButtonViewAllMyPosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonViewAllMyPosts.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonViewAllMyPosts.ForeColor = System.Drawing.Color.White;
+            this.ButtonViewAllMyPosts.Location = new System.Drawing.Point(12, 65);
+            this.ButtonViewAllMyPosts.Name = "ButtonViewAllMyPosts";
+            this.ButtonViewAllMyPosts.Size = new System.Drawing.Size(175, 23);
+            this.ButtonViewAllMyPosts.TabIndex = 10;
+            this.ButtonViewAllMyPosts.Text = "My posts";
+            this.ButtonViewAllMyPosts.UseVisualStyleBackColor = false;
+            this.ButtonViewAllMyPosts.Click += new System.EventHandler(this.ButtonViewAllMyPosts_Click);
             // 
-            // button3
+            // ButtonHome
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonHome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(11, 123);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(175, 23);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Home";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.LogOut_Click);
+            this.ButtonHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonHome.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonHome.ForeColor = System.Drawing.Color.White;
+            this.ButtonHome.Location = new System.Drawing.Point(11, 123);
+            this.ButtonHome.Name = "ButtonHome";
+            this.ButtonHome.Size = new System.Drawing.Size(175, 23);
+            this.ButtonHome.TabIndex = 10;
+            this.ButtonHome.Text = "Home";
+            this.ButtonHome.UseVisualStyleBackColor = false;
+            this.ButtonHome.Click += new System.EventHandler(this.ButtonHome_Click);
+            // 
+            // PanelCreatePost
+            // 
+            this.PanelCreatePost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.PanelCreatePost.Location = new System.Drawing.Point(215, 34);
+            this.PanelCreatePost.Name = "PanelCreatePost";
+            this.PanelCreatePost.Size = new System.Drawing.Size(626, 431);
+            this.PanelCreatePost.TabIndex = 9;
+            this.PanelCreatePost.Visible = false;
+            // 
+            // PanelSendMessage
+            // 
+            this.PanelSendMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.PanelSendMessage.Location = new System.Drawing.Point(215, 34);
+            this.PanelSendMessage.Name = "PanelSendMessage";
+            this.PanelSendMessage.Size = new System.Drawing.Size(626, 431);
+            this.PanelSendMessage.TabIndex = 10;
+            this.PanelSendMessage.Visible = false;
+            // 
+            // PanelMyPosts
+            // 
+            this.PanelMyPosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.PanelMyPosts.Location = new System.Drawing.Point(215, 34);
+            this.PanelMyPosts.Name = "PanelMyPosts";
+            this.PanelMyPosts.Size = new System.Drawing.Size(626, 431);
+            this.PanelMyPosts.TabIndex = 11;
+            this.PanelMyPosts.Visible = false;
+            // 
+            // PanelMyMessages
+            // 
+            this.PanelMyMessages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.PanelMyMessages.Location = new System.Drawing.Point(215, 34);
+            this.PanelMyMessages.Name = "PanelMyMessages";
+            this.PanelMyMessages.Size = new System.Drawing.Size(625, 431);
+            this.PanelMyMessages.TabIndex = 12;
+            this.PanelMyMessages.Visible = false;
+            // 
+            // PanelHome
+            // 
+            this.PanelHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.PanelHome.Location = new System.Drawing.Point(215, 34);
+            this.PanelHome.Name = "PanelHome";
+            this.PanelHome.Size = new System.Drawing.Size(626, 431);
+            this.PanelHome.TabIndex = 13;
+            this.PanelHome.Visible = false;
+            // 
+            // PanelHomeFiltered
+            // 
+            this.PanelHomeFiltered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.PanelHomeFiltered.Location = new System.Drawing.Point(215, 34);
+            this.PanelHomeFiltered.Name = "PanelHomeFiltered";
+            this.PanelHomeFiltered.Size = new System.Drawing.Size(626, 431);
+            this.PanelHomeFiltered.TabIndex = 14;
+            this.PanelHomeFiltered.Visible = false;
+            // 
+            // PanelSendReport
+            // 
+            this.PanelSendReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.PanelSendReport.Location = new System.Drawing.Point(215, 34);
+            this.PanelSendReport.Name = "PanelSendReport";
+            this.PanelSendReport.Size = new System.Drawing.Size(626, 431);
+            this.PanelSendReport.TabIndex = 15;
+            this.PanelSendReport.Visible = false;
             // 
             // UserMain
             // 
@@ -325,6 +395,13 @@
             this.Controls.Add(this.SideBar);
             this.Controls.Add(this.WindowTitle);
             this.Controls.Add(this.MenuStrip);
+            this.Controls.Add(this.PanelSendReport);
+            this.Controls.Add(this.PanelHomeFiltered);
+            this.Controls.Add(this.PanelHome);
+            this.Controls.Add(this.PanelMyMessages);
+            this.Controls.Add(this.PanelMyPosts);
+            this.Controls.Add(this.PanelSendMessage);
+            this.Controls.Add(this.PanelCreatePost);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(340, 350);
@@ -345,12 +422,19 @@
         private Panel MenuStrip;
         private Panel SideBar;
         private Button LogOut;
-        private Button button7;
-        private Button button6;
-        private Button button5;
-        private Button button4;
-        private Button button3;
-        private Button ViewAllMyPosts;
-        private Button CreateNewPost;
+        private Button ButtonMyMessages;
+        private Button ButtonSendMessage;
+        private Button ButtonSendReport;
+        private Button ButtonFilteredHome;
+        private Button ButtonHome;
+        private Button ButtonViewAllMyPosts;
+        private Button ButtonCreateNewPost;
+        private Panel PanelCreatePost;
+        private Panel PanelSendMessage;
+        private Panel PanelMyPosts;
+        private Panel PanelMyMessages;
+        private Panel PanelHome;
+        private Panel PanelHomeFiltered;
+        private Panel PanelSendReport;
     }
 }

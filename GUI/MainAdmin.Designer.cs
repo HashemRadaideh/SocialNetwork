@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class AdminMain 
+    partial class AdminMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -116,7 +116,16 @@
             this.FieldPassword = new System.Windows.Forms.TextBox();
             this.FieldUsername = new System.Windows.Forms.TextBox();
             this.PanelViewAllUsers = new System.Windows.Forms.Panel();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.ListUsers = new System.Windows.Forms.ListView();
+            this.ColumnUsername = new System.Windows.Forms.ColumnHeader();
+            this.ColumnPassword = new System.Windows.Forms.ColumnHeader();
+            this.ColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.ColumnLastName = new System.Windows.Forms.ColumnHeader();
+            this.ColumnLocation = new System.Windows.Forms.ColumnHeader();
+            this.ColumnAge = new System.Windows.Forms.ColumnHeader();
+            this.ColumnFriends = new System.Windows.Forms.ColumnHeader();
+            this.PanelSuspend = new System.Windows.Forms.Panel();
+            this.PanelActivate = new System.Windows.Forms.Panel();
             this.MenuStrip.SuspendLayout();
             this.SideBar.SuspendLayout();
             this.PanelRegister.SuspendLayout();
@@ -238,6 +247,7 @@
             this.ActivateUser.TabIndex = 9;
             this.ActivateUser.Text = "Activate user";
             this.ActivateUser.UseVisualStyleBackColor = false;
+            this.ActivateUser.Click += new System.EventHandler(this.ActivateUser_Click);
             // 
             // SuspendUser
             // 
@@ -252,6 +262,7 @@
             this.SuspendUser.TabIndex = 9;
             this.SuspendUser.Text = "Suspend user";
             this.SuspendUser.UseVisualStyleBackColor = false;
+            this.SuspendUser.Click += new System.EventHandler(this.SuspendUser_Click);
             // 
             // ViewAllUsers
             // 
@@ -451,20 +462,81 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PanelViewAllUsers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
-            this.PanelViewAllUsers.Controls.Add(this.listView1);
+            this.PanelViewAllUsers.Controls.Add(this.ListUsers);
             this.PanelViewAllUsers.Location = new System.Drawing.Point(215, 34);
             this.PanelViewAllUsers.Name = "PanelViewAllUsers";
             this.PanelViewAllUsers.Size = new System.Drawing.Size(626, 431);
             this.PanelViewAllUsers.TabIndex = 10;
             this.PanelViewAllUsers.Visible = false;
             // 
-            // listView1
+            // ListUsers
             // 
-            this.listView1.Location = new System.Drawing.Point(22, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(575, 402);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.ListUsers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ColumnUsername,
+            this.ColumnPassword,
+            this.ColumnHeader,
+            this.ColumnLastName,
+            this.ColumnLocation,
+            this.ColumnAge,
+            this.ColumnFriends});
+            this.ListUsers.Location = new System.Drawing.Point(22, 12);
+            this.ListUsers.Name = "ListUsers";
+            this.ListUsers.Size = new System.Drawing.Size(575, 402);
+            this.ListUsers.TabIndex = 0;
+            this.ListUsers.UseCompatibleStateImageBehavior = false;
+            this.ListUsers.View = System.Windows.Forms.View.Details;
+            // 
+            // ColumnUsername
+            // 
+            this.ColumnUsername.Text = "Username";
+            // 
+            // ColumnPassword
+            // 
+            this.ColumnPassword.Text = "Password";
+            // 
+            // ColumnHeader
+            // 
+            this.ColumnHeader.Text = "FirstName";
+            // 
+            // ColumnLastName
+            // 
+            this.ColumnLastName.Text = "Last Name";
+            // 
+            // ColumnLocation
+            // 
+            this.ColumnLocation.Text = "Location";
+            // 
+            // ColumnAge
+            // 
+            this.ColumnAge.Text = "Age";
+            // 
+            // ColumnFriends
+            // 
+            this.ColumnFriends.Text = "Friends";
+            // 
+            // PanelSuspend
+            // 
+            this.PanelSuspend.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelSuspend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.PanelSuspend.Location = new System.Drawing.Point(215, 34);
+            this.PanelSuspend.Name = "PanelSuspend";
+            this.PanelSuspend.Size = new System.Drawing.Size(626, 431);
+            this.PanelSuspend.TabIndex = 11;
+            this.PanelSuspend.Visible = false;
+            // 
+            // PanelActivate
+            // 
+            this.PanelActivate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelActivate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.PanelActivate.Location = new System.Drawing.Point(215, 34);
+            this.PanelActivate.Name = "PanelActivate";
+            this.PanelActivate.Size = new System.Drawing.Size(626, 431);
+            this.PanelActivate.TabIndex = 12;
+            this.PanelActivate.Visible = false;
             // 
             // AdminMain
             // 
@@ -475,8 +547,10 @@
             this.Controls.Add(this.SideBar);
             this.Controls.Add(this.WindowTitle);
             this.Controls.Add(this.MenuStrip);
+            this.Controls.Add(this.PanelSuspend);
             this.Controls.Add(this.PanelViewAllUsers);
             this.Controls.Add(this.PanelRegister);
+            this.Controls.Add(this.PanelActivate);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(340, 350);
@@ -521,6 +595,15 @@
         private Panel PanelViewAllUsers;
         private Label label2;
         private TextBox FieldAge;
-        private ListView listView1;
+        private ListView ListUsers;
+        private Panel PanelSuspend;
+        private Panel PanelActivate;
+        private ColumnHeader ColumnUsername;
+        private ColumnHeader ColumnPassword;
+        private ColumnHeader ColumnHeader;
+        private ColumnHeader ColumnLastName;
+        private ColumnHeader ColumnLocation;
+        private ColumnHeader ColumnAge;
+        private ColumnHeader ColumnFriends;
     }
 }

@@ -75,32 +75,6 @@ namespace GUI
             login.Show();
         }
 
-        private void RegisterNewUser_Click(object sender, EventArgs e)
-        {
-            if (!PanelRegister.Visible)
-            {
-                PanelRegister.Show();
-            }
-            else
-            {
-                PanelRegister.Hide();
-            }
-            PanelViewAllUsers.Hide();
-        }
-
-        private void ViewAllUsers_Click(object sender, EventArgs e)
-        {
-            if (!PanelViewAllUsers.Visible)
-            {
-                PanelViewAllUsers.Show();
-            }
-            else
-            {
-                PanelViewAllUsers.Hide();
-            }
-            PanelRegister.Hide();
-        }
-
         private void RegisterUser_Click(object sender, EventArgs e)
         {
             var users_names = FieldFriends.Text;
@@ -126,6 +100,79 @@ namespace GUI
                 FieldLocation.Text, Convert.ToInt32(FieldAge.Text),
                 friends
                 );
+        }
+
+        private void RegisterNewUser_Click(object sender, EventArgs e)
+        {
+            if (!PanelRegister.Visible)
+            {
+                PanelRegister.Show();
+            }
+            else
+            {
+                PanelRegister.Hide();
+            }
+
+            PanelViewAllUsers.Hide();
+            PanelSuspend.Hide();
+            PanelActivate.Hide();
+        }
+
+        private void ViewAllUsers_Click(object sender, EventArgs e)
+        {
+            if (!PanelViewAllUsers.Visible)
+            {
+                PanelViewAllUsers.Show();
+            }
+            else
+            {
+                PanelViewAllUsers.Hide();
+            }
+
+            PanelRegister.Hide();
+            PanelSuspend.Hide();
+            PanelActivate.Hide();
+
+            var users_accounts = Account.Administrator.Instance.ViewAllUserAccounts();
+            var temp = users_accounts.Split("\n");
+            foreach (var strs in temp)
+            {
+                ListViewItem i = new ListViewItem(strs.Split(" "));
+                ListUsers.Items.Add(i);
+            }
+        }
+
+        private void SuspendUser_Click(object sender, EventArgs e)
+        {
+            if (!PanelSuspend.Visible)
+            {
+                PanelSuspend.Show();
+            }
+            else
+            {
+                PanelSuspend.Hide();
+            }
+
+            PanelRegister.Hide();
+            PanelViewAllUsers.Hide();
+            PanelActivate.Hide();
+
+        }
+
+        private void ActivateUser_Click(object sender, EventArgs e)
+        {
+            if (!PanelActivate.Visible)
+            {
+                PanelActivate.Show();
+            }
+            else
+            {
+                PanelActivate.Hide();
+            }
+
+            PanelRegister.Hide();
+            PanelViewAllUsers.Hide();
+            PanelSuspend.Hide();
         }
     }
 }
