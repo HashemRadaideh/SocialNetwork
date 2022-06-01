@@ -8,6 +8,7 @@ namespace Account
     using pst = Actions.Post;
     using rep = Actions.Report;
 
+    [Serializable]
     public class Account
     {
         private string username = "";
@@ -76,6 +77,7 @@ namespace Account
         }
     }
 
+    [Serializable]
     public class Administrator : Account
     {
         /// <summary>
@@ -197,6 +199,7 @@ namespace Account
         }
     }
 
+    [Serializable]
     public class User : Account
     {
         public User(string username, string password, bool status, string firstName, string lastName, string location, int age) : base(username, password, status, firstName, lastName, location, age) { }

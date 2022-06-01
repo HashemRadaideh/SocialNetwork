@@ -9,24 +9,6 @@
         public static void Main(string[] args)
         {
             var db = database.Instance;
-            // db.LoadDatabase();
-            db.CreateNewTable("users");
-            db.CreateNewTable("reports");
-            db.CreateNewTable("posts");
-            db.CreateNewTable("messages");
-
-            var acc1 = new useraccount("HashemWasTaken", "0", true, "Hashem", "Al_Radaideh", "Irbid", 20);
-            var acc2 = new useraccount("HashemIsTaken", "1", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1 });
-            var acc3 = new useraccount("HashemTaken", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2 });
-            var acc4 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20);
-            var acc5 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2, acc3 });
-
-            db.Add("users", acc1);
-            db.Add("users", acc2);
-            db.Add("users", acc3);
-            db.Add("users", acc4);
-            db.Add("users", acc5);
-
             while (true)
             {
                 Console.WriteLine("[1] Login as administrator");
@@ -72,7 +54,7 @@
 
                     case "3":
                         Console.WriteLine("\nExiting...");
-                        // db.SaveDatabase();
+                        db.Save();
                         return;
 
                     default:
@@ -85,6 +67,7 @@
 
         public static void AdminLoop()
         {
+            var db = database.Instance;
             var admin = administrator.Instance;
 
             while (true)
@@ -118,6 +101,7 @@
                         break;
 
                     case "5":
+                        db.Save();
                         return;
 
                     default:
@@ -129,6 +113,7 @@
 
         public static void UserLoop(useraccount user)
         {
+            var db = database.Instance;
             while (true)
             {
                 Console.WriteLine($"\nWelcome back {user.Username}, What would you like to do?");
@@ -175,6 +160,7 @@
                         break;
 
                     case "8":
+                        db.Save();
                         return;
 
                     default:

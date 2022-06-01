@@ -1,5 +1,6 @@
 namespace Actions
 {
+    [Serializable]
     public class Report
     {
         private int reported = 0;
@@ -18,6 +19,7 @@ namespace Actions
         public string Reason { get => reason; set => reason = value; }
     }
 
+    [Serializable]
     public class Post
     {
         private int author = 0;
@@ -39,6 +41,7 @@ namespace Actions
         }
     }
 
+    [Serializable]
     public class Message
     {
         private int sender = 0;

@@ -8,6 +8,7 @@ namespace Database
     using administrator = Account.Administrator;
     using useraccount = Account.User;
 
+    [Serializable]
     public class Table
     {
         private string name = "";
@@ -53,10 +54,65 @@ namespace Database
         // The Database class is a singleton, meaning that there is only one instance of the database
         // This is done to ensure that there is one and only one database in the System
         private static readonly Database instance = new Database();
-        private Database() { }
+        private Database()
+        {
+            //CreateNewTable("users");
+            //CreateNewTable("reports");
+            //CreateNewTable("posts");
+            //CreateNewTable("messages");
+
+            //var acc1 = new useraccount("HashemWasTaken", "0", true, "Hashem", "Al_Radaideh", "Irbid", 20);
+            //var acc2 = new useraccount("HashemIsTaken", "1", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1 });
+            //var acc3 = new useraccount("HashemTaken", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2 });
+            //var acc4 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20);
+            //var acc5 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2, acc3 });
+
+            //Add("users", acc1);
+            //Add("users", acc2);
+            //Add("users", acc3);
+            //Add("users", acc4);
+            //Add("users", acc5);
+
+            // Load database from binary formated file Database.dat
+            Load();
+        }
+
         public static Database Instance { get { return instance; } }
 
         private List<Table> tables = new List<Table>();
+
+        public void Load()
+        {
+            // Load database from binary formated file Database.dat
+            // If the file does not exist, create a new database
+            if (!System.IO.File.Exists("Database.dat"))
+            {
+            }
+            else
+            {
+                // Load database from binary formated file Database.dat
+                using (System.IO.FileStream fs = new System.IO.FileStream("Database.dat", System.IO.FileMode.Open))
+                {
+                    System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    this.tables = (List<Table>)formatter.Deserialize(fs);
+                }
+            }
+        }
+
+        public void Save()
+        {
+            // Save database to binary formated file Database.dat
+            using (System.IO.FileStream fs = new System.IO.FileStream("Database.dat", System.IO.FileMode.Create))
+            {
+                System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                formatter.Serialize(fs, this.tables);
+            }
+        }
+
+        ~Database()
+        {
+            Save();
+        }
 
         public void CreateNewTable(string name)
         {
@@ -121,16 +177,6 @@ namespace Database
             }
 
             return index;
-        }
-
-        internal void LoadDatabase()
-        {
-
-        }
-
-        internal void SaveDatabase()
-        {
-
         }
     }
 }
