@@ -1,49 +1,61 @@
-namespace Core
+namespace Actions
 {
-    [Serializable]
-    public class Post
-    {
-        public string Username { get; set; } = "";
-        public string Content { get; set; } = "";
-        public string Category { get; set; } = "";
-
-        public Post(string username, string content, string category)
-        {
-            this.Username = username;
-            this.Content = content;
-            this.Category = category;
-        }
-
-        public override string ToString()
-        {
-            return $"{Username} - {Content} - {Category}";
-        }
-    }
-
-    [Serializable]
-    public class Message
-    {
-        public string Sender { get; set; } = "";
-        public string Reciever { get; set; } = "";
-        public string Text { get; set; } = "";
-        public string Subject { get; set; } = "";
-        public string Priority { get; set; } = "";
-
-        public override string ToString()
-        {
-            return $"{this.Sender} - {this.Reciever} - {this.Text} - {this.Subject} - {this.Priority}";
-        }
-    }
-
-    [Serializable]
     public class Report
     {
-        public string Reporter { get; set; } = "";
-        public string Reported { get; set; } = "";
+        private int reported = 0;
+        private int reporter = 0;
+        private string reason = "";
+
+        public Report(int reporter, int reported, string reason)
+        {
+            this.reporter = reporter;
+            this.reported = reported;
+            this.reason = reason;
+        }
+
+        public int Reported { get => reported; set => reported = value; }
+        public int Reporter { get => reporter; set => reporter = value; }
+        public string Reason { get => reason; set => reason = value; }
+    }
+
+    public class Post
+    {
+        private int author = 0;
+        private string content = "";
+        private string username;
+
+        public Post(string username, string content)
+        {
+            this.username = username;
+            this.content = content;
+        }
+
+        public string Content { get => content; set => content = value; }
+        public int Author { get => author; set => author = value; }
 
         public override string ToString()
         {
-            return $"{this.Reporter} - {this.Reported}";
+            return $"u/{username}:\n{content}";
         }
+    }
+
+    public class Message
+    {
+        private int sender = 0;
+        private int receiver = 0;
+        private string content = "";
+        private string username1;
+        private string username2;
+
+        public Message(string username1, string username2, string content)
+        {
+            this.username1 = username1;
+            this.username2 = username2;
+            this.content = content;
+        }
+
+        public int Sender { get => sender; set => sender = value; }
+        public int Receiver { get => receiver; set => receiver = value; }
+        public string Content { get => content; set => content = value; }
     }
 }

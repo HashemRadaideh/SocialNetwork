@@ -1,238 +1,136 @@
-using System.Runtime.Serialization.Formatters.Binary;
-
-/*
-*NOTE: Database implementation by Omar AL-Saleh
-if you have any question, keep it for yourself I am not a google (بمزح ) ☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻
-
-*INFO: Hashem Al-Radaideh:
-begin the main entry point of the program, calling the decode method,
-and end the main with finish method to restore previous data and save new data in data base
-!WARN: please do not use the atrribute Add or Remove for the lists in the database or it will generate (مصايب)
-!HACK: insted of that use the static method Save, to add new (User, Post, Message, Report) to the list, and and the method Remove to remove (User, Post, Message, Report)
-do not edit the database class especially the methods (decode,finish) without telling me
-
-*INFO: Omar khasawneh:
-Work on any class except the database class, but don't change the name of classes
-and good luck
-*/
-
 /// <summary>
-/// Database implementation for the Social Network Service project.
+/// Database implementation for the Social Network project.
 /// </summary>
-namespace Core
+namespace Database
 {
-    /// <summary>
-    /// Dependency of the Database class.
-    /// used to store the number of elements in each field of the database.
-    /// </summary>
-    [Serializable]
-    public class Number
+    using System;
+    using System.Collections;
+    using administrator = Account.Administrator;
+    using useraccount = Account.User;
+
+    public class Table
     {
-        public static int NumberOfUsers = 0;
-        public static int NumberOfPosts = 0;
-        public static int NumberOfMessages = 0;
-        public static int NumberOfReports = 0;
+        private string name = "";
+        private Hashtable rows = new Hashtable();
+        // ID is used as the the primary key for the table
+        private int id = 0;
+
+        public string Name { get => name; }
+        public Hashtable Rows { get => rows; }
+        public int ID { get => id; }
+
+        public Table(string name)
+        {
+            this.name = name;
+        }
+
+        public void AddData(object data)
+        {
+            id++;
+            this.rows.Add(id, data);
+        }
+
+        public int IndexOf(object data)
+        {
+            int index = 0;
+
+            foreach (object val in this.rows.Values)
+            {
+                if (val.Equals(data))
+                {
+                    return index;
+                }
+            }
+
+            return index;
+        }
     }
 
-    /// <summary>
-    /// Implementation of the Database class.
-    /// </summary>
     [Serializable]
     public class Database
     {
-        public static List<User> Users = new List<User>();
-        public static List<Post> Posts = new List<Post>();
-        public static List<Message> Messages = new List<Message>();
-        public static List<Report> Reports = new List<Report>();
+        // Design pattern: Singleton
+        // The Database class is a singleton, meaning that there is only one instance of the database
+        // This is done to ensure that there is one and only one database in the System
+        private static readonly Database instance = new Database();
+        private Database() { }
+        public static Database Instance { get { return instance; } }
 
-        /// <summary>
-        /// Load the database and it's contents from the file.
-        /// </summary>
-        public static void Decode()
+        private List<Table> tables = new List<Table>();
+
+        public void CreateNewTable(string name)
         {
-            var path = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\..\\Dependencies\\";
-            BinaryFormatter bf = new BinaryFormatter();
+            this.tables.Add(new Table(name));
+        }
 
-            FileStream u = new FileStream(path + "NumberOfUsers.txt", FileMode.Open, FileAccess.Read);
-            Number.NumberOfUsers = (int)bf.Deserialize(u);
-            u.Close();
-
-            FileStream p = new FileStream(path + "NumberOfPosts.txt", FileMode.Open, FileAccess.Read);
-            Number.NumberOfPosts = (int)bf.Deserialize(p);
-            p.Close();
-
-            FileStream m = new FileStream(path + "NumberOfMessages.txt", FileMode.Open, FileAccess.Read);
-            Number.NumberOfMessages = (int)bf.Deserialize(m);
-            m.Close();
-
-            FileStream r = new FileStream(path + "NumberOfReports.txt", FileMode.Open, FileAccess.Read);
-            Number.NumberOfReports = (int)bf.Deserialize(r);
-            r.Close();
-
-            FileStream usersData = new FileStream(path + "users.txt", FileMode.Open, FileAccess.Read);
-            for (int i = 0; i < Number.NumberOfUsers; i++)
+        public Table? GetTable(string name)
+        {
+            foreach (Table table in this.tables)
             {
-                User c = (User)bf.Deserialize(usersData);
-                Users.Add(c);
+                if (table.Name.Equals(name))
+                {
+                    return table;
+                }
             }
-            usersData.Close();
 
-            FileStream postsData = new FileStream(path + "posts.txt", FileMode.Open, FileAccess.Read);
-            for (int i = 0; i < Number.NumberOfPosts; i++)
+            return null;
+        }
+
+        public void Add(string tableName, object data)
+        {
+            var table = this.GetTable(tableName) ?? throw new Exception("Table does not exist");
+            table.AddData(data);
+        }
+
+        public object? Login(string? username, string? password)
+        {
+            username ??= "";
+            password ??= "";
+
+            if (username == "admin" && password == "0")
             {
-                Post g = (Post)bf.Deserialize(postsData);
-                Posts.Add(g);
+                return administrator.Instance;
             }
-            postsData.Close();
 
-            FileStream messagesData = new FileStream(path + "messages.txt", FileMode.Open, FileAccess.Read);
-            for (int i = 0; i < Number.NumberOfMessages; i++)
+            var table = GetTable("users") ?? throw new Exception("Table does not exist");
+            foreach (var user in table.Rows.Values)
             {
-                Message mm = (Message)bf.Deserialize(messagesData);
-                Messages.Add(mm);
+                var u = (useraccount)user;
+                if (u.Username == username && u.Password == password)
+                {
+                    return u;
+                }
             }
-            messagesData.Close();
 
-            FileStream reportsData = new FileStream(path + "reports.txt", FileMode.Open, FileAccess.Read);
-            for (int i = 0; i < Number.NumberOfReports; i++)
+            return null;
+        }
+
+        public int IndexOf(string TableName, string Username)
+        {
+            var table = GetTable(TableName) ?? throw new Exception("Table does not exist");
+
+            int index = 0;
+
+            foreach (var user in table.Rows.Values)
             {
-                Report re = (Report)bf.Deserialize(reportsData);
-                Reports.Add(re);
+                var u = (useraccount)user;
+                if (u.Username == Username)
+                {
+                    return index;
+                }
             }
-            reportsData.Close();
+
+            return index;
         }
 
-        /// <summary>
-        /// Save the database and it's contents to the file.
-        /// </summary>
-        public static void Finish()
+        internal void LoadDatabase()
         {
-            var path = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\..\\Dependencies\\";
-            BinaryFormatter bf = new BinaryFormatter();
 
-            FileStream usersData = new FileStream(path + "users.txt", FileMode.Create, FileAccess.Write);
-            for (int i = 0; i < Number.NumberOfUsers; i++)
-            {
-                bf.Serialize(usersData, Users[i]);
-            }
-            usersData.Close();
-
-            FileStream usersNum = new FileStream(path + "NumberOfUsers.txt", FileMode.Create, FileAccess.Write);
-            bf.Serialize(usersNum, Number.NumberOfUsers);
-            usersNum.Close();
-
-            FileStream postsData = new FileStream(path + "posts.txt", FileMode.Create, FileAccess.Write);
-            for (int i = 0; i < Number.NumberOfPosts; i++)
-            {
-                bf.Serialize(postsData, Posts[i]);
-            }
-            postsData.Close();
-
-            FileStream postsNum = new FileStream(path + "NumberOfPosts.txt", FileMode.Create, FileAccess.Write);
-            bf.Serialize(postsNum, Number.NumberOfPosts);
-            postsNum.Close();
-
-            FileStream messagesData = new FileStream(path + "messages.txt", FileMode.Create, FileAccess.Write);
-            for (int i = 0; i < Number.NumberOfMessages; i++)
-            {
-                bf.Serialize(messagesData, Messages[i]);
-            }
-            messagesData.Close();
-
-            FileStream messagesNum = new FileStream(path + "NumberOfMessages.txt", FileMode.Create, FileAccess.Write);
-            bf.Serialize(messagesNum, Number.NumberOfMessages);
-            messagesNum.Close();
-
-            FileStream reportsData = new FileStream(path + "reports.txt", FileMode.Create, FileAccess.Write);
-            for (int i = 0; i < Number.NumberOfReports; i++)
-            {
-                bf.Serialize(reportsData, Messages[i]);
-            }
-            reportsData.Close();
-
-            FileStream reportsNum = new FileStream(path + "NumberOfReports.txt", FileMode.Create, FileAccess.Write);
-            bf.Serialize(reportsNum, Number.NumberOfReports);
-            reportsNum.Close();
         }
 
-        /// <summary>
-        /// Save given item to the database.
-        /// </summary>
-        /// <param name="user">user to save.</param>
-        public static void Save(User user)
+        internal void SaveDatabase()
         {
-            Users.Add(user);
-            Number.NumberOfUsers++;
-        }
 
-        /// <summary>
-        /// Save given item to the database.
-        /// </summary>
-        /// <param name="post">post to save.</param>
-        public static void Save(Post post)
-        {
-            Posts.Add(post);
-            Number.NumberOfPosts++;
-        }
-
-        /// <summary>
-        /// Save given item to the database.
-        /// </summary>
-        /// <param name="message">message to save.</param>
-        public static void Save(Message message)
-        {
-            Messages.Add(message);
-            Number.NumberOfMessages++;
-        }
-
-        /// <summary>
-        /// Save given item to the database.
-        /// </summary>
-        /// <param name="report">report to save.</param>
-        public static void Save(Report report)
-        {
-            Reports.Add(report);
-            Number.NumberOfReports++;
-        }
-
-        /// <summary>
-        /// Save given item to the database.
-        /// </summary>
-        /// <param name="user">user to save.</param>
-        public static void Remove(User user)
-        {
-            bool IsRemoved = Users.Remove(user);
-            if (IsRemoved) Number.NumberOfUsers--;
-        }
-
-        /// <summary>
-        /// Save given item to the database.
-        /// </summary>
-        /// <param name="post">post to remove.</param>
-        public static void Remove(Post post)
-        {
-            bool IsRemoved = Posts.Remove(post);
-            if (IsRemoved) Number.NumberOfPosts--;
-        }
-
-        /// <summary>
-        /// Save given item to the database.
-        /// </summary>
-        /// <param name="message">message to remove.</param>
-        public static void Remove(Message message)
-        {
-            bool IsRemoved = Messages.Remove(message);
-            if (IsRemoved) Number.NumberOfMessages--;
-        }
-
-        /// <summary>
-        /// Save given item to the database.
-        /// </summary>
-        /// <param name="report">report to remove.</param>
-        public static void Remove(Report report)
-        {
-            bool IsRemoved = Reports.Remove(report);
-            if (IsRemoved) Number.NumberOfReports--;
         }
     }
 }

@@ -1,125 +1,314 @@
 /// <summary>
 /// Account type implementation as the project description states.
 /// </summary>
-namespace Core
+namespace Account
 {
-    [Serializable]
-    public class Administrator
+    using database = Database.Database;
+    using msg = Actions.Message;
+    using pst = Actions.Post;
+    using rep = Actions.Report;
+
+    public class Account
     {
-        public string Username { get; set; } = "admin";
-        public int Password { get; set; } = 0;
+        private string username = "";
+        private string password = "";
+        private bool status = false;
+        private string firstName = "";
+        private string lastName = "";
+        private string location = "";
+        private int age = 0;
+        private List<User>? friends = new List<User>();
+
+        public string Username { get => username; set => username = value; }
+        public string Password { get => password; set => password = value; }
+        public bool Status { get => status; set => status = value; }
+        public string FirstName { get => firstName; set => firstName = value; }
+        public string LastName { get => lastName; set => lastName = value; }
+        public string Location { get => location; set => location = value; }
+        public int Age { get => age; set => age = value; }
+        public List<User>? Friends { get => friends; set => friends = value; }
+
+        public Account()
+        {
+            this.username = "";
+            this.password = "";
+            this.status = false;
+            this.firstName = "";
+            this.lastName = "";
+            this.location = "";
+            this.age = 0;
+            this.friends = new List<User>();
+        }
+
+        public Account(string username, string password, bool status, string firstName, string lastName, string location, int age)
+        {
+            this.username = username;
+            this.password = password;
+            this.status = status;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.location = location;
+            this.age = age;
+            this.friends = new List<User>();
+        }
+
+        public Account(string username, string password, bool status, string firstName, string lastName, string location, int age, List<User>? friends)
+        {
+            this.username = username;
+            this.password = password;
+            this.status = status;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.location = location;
+            this.age = age;
+            this.friends = friends;
+        }
+
+        public override string? ToString()
+        {
+            var names = "";
+            var _ = this.friends ?? throw new ArgumentNullException(nameof(this.friends));
+            foreach (var friend in this.friends)
+            {
+                names += friend.Username + " ";
+            }
+            return $"Username: {Username}\nPassword: {Password}\nStatus: {Status}\nFirstName: {FirstName}\nLastName: {LastName}\nLocation: {Location}\nAge: {Age}\nFriends: {names}";
+        }
+    }
+
+    public class Administrator : Account
+    {
+        /// <summary>
+        /// Design pattern: Singleton
+        /// The administrator class is a singleton class, which means that there is only one instance of it.
+        /// And that means there is only one administrator in the system.
+        /// </summary>
+        private static readonly Administrator instance = new Administrator();
+        private Administrator() : base()
+        {
+            this.Username = "admin";
+            this.Password = "0";
+            this.Status = true;
+            this.FirstName = "Admin";
+            this.LastName = "Admin";
+            this.Location = "Private";
+            this.Age = 0;
+            this.Friends = new List<User>();
+        }
+        public static Administrator Instance { get { return instance; } }
 
         public void RegisterNewUserAccount()
         {
             // TODO: Register new user account
-            throw new NotImplementedException();
+            Console.Write("Enter Username: ");
+            string? username = Console.ReadLine();
+            username = username ?? throw new ArgumentNullException(nameof(username));
+
+            Console.Write("Enter Password: ");
+            string? password = Console.ReadLine();
+            password = password ?? throw new ArgumentNullException(nameof(username));
+
+            Console.Write("Enter First Name: ");
+            string? firstName = Console.ReadLine();
+            firstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
+
+            Console.Write("Enter Last Name: ");
+            string? lastName = Console.ReadLine();
+            lastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
+
+            Console.Write("Enter Location: ");
+            string? location = Console.ReadLine();
+            location = location ?? throw new ArgumentNullException(nameof(location));
+
+            Console.Write("Enter Age: ");
+            int age = 0;
+            if (int.TryParse(Console.ReadLine(), out int result))
+                age = result;
+            else
+                throw new ArgumentException("Age must be a number");
+
+            database.Instance.Add("users", new Account(username, password, true, firstName, lastName, location, age));
         }
 
         public void ViewAllUserAccounts()
         {
             // TODO: View all user accounts
-            throw new NotImplementedException();
+            var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            foreach (var row in table.Rows.Values)
+            {
+                Console.WriteLine(row + "\n");
+            }
         }
 
         private bool IsSuspendable(string username)
         {
-            // NOTE: dependency of SuspendUserAccount() method
-            throw new NotImplementedException();
+            username = username ?? throw new ArgumentNullException(nameof(username));
+
+            var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            foreach (var row in table.Rows.Values)
+            {
+                var user = (User)row;
+                if (user.Username == username)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void SuspendUserAccount()
         {
             // TODO: Suspend user account
-            throw new NotImplementedException();
+            Console.Write("Enter Username: ");
+            string? username = Console.ReadLine();
+            username = username ?? throw new ArgumentNullException(nameof(username));
+
+            if (IsSuspendable(username))
+            {
+                var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+                foreach (var row in table.Rows.Values)
+                {
+                    var user = (User)row;
+                    if (user.Username == username)
+                    {
+                        user.Status = false;
+                        return;
+                    }
+                }
+            }
         }
 
         public void ActivateUserAccount()
         {
             // TODO: Activate user account
-            throw new NotImplementedException();
+            Console.Write("Enter Username: ");
+            string? username = Console.ReadLine();
+
+            var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            foreach (var row in table.Rows.Values)
+            {
+                var user = (User)row;
+                if (user.Username == username)
+                {
+                    user.Status = true;
+                }
+            }
         }
     }
 
-    [Serializable]
-    public class User
+    public class User : Account
     {
-        public string Username { get; set; } = "";
-        public string Password { get; set; } = "";
-        public string Status { get; set; } = "";
-        public string FirstName { get; set; } = "";
-        public string LastName { get; set; } = "";
-        public string Location { get; set; } = "";
-        public int Age { get; set; } = 0;
-        public List<User> Friends { get; set; }
+        public User(string username, string password, bool status, string firstName, string lastName, string location, int age) : base(username, password, status, firstName, lastName, location, age) { }
 
-        public User(string username, string password, string status, string firstName, string lastName, string location, int age, List<User> friends)
-        {
-            this.Username = username;
-            this.Password = password;
-            this.Status = status;
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.Location = location;
-            this.Age = age;
-            this.Friends = friends;
-        }
+        public User(string username, string password, bool status, string firstName, string lastName, string location, int age, List<User>? friends) : base(username, password, status, firstName, lastName, location, age, friends) { }
 
         public void PostNewContent()
         {
             // TODO: Post new content
-            throw new NotImplementedException();
+            Console.Write("Enter Content: ");
+            string? content = Console.ReadLine();
+            content = content ?? throw new ArgumentNullException(nameof(content));
+
+            database.Instance.Add("posts", new pst(this.Username, content)); // this.Username -> Poster's username, content -> content
         }
 
         public void SendMessage()
         {
             // TODO: Send message
-            throw new NotImplementedException();
+            Console.Write("Enter Username: ");
+            string? username = Console.ReadLine();
+            username = username ?? throw new ArgumentNullException(nameof(username));
+
+            Console.Write("Enter Content: ");
+            string? content = Console.ReadLine();
+            content = content ?? throw new ArgumentNullException(nameof(content));
+
+            database.Instance.Add("messages", new msg(this.Username, username, content)); // this.Username -> sender, username -> receiver, content -> message
         }
 
         public void ViewAllMyPosts()
         {
             // TODO: View all my posts
-            throw new NotImplementedException();
+            var db = database.Instance;
+            var table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
+            foreach (var row in table.Rows.Values)
+            {
+                var post = (pst)row;
+                if (post.Author == db.IndexOf("users", this.Username))
+                {
+                    Console.WriteLine(row);
+                }
+            }
         }
 
         public void ViewAllMyReceivedMessages()
         {
             // TODO: View all my received messages
-            throw new NotImplementedException();
+            var db = database.Instance;
+            var table = db.GetTable("messages") ?? throw new Exception($"Table '{"messages"}' not found.");
+            foreach (var row in table.Rows.Values)
+            {
+                var message = (msg)row;
+                if (message.Receiver == db.IndexOf("users", this.Username))
+                {
+                    Console.WriteLine(row);
+                }
+            }
         }
 
         public void ViewAllMyLastUpdatedWall()
         {
             // TODO: View all my last updated wall
-            throw new NotImplementedException();
+            var db = database.Instance;
+            var table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
+            foreach (var row in table.Rows.Values)
+            {
+                var post = (pst)row;
+                if (post.Author == db.IndexOf("users", this.Username))
+                {
+                    Console.WriteLine(row);
+                }
+            }
         }
 
         public void FilterMyWall()
         {
             // TODO: Filter my wall
-            throw new NotImplementedException();
+            Console.Write("Enter Filter: ");
+            string? filter = Console.ReadLine();
+            filter = filter ?? throw new ArgumentNullException(nameof(filter));
+
+            var db = database.Instance;
+            var table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
+
+            foreach (var row in table.Rows.Values)
+            {
+                var post = (pst)row;
+                if (post.Author == db.IndexOf("users", this.Username) && post.Content.Contains(filter))
+                {
+                    Console.WriteLine(row);
+                }
+            }
         }
 
         public void SendReportToAdministrator()
         {
             // TODO: Send report to administrator
-            throw new NotImplementedException();
-        }
+            var db = database.Instance;
+            var reporter = db.IndexOf("users", this.Username);
 
-        public override string ToString()
-        {
-            var names = "No friends were found";
-            if (this.Friends.Count() > 0)
-            {
-                names = "";
-            }
+            Console.Write("Enter Username: ");
+            string? username = Console.ReadLine();
+            username = username ?? throw new ArgumentNullException(nameof(username));
 
-            foreach (var friend in this.Friends)
-            {
-                names += friend.Username + " ";
-            }
+            var reported = db.IndexOf("users", username);
 
-            return $"Username: {this.Username}\nPassword: {this.Password}\nStatus: {this.Status}\nFirstName: {this.FirstName}\nLastName: {this.LastName}\nLocation: {this.Location}\nAge: {this.Age}\nFriends: {names}";
+            Console.Write("Enter Content: ");
+            string? content = Console.ReadLine();
+            content = content ?? throw new ArgumentNullException(nameof(content));
+
+            db.Add("reports", new rep(reporter, reported, content)); // this.Username -> reporter, content -> reports
         }
     }
 }

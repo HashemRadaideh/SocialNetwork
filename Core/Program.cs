@@ -1,10 +1,32 @@
-﻿namespace Core
+﻿namespace SocialNetwork
 {
+    using administrator = Account.Administrator;
+    using database = Database.Database;
+    using useraccount = Account.User;
+
     public class Program
     {
         public static void Main(string[] args)
         {
-            Database.Decode();
+            var db = database.Instance;
+            // db.LoadDatabase();
+            db.CreateNewTable("users");
+            db.CreateNewTable("reports");
+            db.CreateNewTable("posts");
+            db.CreateNewTable("messages");
+
+            var acc1 = new useraccount("HashemWasTaken", "0", true, "Hashem", "Al_Radaideh", "Irbid", 20);
+            var acc2 = new useraccount("HashemIsTaken", "1", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1 });
+            var acc3 = new useraccount("HashemTaken", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2 });
+            var acc4 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20);
+            var acc5 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2, acc3 });
+
+            db.Add("users", acc1);
+            db.Add("users", acc2);
+            db.Add("users", acc3);
+            db.Add("users", acc4);
+            db.Add("users", acc5);
+
             while (true)
             {
                 Console.WriteLine("[1] Login as administrator");
@@ -17,34 +39,40 @@
                 switch (choice)
                 {
                     case "1":
-                        var admin = GetLogin();
+                        {
+                            var (username, password) = GetLogin();
+                            var admin = db.Login(username, password);
 
-                        if (admin is not null)
-                        {
-                            AdminLoop((Administrator)admin);
-                        }
-                        else
-                        {
-                            Console.WriteLine("\nInvalid username or password!\n");
+                            if (admin is not null && admin == administrator.Instance)
+                            {
+                                AdminLoop();
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nInvalid username or password!\n");
+                            }
                         }
                         break;
 
                     case "2":
-                        var user = GetLogin();
+                        {
+                            var (username, password) = GetLogin();
+                            var user = db.Login(username, password);
 
-                        if (user is not null)
-                        {
-                            UserLoop((User)user);
-                        }
-                        else
-                        {
-                            Console.WriteLine("\nInvalid username or password!\n");
+                            if (user is not null)
+                            {
+                                UserLoop((useraccount)user);
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nInvalid username or password!\n");
+                            }
                         }
                         break;
 
                     case "3":
                         Console.WriteLine("\nExiting...");
-                        Database.Finish();
+                        // db.SaveDatabase();
                         return;
 
                     default:
@@ -54,12 +82,11 @@
             }
         }
 
-        /// <summary>
-        /// Part of the main loop for the administrator.
-        /// </summary>
-        /// <param name="admin">The administrator.</param>
-        private static void AdminLoop(Administrator admin)
+
+        public static void AdminLoop()
         {
+            var admin = administrator.Instance;
+
             while (true)
             {
                 Console.WriteLine("\nWelcome back admin, What would you like to do?");
@@ -100,11 +127,7 @@
             }
         }
 
-        /// <summary>
-        /// Part of the main loop for the user.
-        /// </summary>
-        /// <param name="user">The user.</param>
-        private static void UserLoop(User user)
+        public static void UserLoop(useraccount user)
         {
             while (true)
             {
@@ -161,11 +184,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets the login.
-        /// </summary>
-        /// <returns>The login.</returns>
-        private static object? GetLogin()
+        public static (string? username, string? password) GetLogin()
         {
             Console.Write("Enter username: ");
             var username = Console.ReadLine();
@@ -190,22 +209,9 @@
                 }
             }
             while (key != ConsoleKey.Enter);
+
             Console.WriteLine();
-
-            if (username == "admin" && password == "0")
-            {
-                return new Administrator();
-            }
-
-            foreach (var user in Database.Users)
-            {
-                if (user.Username == username && user.Password == password)
-                {
-                    return user;
-                }
-            }
-
-            return null;
+            return (username, password);
         }
     }
 }

@@ -2,9 +2,11 @@ using System.Runtime.InteropServices;
 
 namespace GUI
 {
-    public partial class MainWindow : Form
+    public partial class LoginWindow : Form
     {
-        public MainWindow()
+        Account.User? CurrentUser;
+
+        public LoginWindow()
         {
             InitializeComponent();
         }
@@ -85,5 +87,26 @@ namespace GUI
 
         }
 
+        private void WindowTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SignIn_Click(object sender, EventArgs e)
+        {
+            var db = Database.Database.Instance;
+            var user = db.Login(this.Address.Text, this.Password.Text);
+            if (user is not null)
+            {
+                CurrentUser = (Account.User)user;
+                this.Hide();
+                var main = new MainWindow();
+                main.Show();
+            }
+            else
+            {
+                MessageBox.Show("User was not found");
+            }
+        }
     }
 }
