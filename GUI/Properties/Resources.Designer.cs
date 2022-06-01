@@ -59,15 +59,5 @@ namespace GUI.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _32_323131_x_button_clipart_x_clipart_hd_png_download {
-            get {
-                object obj = ResourceManager.GetObject("32-323131_x-button-clipart-x-clipart-hd-png-download", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

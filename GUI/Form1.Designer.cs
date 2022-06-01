@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,144 +28,188 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
+            this.Exit = new System.Windows.Forms.Button();
+            this.Maximize = new System.Windows.Forms.Button();
+            this.Minimize = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Remember = new System.Windows.Forms.CheckBox();
+            this.SignUp = new System.Windows.Forms.Button();
+            this.SignIn = new System.Windows.Forms.Button();
+            this.Password = new System.Windows.Forms.TextBox();
+            this.Address = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // MenuStrip
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(35, 197);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(255, 16);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.MenuStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(831, 24);
+            this.MenuStrip.TabIndex = 0;
+            this.MenuStrip.Text = "menuStrip1";
+            this.MenuStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseDown);
+            this.MenuStrip.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseMove);
             // 
-            // textBox2
+            // Exit
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(35, 252);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(255, 16);
-            this.textBox2.TabIndex = 2;
+            this.Exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Exit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Exit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.Exit.Image = ((System.Drawing.Image)(resources.GetObject("Exit.Image")));
+            this.Exit.Location = new System.Drawing.Point(807, 0);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(23, 23);
+            this.Exit.TabIndex = 1;
+            this.Exit.UseVisualStyleBackColor = false;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
-            // panel1
+            // Maximize
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Location = new System.Drawing.Point(400, 75);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(333, 450);
-            this.panel1.TabIndex = 3;
+            this.Maximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Maximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.Maximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Maximize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.Maximize.Location = new System.Drawing.Point(778, 0);
+            this.Maximize.Name = "Maximize";
+            this.Maximize.Size = new System.Drawing.Size(23, 23);
+            this.Maximize.TabIndex = 2;
+            this.Maximize.UseVisualStyleBackColor = false;
+            // 
+            // Minimize
+            // 
+            this.Minimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Minimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.Minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Minimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.Minimize.Location = new System.Drawing.Point(749, 0);
+            this.Minimize.Name = "Minimize";
+            this.Minimize.Size = new System.Drawing.Size(23, 23);
+            this.Minimize.TabIndex = 3;
+            this.Minimize.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Bauhaus 93", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(214)))));
-            this.label1.Location = new System.Drawing.Point(116, 147);
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(340, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 36);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Log in";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            this.label1.Size = new System.Drawing.Size(115, 21);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Social Network";
             // 
-            // pictureBox1
+            // panel1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(35, 22);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(255, 111);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.panel1.Controls.Add(this.Remember);
+            this.panel1.Controls.Add(this.SignUp);
+            this.panel1.Controls.Add(this.SignIn);
+            this.panel1.Controls.Add(this.Password);
+            this.panel1.Controls.Add(this.Address);
+            this.panel1.Location = new System.Drawing.Point(265, 47);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(280, 357);
+            this.panel1.TabIndex = 5;
             // 
-            // button3
+            // Remember
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Location = new System.Drawing.Point(105, 367);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(122, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Sign up";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.Remember.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Remember.AutoSize = true;
+            this.Remember.ForeColor = System.Drawing.Color.White;
+            this.Remember.Location = new System.Drawing.Point(20, 202);
+            this.Remember.Name = "Remember";
+            this.Remember.Size = new System.Drawing.Size(104, 19);
+            this.Remember.TabIndex = 4;
+            this.Remember.Text = "Remember me";
+            this.Remember.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // SignUp
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(101, 312);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(126, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Sign in";
-            this.button2.UseVisualStyleBackColor = false;
+            this.SignUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.SignUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(24)))), ((int)(((byte)(36)))));
+            this.SignUp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SignUp.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.SignUp.Location = new System.Drawing.Point(90, 288);
+            this.SignUp.Name = "SignUp";
+            this.SignUp.Size = new System.Drawing.Size(100, 23);
+            this.SignUp.TabIndex = 3;
+            this.SignUp.Text = "SignUp";
+            this.SignUp.UseVisualStyleBackColor = false;
+            this.SignUp.Click += new System.EventHandler(this.SignUp_Click);
             // 
-            // button1
+            // SignIn
             // 
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(24)))), ((int)(((byte)(36)))));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(1110, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(30, 30);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseDown);
-            this.button1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button1_MouseMove);
+            this.SignIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.SignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(24)))), ((int)(((byte)(36)))));
+            this.SignIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SignIn.ForeColor = System.Drawing.Color.White;
+            this.SignIn.Location = new System.Drawing.Point(90, 241);
+            this.SignIn.Name = "SignIn";
+            this.SignIn.Size = new System.Drawing.Size(100, 23);
+            this.SignIn.TabIndex = 2;
+            this.SignIn.Text = "Sign in";
+            this.SignIn.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // Password
             // 
-            this.AllowDrop = true;
+            this.Password.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Password.Location = new System.Drawing.Point(20, 173);
+            this.Password.Name = "Password";
+            this.Password.Size = new System.Drawing.Size(236, 23);
+            this.Password.TabIndex = 1;
+            // 
+            // Address
+            // 
+            this.Address.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Address.Location = new System.Drawing.Point(20, 128);
+            this.Address.Name = "Address";
+            this.Address.Size = new System.Drawing.Size(236, 23);
+            this.Address.TabIndex = 0;
+            // 
+            // MainWindow
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(24)))), ((int)(((byte)(36)))));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1150, 625);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(831, 450);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Minimize);
+            this.Controls.Add(this.Maximize);
+            this.Controls.Add(this.Exit);
+            this.Controls.Add(this.MenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.MainMenuStrip = this.MenuStrip;
+            this.Name = "MainWindow";
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Panel panel1;
-        private Button button1;
-        private Button button3;
-        private Button button2;
-        private PictureBox pictureBox1;
+
+        private MenuStrip MenuStrip;
+        private Button Exit;
+        private Button Maximize;
+        private Button Minimize;
         private Label label1;
+        private Panel panel1;
+        private CheckBox Remember;
+        private Button SignUp;
+        private Button SignIn;
+        private TextBox Password;
+        private TextBox Address;
     }
 }
