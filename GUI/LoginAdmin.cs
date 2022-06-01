@@ -11,11 +11,6 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void MainWindow_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HTCAPTION = 0x2;
         [DllImport("User32.dll")]
@@ -34,26 +29,18 @@ namespace GUI
 
         Point lastPoint;
 
-        private void MenuStrip_MouseDown_1(object sender, MouseEventArgs e)
+        private void MenuStrip_MouseDown(object sender, MouseEventArgs e)
         {
             lastPoint = new Point(e.X, e.Y);
         }
 
-        private void MenuStrip_MouseMove_1(object sender, MouseEventArgs e)
+        private void MenuStrip_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 this.Left += e.X - lastPoint.X;
                 this.Top += e.Y - lastPoint.Y;
             }
-        }
-
-        private void MenuStrip_MouseMove(object sender, MouseEventArgs e)
-        {
-        }
-
-        private void MenuStrip_MouseDown(object sender, MouseEventArgs e)
-        {
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -83,23 +70,14 @@ namespace GUI
             WindowState = FormWindowState.Minimized;
         }
 
-        private void SignUp_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void WindowTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SignIn_Click(object sender, EventArgs e)
+        private void LogIn_Click(object sender, EventArgs e)
         {
             var db = Database.Database.Instance;
             var temp = db.Login(this.Address.Text, this.Password.Text);
             if (temp is not null)
             {
                 admin = (Account.Administrator)temp;
+                this.Hide();
                 var main = new AdminMain();
                 main.Show();
             }
@@ -108,5 +86,13 @@ namespace GUI
                 MessageBox.Show("Incorrect admin credentials");
             }
         }
+
+        private void SignUp_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var userLogin = new UserLogin();
+            userLogin.Show();
+        }
+
     }
 }

@@ -103,6 +103,10 @@ namespace Account
         {
             database.Instance.Add("users", new User(username, password, true, firstName, lastName, location, age));
         }
+        public void RegisterNewUserAccount(string username, string password, string firstName, string lastName, string location, int age, List<User> friends)
+        {
+            database.Instance.Add("users", new User(username, password, true, firstName, lastName, location, age, friends));
+        }
 
         public string ViewAllUserAccounts()
         {

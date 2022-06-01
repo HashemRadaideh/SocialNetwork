@@ -11,11 +11,6 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void MainWindow_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HTCAPTION = 0x2;
         [DllImport("User32.dll")]
@@ -34,12 +29,12 @@ namespace GUI
 
         Point lastPoint;
 
-        private void MenuStrip_MouseDown_1(object sender, MouseEventArgs e)
+        private void MenuStrip_MouseDown(object sender, MouseEventArgs e)
         {
             lastPoint = new Point(e.X, e.Y);
         }
 
-        private void MenuStrip_MouseMove_1(object sender, MouseEventArgs e)
+        private void MenuStrip_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -73,11 +68,6 @@ namespace GUI
         private void Minimize_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
-        }
-
-        private void WindowTitle_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void LogOut_Click(object sender, EventArgs e)

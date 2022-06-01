@@ -94,7 +94,8 @@
             this.WindowTitle = new System.Windows.Forms.Label();
             this.LoginScreen = new System.Windows.Forms.Panel();
             this.Remember = new System.Windows.Forms.CheckBox();
-            this.SignIn = new System.Windows.Forms.Button();
+            this.ReturnToUserLogin = new System.Windows.Forms.Button();
+            this.LogIn = new System.Windows.Forms.Button();
             this.Password = new System.Windows.Forms.TextBox();
             this.Address = new System.Windows.Forms.TextBox();
             this.MenuStrip = new System.Windows.Forms.Panel();
@@ -157,7 +158,6 @@
             this.WindowTitle.TabIndex = 4;
             this.WindowTitle.Text = "Social Network";
             this.WindowTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.WindowTitle.Click += new System.EventHandler(this.WindowTitle_Click);
             // 
             // LoginScreen
             // 
@@ -165,7 +165,8 @@
             this.LoginScreen.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.LoginScreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
             this.LoginScreen.Controls.Add(this.Remember);
-            this.LoginScreen.Controls.Add(this.SignIn);
+            this.LoginScreen.Controls.Add(this.ReturnToUserLogin);
+            this.LoginScreen.Controls.Add(this.LogIn);
             this.LoginScreen.Controls.Add(this.Password);
             this.LoginScreen.Controls.Add(this.Address);
             this.LoginScreen.Location = new System.Drawing.Point(260, 100);
@@ -185,19 +186,33 @@
             this.Remember.Text = "Remember me";
             this.Remember.UseVisualStyleBackColor = true;
             // 
-            // SignIn
+            // ReturnToUserLogin
             // 
-            this.SignIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.SignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(24)))), ((int)(((byte)(36)))));
-            this.SignIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.SignIn.ForeColor = System.Drawing.Color.White;
-            this.SignIn.Location = new System.Drawing.Point(90, 223);
-            this.SignIn.Name = "SignIn";
-            this.SignIn.Size = new System.Drawing.Size(146, 23);
-            this.SignIn.TabIndex = 2;
-            this.SignIn.Text = "Sign in";
-            this.SignIn.UseVisualStyleBackColor = false;
-            this.SignIn.Click += new System.EventHandler(this.SignIn_Click);
+            this.ReturnToUserLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ReturnToUserLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(24)))), ((int)(((byte)(36)))));
+            this.ReturnToUserLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ReturnToUserLogin.ForeColor = System.Drawing.Color.White;
+            this.ReturnToUserLogin.Location = new System.Drawing.Point(90, 252);
+            this.ReturnToUserLogin.Name = "ReturnToUserLogin";
+            this.ReturnToUserLogin.Size = new System.Drawing.Size(146, 23);
+            this.ReturnToUserLogin.TabIndex = 2;
+            this.ReturnToUserLogin.Text = "Return to user login";
+            this.ReturnToUserLogin.UseVisualStyleBackColor = false;
+            this.ReturnToUserLogin.Click += new System.EventHandler(this.SignUp_Click);
+            // 
+            // LogIn
+            // 
+            this.LogIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(24)))), ((int)(((byte)(36)))));
+            this.LogIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.LogIn.ForeColor = System.Drawing.Color.White;
+            this.LogIn.Location = new System.Drawing.Point(90, 223);
+            this.LogIn.Name = "LogIn";
+            this.LogIn.Size = new System.Drawing.Size(146, 23);
+            this.LogIn.TabIndex = 2;
+            this.LogIn.Text = "Log in";
+            this.LogIn.UseVisualStyleBackColor = false;
+            this.LogIn.Click += new System.EventHandler(this.LogIn_Click);
             // 
             // Password
             // 
@@ -228,8 +243,8 @@
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Size = new System.Drawing.Size(853, 27);
             this.MenuStrip.TabIndex = 6;
-            this.MenuStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseDown_1);
-            this.MenuStrip.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseMove_1);
+            this.MenuStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseDown);
+            this.MenuStrip.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseMove);
             // 
             // AdminLogin
             // 
@@ -245,7 +260,6 @@
             this.MinimumSize = new System.Drawing.Size(340, 350);
             this.Name = "AdminLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainWindow_MouseDown);
             this.LoginScreen.ResumeLayout(false);
             this.LoginScreen.PerformLayout();
@@ -261,9 +275,10 @@
         private Label WindowTitle;
         private Panel LoginScreen;
         private CheckBox Remember;
-        private Button SignIn;
+        private Button LogIn;
         private TextBox Password;
         private TextBox Address;
         private Panel MenuStrip;
+        private Button ReturnToUserLogin;
     }
 }

@@ -9,11 +9,6 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void MainWindow_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HTCAPTION = 0x2;
         [DllImport("User32.dll")]
@@ -32,12 +27,12 @@ namespace GUI
 
         Point lastPoint;
 
-        private void MenuStrip_MouseDown_1(object sender, MouseEventArgs e)
+        private void MenuStrip_MouseDown(object sender, MouseEventArgs e)
         {
             lastPoint = new Point(e.X, e.Y);
         }
 
-        private void MenuStrip_MouseMove_1(object sender, MouseEventArgs e)
+        private void MenuStrip_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -73,16 +68,64 @@ namespace GUI
             WindowState = FormWindowState.Minimized;
         }
 
-        private void WindowTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void LogOut_Click(object sender, EventArgs e)
         {
             this.Hide();
             var login = new UserLogin();
             login.Show();
+        }
+
+        private void RegisterNewUser_Click(object sender, EventArgs e)
+        {
+            if (!PanelRegister.Visible)
+            {
+                PanelRegister.Show();
+            }
+            else
+            {
+                PanelRegister.Hide();
+            }
+            PanelViewAllUsers.Hide();
+        }
+
+        private void ViewAllUsers_Click(object sender, EventArgs e)
+        {
+            if (!PanelViewAllUsers.Visible)
+            {
+                PanelViewAllUsers.Show();
+            }
+            else
+            {
+                PanelViewAllUsers.Hide();
+            }
+            PanelRegister.Hide();
+        }
+
+        private void RegisterUser_Click(object sender, EventArgs e)
+        {
+            var users_names = FieldFriends.Text;
+            var friends = new List<Account.User>();
+            var db = Database.Database.Instance;
+
+            var table = db.GetTable("users") ?? throw new Exception("Table does not exist");
+            foreach (var username in users_names.Split(" "))
+            {
+                foreach (var user in table.Rows.Values)
+                {
+                    var u = (Account.User)user;
+                    if (u.Username == username)
+                    {
+                        friends.Add(u);
+                    }
+                }
+            }
+
+            Account.Administrator.Instance.RegisterNewUserAccount(
+                FieldUsername.Text, FieldPassword.Text,
+                FieldFirstName.Text, FieldLastName.Text,
+                FieldLocation.Text, Convert.ToInt32(FieldAge.Text),
+                friends
+                );
         }
     }
 }

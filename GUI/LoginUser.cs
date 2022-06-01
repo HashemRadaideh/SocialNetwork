@@ -34,26 +34,18 @@ namespace GUI
 
         Point lastPoint;
 
-        private void MenuStrip_MouseDown_1(object sender, MouseEventArgs e)
+        private void MenuStrip_MouseDown(object sender, MouseEventArgs e)
         {
             lastPoint = new Point(e.X, e.Y);
         }
 
-        private void MenuStrip_MouseMove_1(object sender, MouseEventArgs e)
+        private void MenuStrip_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 this.Left += e.X - lastPoint.X;
                 this.Top += e.Y - lastPoint.Y;
             }
-        }
-
-        private void MenuStrip_MouseMove(object sender, MouseEventArgs e)
-        {
-        }
-
-        private void MenuStrip_MouseDown(object sender, MouseEventArgs e)
-        {
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -82,12 +74,8 @@ namespace GUI
         {
             WindowState = FormWindowState.Minimized;
         }
-        private void WindowTitle_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void SignIn_Click(object sender, EventArgs e)
+        private void LogIn_Click(object sender, EventArgs e)
         {
             var db = Database.Database.Instance;
             var user = db.Login(this.Address.Text, this.Password.Text);
