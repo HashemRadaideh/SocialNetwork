@@ -57,20 +57,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="MenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="Exit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABGdBTUEAALGPC/xhBQAAAXRJREFUKFNj
-        sOfltbfm4bGWY2GRY2NgACIIYAUiWRYWWZAcSA1DsZhY0Xpl5XW90tK9zlxczkKMjEKCDAyCjlxcjj1S
-        Uj1AufUlYmIlDCosLCodample01NV85SUZmUIiSUnCIomDRTWXnSXhOT1Z3q6hUgNQzMDAzMHmpq6ks9
-        PIqP29quPqiru+ugjs4uIHvtcg+PUi81NU2QGrB7pISE2AtMTNwP2NgsfWpufueZufndQ7a2y4tMTDyk
-        hYQ4wIoYgUiBjU2mWE4u7aC+/vanpqb3nwHxIX39HSXy8umK7OwyIDUMUlxcAinCwkkgD53S1j5+SFt7
-        7yEdnT0g9gagR1KFhVOkOTkFGfKtrMx36+isP6uldXqevPzcdBGRlDRR0eS5CgpzgGJn9ujobMo3N7dl
-        2F9d7XnSymrDNHn5ya5cXK7CjIzCoCACBdUUOblJJy0stuwvKgplcNDTE7IWEjICBrgseoADxWSsBQWN
-        HLS1RQHaSmTLd3IWwwAAAABJRU5ErkJggg==
-</value>
-  </data>
 </root>
