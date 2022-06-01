@@ -99,47 +99,23 @@ namespace Account
         }
         public static Administrator Instance { get { return instance; } }
 
-        public void RegisterNewUserAccount()
+        public void RegisterNewUserAccount(string username, string password, string firstName, string lastName, string location, int age)
         {
-            // TODO: Register new user account
-            Console.Write("Enter Username: ");
-            string? username = Console.ReadLine();
-            username = username ?? throw new ArgumentNullException(nameof(username));
-
-            Console.Write("Enter Password: ");
-            string? password = Console.ReadLine();
-            password = password ?? throw new ArgumentNullException(nameof(username));
-
-            Console.Write("Enter First Name: ");
-            string? firstName = Console.ReadLine();
-            firstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
-
-            Console.Write("Enter Last Name: ");
-            string? lastName = Console.ReadLine();
-            lastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
-
-            Console.Write("Enter Location: ");
-            string? location = Console.ReadLine();
-            location = location ?? throw new ArgumentNullException(nameof(location));
-
-            Console.Write("Enter Age: ");
-            int age = 0;
-            if (int.TryParse(Console.ReadLine(), out int result))
-                age = result;
-            else
-                throw new ArgumentException("Age must be a number");
 
             database.Instance.Add("users", new Account(username, password, true, firstName, lastName, location, age));
         }
 
-        public void ViewAllUserAccounts()
+        public string ViewAllUserAccounts()
         {
-            // TODO: View all user accounts
+            var temp = "";
+
             var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
             foreach (var row in table.Rows.Values)
             {
-                Console.WriteLine(row + "\n");
+                temp += row + "\n";
             }
+
+            return temp;
         }
 
         private bool IsSuspendable(string username)
@@ -159,13 +135,8 @@ namespace Account
             return false;
         }
 
-        public void SuspendUserAccount()
+        public void SuspendUserAccount(string username)
         {
-            // TODO: Suspend user account
-            Console.Write("Enter Username: ");
-            string? username = Console.ReadLine();
-            username = username ?? throw new ArgumentNullException(nameof(username));
-
             if (IsSuspendable(username))
             {
                 var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
@@ -175,18 +146,13 @@ namespace Account
                     if (user.Username == username)
                     {
                         user.Status = false;
-                        return;
                     }
                 }
             }
         }
 
-        public void ActivateUserAccount()
+        public void ActivateUserAccount(string username)
         {
-            // TODO: Activate user account
-            Console.Write("Enter Username: ");
-            string? username = Console.ReadLine();
-
             var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
             foreach (var row in table.Rows.Values)
             {
@@ -206,82 +172,76 @@ namespace Account
 
         public User(string username, string password, bool status, string firstName, string lastName, string location, int age, List<User>? friends) : base(username, password, status, firstName, lastName, location, age, friends) { }
 
-        public void PostNewContent()
+        public void PostNewContent(string content)
         {
-            // TODO: Post new content
-            Console.Write("Enter Content: ");
-            string? content = Console.ReadLine();
-            content = content ?? throw new ArgumentNullException(nameof(content));
 
             database.Instance.Add("posts", new pst(this.Username, content)); // this.Username -> Poster's username, content -> content
         }
 
-        public void SendMessage()
+        public void SendMessage(string username, string content)
         {
-            // TODO: Send message
-            Console.Write("Enter Username: ");
-            string? username = Console.ReadLine();
-            username = username ?? throw new ArgumentNullException(nameof(username));
-
-            Console.Write("Enter Content: ");
-            string? content = Console.ReadLine();
-            content = content ?? throw new ArgumentNullException(nameof(content));
 
             database.Instance.Add("messages", new msg(this.Username, username, content)); // this.Username -> sender, username -> receiver, content -> message
         }
 
-        public void ViewAllMyPosts()
+        public string ViewAllMyPosts()
         {
-            // TODO: View all my posts
+            var temp = "";
             var db = database.Instance;
             var table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
+
             foreach (var row in table.Rows.Values)
             {
                 var post = (pst)row;
                 if (post.Author == db.IndexOf("users", this.Username))
                 {
-                    Console.WriteLine(row);
+                    temp += row + "\n";
                 }
             }
+
+            return temp;
         }
 
-        public void ViewAllMyReceivedMessages()
+        public string ViewAllMyReceivedMessages()
         {
-            // TODO: View all my received messages
+            var temp = "";
             var db = database.Instance;
             var table = db.GetTable("messages") ?? throw new Exception($"Table '{"messages"}' not found.");
+
             foreach (var row in table.Rows.Values)
             {
                 var message = (msg)row;
                 if (message.Receiver == db.IndexOf("users", this.Username))
                 {
-                    Console.WriteLine(row);
+                    temp += row + "\n";
                 }
             }
+
+            return temp;
         }
 
-        public void ViewAllMyLastUpdatedWall()
+        public string ViewAllMyLastUpdatedWall()
         {
             // TODO: View all my last updated wall
+            var temp = "";
             var db = database.Instance;
             var table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
+
             foreach (var row in table.Rows.Values)
             {
                 var post = (pst)row;
                 if (post.Author == db.IndexOf("users", this.Username))
                 {
-                    Console.WriteLine(row);
+                    temp += row + "\n";
                 }
             }
+
+            return temp;
         }
 
-        public void FilterMyWall()
+        public string FilterMyWall(string filter)
         {
-            // TODO: Filter my wall
-            Console.Write("Enter Filter: ");
-            string? filter = Console.ReadLine();
-            filter = filter ?? throw new ArgumentNullException(nameof(filter));
-
+            var temp = "";
             var db = database.Instance;
             var table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
 
@@ -290,26 +250,19 @@ namespace Account
                 var post = (pst)row;
                 if (post.Author == db.IndexOf("users", this.Username) && post.Content.Contains(filter))
                 {
-                    Console.WriteLine(row);
+                    temp += row + "\n";
                 }
             }
+            return temp;
         }
 
-        public void SendReportToAdministrator()
+        public void SendReportToAdministrator(string username, string content)
         {
             // TODO: Send report to administrator
             var db = database.Instance;
             var reporter = db.IndexOf("users", this.Username);
 
-            Console.Write("Enter Username: ");
-            string? username = Console.ReadLine();
-            username = username ?? throw new ArgumentNullException(nameof(username));
-
             var reported = db.IndexOf("users", username);
-
-            Console.Write("Enter Content: ");
-            string? content = Console.ReadLine();
-            content = content ?? throw new ArgumentNullException(nameof(content));
 
             db.Add("reports", new rep(reporter, reported, content)); // this.Username -> reporter, content -> reports
         }

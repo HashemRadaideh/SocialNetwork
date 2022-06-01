@@ -58,6 +58,7 @@ namespace GUI
 
         private void Exit_Click(object sender, EventArgs e)
         {
+            Database.Database.Instance.Save();
             Application.Exit();
         }
 

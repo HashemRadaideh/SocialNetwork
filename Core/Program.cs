@@ -85,19 +85,64 @@
                 switch (choice)
                 {
                     case "1":
-                        admin.RegisterNewUserAccount();
+                        {
+                            // TODO: Register new user account
+                            Console.Write("Enter Username: ");
+                            string? username = Console.ReadLine();
+                            username = username ?? throw new ArgumentNullException(nameof(username));
+
+                            Console.Write("Enter Password: ");
+                            string? password = Console.ReadLine();
+                            password = password ?? throw new ArgumentNullException(nameof(username));
+
+                            Console.Write("Enter First Name: ");
+                            string? firstName = Console.ReadLine();
+                            firstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
+
+                            Console.Write("Enter Last Name: ");
+                            string? lastName = Console.ReadLine();
+                            lastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
+
+                            Console.Write("Enter Location: ");
+                            string? location = Console.ReadLine();
+                            location = location ?? throw new ArgumentNullException(nameof(location));
+
+                            Console.Write("Enter Age: ");
+                            int age = 0;
+                            if (int.TryParse(Console.ReadLine(), out int result))
+                                age = result;
+                            else
+                                throw new ArgumentException("Age must be a number");
+
+                            admin.RegisterNewUserAccount(username, password, firstName, lastName, location, age);
+                        }
                         break;
 
                     case "2":
-                        admin.ViewAllUserAccounts();
+                        {
+                            var str = admin.ViewAllUserAccounts();
+                            Console.WriteLine(str);
+                        }
                         break;
 
                     case "3":
-                        admin.SuspendUserAccount();
+                        {
+                            Console.Write("Enter Username: ");
+                            string? username = Console.ReadLine();
+                            username = username ?? throw new ArgumentNullException(nameof(username));
+
+                            admin.SuspendUserAccount(username);
+                        }
                         break;
 
                     case "4":
-                        admin.ActivateUserAccount();
+                        {
+                            Console.Write("Enter Username: ");
+                            string? username = Console.ReadLine();
+                            username = username ?? throw new ArgumentNullException(nameof(username));
+
+                            admin.ActivateUserAccount(username);
+                        }
                         break;
 
                     case "5":
@@ -132,31 +177,72 @@
                 switch (choice)
                 {
                     case "1":
-                        user.PostNewContent();
+                        {
+                            Console.Write("Enter Content: ");
+                            string? content = Console.ReadLine();
+                            content = content ?? throw new ArgumentNullException(nameof(content));
+
+                            user.PostNewContent(content);
+                        }
                         break;
 
                     case "2":
-                        user.SendMessage();
+                        {
+                            Console.Write("Enter Username: ");
+                            string? username = Console.ReadLine();
+                            username = username ?? throw new ArgumentNullException(nameof(username));
+
+                            Console.Write("Enter Content: ");
+                            string? content = Console.ReadLine();
+                            content = content ?? throw new ArgumentNullException(nameof(content));
+
+                            user.SendMessage(username, content);
+                        }
                         break;
 
                     case "3":
-                        user.ViewAllMyPosts();
+                        {
+                            var temp = user.ViewAllMyPosts();
+                            Console.WriteLine(temp);
+                        }
                         break;
 
                     case "4":
-                        user.ViewAllMyReceivedMessages();
+                        {
+                            var temp = user.ViewAllMyReceivedMessages();
+                            Console.WriteLine(temp);
+                        }
                         break;
 
                     case "5":
-                        user.ViewAllMyLastUpdatedWall();
+                        {
+                            var temp = user.ViewAllMyLastUpdatedWall();
+                            Console.WriteLine(temp);
+                        }
                         break;
 
                     case "6":
-                        user.FilterMyWall();
+                        {
+                            Console.Write("Enter Filter: ");
+                            string? filter = Console.ReadLine();
+                            filter = filter ?? throw new ArgumentNullException(nameof(filter));
+
+                            user.FilterMyWall(filter);
+                        }
                         break;
 
                     case "7":
-                        user.SendReportToAdministrator();
+                        {
+                            Console.Write("Enter Username: ");
+                            string? username = Console.ReadLine();
+                            username = username ?? throw new ArgumentNullException(nameof(username));
+
+                            Console.Write("Enter Content: ");
+                            string? content = Console.ReadLine();
+                            content = content ?? throw new ArgumentNullException(nameof(content));
+
+                            user.SendReportToAdministrator(username, content);
+                        }
                         break;
 
                     case "8":

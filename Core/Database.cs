@@ -87,6 +87,7 @@ namespace Database
             // If the file does not exist, create a new database
             if (!System.IO.File.Exists("Database.dat"))
             {
+                Save();
             }
             else
             {
