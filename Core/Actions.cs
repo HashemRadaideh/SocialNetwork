@@ -25,11 +25,13 @@ namespace Actions
         private int author = 0;
         private string content = "";
         private string username;
+        private bool priority = false;
 
-        public Post(string username, string content)
+        public Post(string username, string content, bool priority)
         {
             this.username = username;
             this.content = content;
+            this.priority = priority;
         }
 
         public string Content { get => content; set => content = value; }
@@ -60,5 +62,9 @@ namespace Actions
         public int Sender { get => sender; set => sender = value; }
         public int Receiver { get => receiver; set => receiver = value; }
         public string Content { get => content; set => content = value; }
+        public override string ToString()
+        {
+            return $"from: {username1}\nTo: {username2}\nContent:{content}";
+        }
     }
 }

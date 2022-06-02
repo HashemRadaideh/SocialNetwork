@@ -182,7 +182,10 @@
                             string? content = Console.ReadLine();
                             content = content ?? throw new ArgumentNullException(nameof(content));
 
-                            user.PostNewContent(content);
+                            Console.Write("Enter Content: ");
+                            bool priority = Convert.ToBoolean(Console.ReadLine());
+
+                            user.PostNewContent(content, priority);
                         }
                         break;
 

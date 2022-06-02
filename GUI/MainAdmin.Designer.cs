@@ -125,11 +125,27 @@
             this.ColumnAge = new System.Windows.Forms.ColumnHeader();
             this.ColumnFriends = new System.Windows.Forms.ColumnHeader();
             this.PanelSuspend = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.ListSuspend = new System.Windows.Forms.ListView();
+            this.ButtonSearch = new System.Windows.Forms.Button();
+            this.ButtonSuspendUser = new System.Windows.Forms.Button();
+            this.FieldSearch = new System.Windows.Forms.TextBox();
             this.PanelActivate = new System.Windows.Forms.Panel();
+            this.ButtonSearch2 = new System.Windows.Forms.Button();
+            this.ButtonActivate = new System.Windows.Forms.Button();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.MenuStrip.SuspendLayout();
             this.SideBar.SuspendLayout();
             this.PanelRegister.SuspendLayout();
             this.PanelViewAllUsers.SuspendLayout();
+            this.PanelSuspend.SuspendLayout();
+            this.PanelActivate.SuspendLayout();
             this.SuspendLayout();
             // 
             // Exit
@@ -520,11 +536,100 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PanelSuspend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.PanelSuspend.Controls.Add(this.label4);
+            this.PanelSuspend.Controls.Add(this.label3);
+            this.PanelSuspend.Controls.Add(this.label1);
+            this.PanelSuspend.Controls.Add(this.listView1);
+            this.PanelSuspend.Controls.Add(this.ListSuspend);
+            this.PanelSuspend.Controls.Add(this.ButtonSearch);
+            this.PanelSuspend.Controls.Add(this.ButtonSuspendUser);
+            this.PanelSuspend.Controls.Add(this.FieldSearch);
             this.PanelSuspend.Location = new System.Drawing.Point(215, 34);
             this.PanelSuspend.Name = "PanelSuspend";
             this.PanelSuspend.Size = new System.Drawing.Size(626, 431);
             this.PanelSuspend.TabIndex = 11;
             this.PanelSuspend.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(11, 252);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 21);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Reports";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(11, 99);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 21);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Information";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(11, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 21);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Username";
+            // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(109, 252);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(247, 121);
+            this.listView1.TabIndex = 10;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // ListSuspend
+            // 
+            this.ListSuspend.Location = new System.Drawing.Point(109, 99);
+            this.ListSuspend.Name = "ListSuspend";
+            this.ListSuspend.Size = new System.Drawing.Size(247, 121);
+            this.ListSuspend.TabIndex = 10;
+            this.ListSuspend.UseCompatibleStateImageBehavior = false;
+            // 
+            // ButtonSearch
+            // 
+            this.ButtonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonSearch.ForeColor = System.Drawing.Color.White;
+            this.ButtonSearch.Location = new System.Drawing.Point(422, 39);
+            this.ButtonSearch.Name = "ButtonSearch";
+            this.ButtonSearch.Size = new System.Drawing.Size(175, 23);
+            this.ButtonSearch.TabIndex = 9;
+            this.ButtonSearch.Text = "Search";
+            this.ButtonSearch.UseVisualStyleBackColor = false;
+            // 
+            // ButtonSuspendUser
+            // 
+            this.ButtonSuspendUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonSuspendUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonSuspendUser.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonSuspendUser.ForeColor = System.Drawing.Color.White;
+            this.ButtonSuspendUser.Location = new System.Drawing.Point(422, 391);
+            this.ButtonSuspendUser.Name = "ButtonSuspendUser";
+            this.ButtonSuspendUser.Size = new System.Drawing.Size(175, 23);
+            this.ButtonSuspendUser.TabIndex = 9;
+            this.ButtonSuspendUser.Text = "Suspend";
+            this.ButtonSuspendUser.UseVisualStyleBackColor = false;
+            // 
+            // FieldSearch
+            // 
+            this.FieldSearch.Location = new System.Drawing.Point(109, 40);
+            this.FieldSearch.Name = "FieldSearch";
+            this.FieldSearch.Size = new System.Drawing.Size(247, 23);
+            this.FieldSearch.TabIndex = 0;
             // 
             // PanelActivate
             // 
@@ -532,11 +637,80 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PanelActivate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.PanelActivate.Controls.Add(this.ButtonSearch2);
+            this.PanelActivate.Controls.Add(this.ButtonActivate);
+            this.PanelActivate.Controls.Add(this.listView2);
+            this.PanelActivate.Controls.Add(this.textBox1);
+            this.PanelActivate.Controls.Add(this.label6);
+            this.PanelActivate.Controls.Add(this.label5);
             this.PanelActivate.Location = new System.Drawing.Point(215, 34);
             this.PanelActivate.Name = "PanelActivate";
             this.PanelActivate.Size = new System.Drawing.Size(626, 431);
             this.PanelActivate.TabIndex = 12;
             this.PanelActivate.Visible = false;
+            // 
+            // ButtonSearch2
+            // 
+            this.ButtonSearch2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonSearch2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonSearch2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonSearch2.ForeColor = System.Drawing.Color.White;
+            this.ButtonSearch2.Location = new System.Drawing.Point(429, 38);
+            this.ButtonSearch2.Name = "ButtonSearch2";
+            this.ButtonSearch2.Size = new System.Drawing.Size(175, 23);
+            this.ButtonSearch2.TabIndex = 9;
+            this.ButtonSearch2.Text = "Search";
+            this.ButtonSearch2.UseVisualStyleBackColor = false;
+            // 
+            // ButtonActivate
+            // 
+            this.ButtonActivate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonActivate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonActivate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonActivate.ForeColor = System.Drawing.Color.White;
+            this.ButtonActivate.Location = new System.Drawing.Point(429, 391);
+            this.ButtonActivate.Name = "ButtonActivate";
+            this.ButtonActivate.Size = new System.Drawing.Size(175, 23);
+            this.ButtonActivate.TabIndex = 9;
+            this.ButtonActivate.Text = "Activate";
+            this.ButtonActivate.UseVisualStyleBackColor = false;
+            // 
+            // listView2
+            // 
+            this.listView2.Location = new System.Drawing.Point(119, 99);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(256, 258);
+            this.listView2.TabIndex = 3;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(119, 38);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(256, 23);
+            this.textBox1.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(22, 99);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(92, 21);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Information";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(22, 39);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 21);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Username";
             // 
             // AdminMain
             // 
@@ -547,10 +721,10 @@
             this.Controls.Add(this.SideBar);
             this.Controls.Add(this.WindowTitle);
             this.Controls.Add(this.MenuStrip);
+            this.Controls.Add(this.PanelActivate);
             this.Controls.Add(this.PanelSuspend);
             this.Controls.Add(this.PanelViewAllUsers);
             this.Controls.Add(this.PanelRegister);
-            this.Controls.Add(this.PanelActivate);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(340, 350);
@@ -562,6 +736,10 @@
             this.PanelRegister.ResumeLayout(false);
             this.PanelRegister.PerformLayout();
             this.PanelViewAllUsers.ResumeLayout(false);
+            this.PanelSuspend.ResumeLayout(false);
+            this.PanelSuspend.PerformLayout();
+            this.PanelActivate.ResumeLayout(false);
+            this.PanelActivate.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -605,5 +783,19 @@
         private ColumnHeader ColumnLocation;
         private ColumnHeader ColumnAge;
         private ColumnHeader ColumnFriends;
+        private Label label4;
+        private Label label3;
+        private Label label1;
+        private ListView listView1;
+        private ListView ListSuspend;
+        private Button ButtonSearch;
+        private Button ButtonSuspendUser;
+        private TextBox FieldSearch;
+        private Button ButtonSearch2;
+        private Button ButtonActivate;
+        private ListView listView2;
+        private TextBox textBox1;
+        private Label label6;
+        private Label label5;
     }
 }

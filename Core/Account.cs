@@ -175,9 +175,9 @@ namespace Account
 
         public User(string username, string password, bool status, string firstName, string lastName, string location, int age, List<User>? friends) : base(username, password, status, firstName, lastName, location, age, friends) { }
 
-        public void PostNewContent(string content)
+        public void PostNewContent(string content, bool priority)
         {
-            database.Instance.Add("posts", new pst(this.Username, content)); // this.Username -> Poster's username, content -> content
+            database.Instance.Add("posts", new pst(this.Username, content, priority)); // this.Username -> Poster's username, content -> content
         }
 
         public void SendMessage(string username, string content)

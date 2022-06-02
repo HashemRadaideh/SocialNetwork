@@ -93,6 +93,5 @@ namespace GUI
             var userLogin = new UserLogin();
             userLogin.Show();
         }
-
     }
 }
