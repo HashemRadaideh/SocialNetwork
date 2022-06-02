@@ -103,43 +103,43 @@
             this.ButtonViewAllMyPosts = new System.Windows.Forms.Button();
             this.ButtonHome = new System.Windows.Forms.Button();
             this.PanelCreatePost = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.ComboPriority = new System.Windows.Forms.ComboBox();
+            this.FieldContent = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.ButtonCreatePost = new System.Windows.Forms.Button();
             this.PanelSendMessage = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.ButtonSearchReciever = new System.Windows.Forms.Button();
+            this.ButtonCreateMessage = new System.Windows.Forms.Button();
+            this.FieldBody = new System.Windows.Forms.TextBox();
+            this.FieldMessageUsername = new System.Windows.Forms.TextBox();
             this.PanelMyPosts = new System.Windows.Forms.Panel();
-            this.listView4 = new System.Windows.Forms.ListView();
+            this.ListMyPosts = new System.Windows.Forms.ListView();
+            this.ColumnUsername = new System.Windows.Forms.ColumnHeader();
+            this.ColumnContent = new System.Windows.Forms.ColumnHeader();
             this.PanelMyMessages = new System.Windows.Forms.Panel();
-            this.listView3 = new System.Windows.Forms.ListView();
+            this.ListMyMessages = new System.Windows.Forms.ListView();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.PanelHome = new System.Windows.Forms.Panel();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.ListHomeFeed = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.PanelHomeFiltered = new System.Windows.Forms.Panel();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.ListHomeFiltered = new System.Windows.Forms.ListView();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.ComboCategorySearch = new System.Windows.Forms.ComboBox();
+            this.FieldCategorySearch = new System.Windows.Forms.TextBox();
+            this.ButtonFilterHome = new System.Windows.Forms.Button();
             this.PanelSendReport = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.FieldReason = new System.Windows.Forms.TextBox();
+            this.FieldReported = new System.Windows.Forms.TextBox();
+            this.SearchReported = new System.Windows.Forms.Button();
             this.ButtonReport = new System.Windows.Forms.Button();
             this.MenuStrip.SuspendLayout();
             this.SideBar.SuspendLayout();
@@ -365,13 +365,10 @@
             // PanelCreatePost
             // 
             this.PanelCreatePost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
-            this.PanelCreatePost.Controls.Add(this.comboBox1);
-            this.PanelCreatePost.Controls.Add(this.textBox5);
-            this.PanelCreatePost.Controls.Add(this.textBox4);
+            this.PanelCreatePost.Controls.Add(this.ComboPriority);
+            this.PanelCreatePost.Controls.Add(this.FieldContent);
             this.PanelCreatePost.Controls.Add(this.label6);
             this.PanelCreatePost.Controls.Add(this.label5);
-            this.PanelCreatePost.Controls.Add(this.label4);
-            this.PanelCreatePost.Controls.Add(this.textBox3);
             this.PanelCreatePost.Controls.Add(this.label3);
             this.PanelCreatePost.Controls.Add(this.ButtonCreatePost);
             this.PanelCreatePost.Location = new System.Drawing.Point(215, 34);
@@ -380,65 +377,44 @@
             this.PanelCreatePost.TabIndex = 9;
             this.PanelCreatePost.Visible = false;
             // 
-            // comboBox1
+            // ComboPriority
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(94, 88);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 11;
+            this.ComboPriority.FormattingEnabled = true;
+            this.ComboPriority.Items.AddRange(new object[] {
+            "High",
+            "Low"});
+            this.ComboPriority.Location = new System.Drawing.Point(111, 20);
+            this.ComboPriority.Name = "ComboPriority";
+            this.ComboPriority.Size = new System.Drawing.Size(167, 23);
+            this.ComboPriority.TabIndex = 11;
             // 
-            // textBox5
+            // FieldContent
             // 
-            this.textBox5.Location = new System.Drawing.Point(94, 116);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(167, 89);
-            this.textBox5.TabIndex = 1;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(94, 58);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 23);
-            this.textBox4.TabIndex = 1;
+            this.FieldContent.Location = new System.Drawing.Point(111, 48);
+            this.FieldContent.Multiline = true;
+            this.FieldContent.Name = "FieldContent";
+            this.FieldContent.Size = new System.Drawing.Size(167, 89);
+            this.FieldContent.TabIndex = 1;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(20, 116);
+            this.label6.Location = new System.Drawing.Point(37, 48);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 21);
+            this.label6.Size = new System.Drawing.Size(65, 21);
             this.label6.TabIndex = 0;
-            this.label6.Text = "label3";
+            this.label6.Text = "Content";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(20, 88);
+            this.label5.Location = new System.Drawing.Point(37, 20);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 21);
+            this.label5.Size = new System.Drawing.Size(61, 21);
             this.label5.TabIndex = 0;
-            this.label5.Text = "label3";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(20, 58);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 21);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "label3";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(94, 29);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 23);
-            this.textBox3.TabIndex = 1;
+            this.label5.Text = "Priority";
             // 
             // label3
             // 
@@ -446,9 +422,8 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(20, 29);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 21);
+            this.label3.Size = new System.Drawing.Size(0, 21);
             this.label3.TabIndex = 0;
-            this.label3.Text = "label3";
             // 
             // ButtonCreatePost
             // 
@@ -463,45 +438,22 @@
             this.ButtonCreatePost.TabIndex = 10;
             this.ButtonCreatePost.Text = "Create";
             this.ButtonCreatePost.UseVisualStyleBackColor = false;
-            this.ButtonCreatePost.Click += new System.EventHandler(this.LogOut_Click);
+            this.ButtonCreatePost.Click += new System.EventHandler(this.ButtonCreatePost_Click);
             // 
             // PanelSendMessage
             // 
             this.PanelSendMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
-            this.PanelSendMessage.Controls.Add(this.label11);
-            this.PanelSendMessage.Controls.Add(this.label10);
             this.PanelSendMessage.Controls.Add(this.label9);
             this.PanelSendMessage.Controls.Add(this.label8);
-            this.PanelSendMessage.Controls.Add(this.button4);
-            this.PanelSendMessage.Controls.Add(this.textBox10);
-            this.PanelSendMessage.Controls.Add(this.textBox9);
-            this.PanelSendMessage.Controls.Add(this.textBox8);
-            this.PanelSendMessage.Controls.Add(this.textBox7);
+            this.PanelSendMessage.Controls.Add(this.ButtonSearchReciever);
+            this.PanelSendMessage.Controls.Add(this.ButtonCreateMessage);
+            this.PanelSendMessage.Controls.Add(this.FieldBody);
+            this.PanelSendMessage.Controls.Add(this.FieldMessageUsername);
             this.PanelSendMessage.Location = new System.Drawing.Point(215, 34);
             this.PanelSendMessage.Name = "PanelSendMessage";
             this.PanelSendMessage.Size = new System.Drawing.Size(626, 431);
             this.PanelSendMessage.TabIndex = 10;
             this.PanelSendMessage.Visible = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(20, 107);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(52, 21);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "label8";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(20, 78);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(52, 21);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "label8";
             // 
             // label9
             // 
@@ -509,9 +461,9 @@
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label9.Location = new System.Drawing.Point(20, 47);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 21);
+            this.label9.Size = new System.Drawing.Size(45, 21);
             this.label9.TabIndex = 1;
-            this.label9.Text = "label8";
+            this.label9.Text = "Body";
             // 
             // label8
             // 
@@ -519,176 +471,205 @@
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label8.Location = new System.Drawing.Point(20, 20);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 21);
+            this.label8.Size = new System.Drawing.Size(81, 21);
             this.label8.TabIndex = 1;
-            this.label8.Text = "label8";
+            this.label8.Text = "Username";
             // 
-            // button4
+            // ButtonSearchReciever
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonSearchReciever.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(434, 391);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(175, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Log out";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.LogOut_Click);
+            this.ButtonSearchReciever.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonSearchReciever.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonSearchReciever.ForeColor = System.Drawing.Color.White;
+            this.ButtonSearchReciever.Location = new System.Drawing.Point(434, 20);
+            this.ButtonSearchReciever.Name = "ButtonSearchReciever";
+            this.ButtonSearchReciever.Size = new System.Drawing.Size(175, 23);
+            this.ButtonSearchReciever.TabIndex = 10;
+            this.ButtonSearchReciever.Text = "Search";
+            this.ButtonSearchReciever.UseVisualStyleBackColor = false;
+            this.ButtonSearchReciever.Click += new System.EventHandler(this.ButtonSearchReciever_Click);
             // 
-            // textBox10
+            // ButtonCreateMessage
             // 
-            this.textBox10.Location = new System.Drawing.Point(111, 107);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(100, 23);
-            this.textBox10.TabIndex = 0;
+            this.ButtonCreateMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonCreateMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonCreateMessage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonCreateMessage.ForeColor = System.Drawing.Color.White;
+            this.ButtonCreateMessage.Location = new System.Drawing.Point(434, 391);
+            this.ButtonCreateMessage.Name = "ButtonCreateMessage";
+            this.ButtonCreateMessage.Size = new System.Drawing.Size(175, 23);
+            this.ButtonCreateMessage.TabIndex = 10;
+            this.ButtonCreateMessage.Text = "Log out";
+            this.ButtonCreateMessage.UseVisualStyleBackColor = false;
+            this.ButtonCreateMessage.Click += new System.EventHandler(this.ButtonCreateMessage_Click);
             // 
-            // textBox9
+            // FieldBody
             // 
-            this.textBox9.Location = new System.Drawing.Point(111, 78);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 23);
-            this.textBox9.TabIndex = 0;
+            this.FieldBody.Location = new System.Drawing.Point(111, 49);
+            this.FieldBody.Multiline = true;
+            this.FieldBody.Name = "FieldBody";
+            this.FieldBody.Size = new System.Drawing.Size(183, 88);
+            this.FieldBody.TabIndex = 0;
             // 
-            // textBox8
+            // FieldMessageUsername
             // 
-            this.textBox8.Location = new System.Drawing.Point(111, 49);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 23);
-            this.textBox8.TabIndex = 0;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(111, 20);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 23);
-            this.textBox7.TabIndex = 0;
+            this.FieldMessageUsername.Location = new System.Drawing.Point(111, 20);
+            this.FieldMessageUsername.Name = "FieldMessageUsername";
+            this.FieldMessageUsername.Size = new System.Drawing.Size(183, 23);
+            this.FieldMessageUsername.TabIndex = 0;
             // 
             // PanelMyPosts
             // 
             this.PanelMyPosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
-            this.PanelMyPosts.Controls.Add(this.listView4);
+            this.PanelMyPosts.Controls.Add(this.ListMyPosts);
             this.PanelMyPosts.Location = new System.Drawing.Point(215, 34);
             this.PanelMyPosts.Name = "PanelMyPosts";
             this.PanelMyPosts.Size = new System.Drawing.Size(626, 431);
             this.PanelMyPosts.TabIndex = 11;
             this.PanelMyPosts.Visible = false;
             // 
-            // listView4
+            // ListMyPosts
             // 
-            this.listView4.Location = new System.Drawing.Point(32, 33);
-            this.listView4.Name = "listView4";
-            this.listView4.Size = new System.Drawing.Size(548, 372);
-            this.listView4.TabIndex = 0;
-            this.listView4.UseCompatibleStateImageBehavior = false;
+            this.ListMyPosts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ColumnUsername,
+            this.ColumnContent});
+            this.ListMyPosts.Location = new System.Drawing.Point(20, 20);
+            this.ListMyPosts.Name = "ListMyPosts";
+            this.ListMyPosts.Size = new System.Drawing.Size(579, 394);
+            this.ListMyPosts.TabIndex = 0;
+            this.ListMyPosts.UseCompatibleStateImageBehavior = false;
+            this.ListMyPosts.View = System.Windows.Forms.View.Details;
+            // 
+            // ColumnUsername
+            // 
+            this.ColumnUsername.Text = "Username";
+            this.ColumnUsername.Width = 100;
+            // 
+            // ColumnContent
+            // 
+            this.ColumnContent.Text = "Content";
+            this.ColumnContent.Width = 200;
             // 
             // PanelMyMessages
             // 
             this.PanelMyMessages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
-            this.PanelMyMessages.Controls.Add(this.listView3);
+            this.PanelMyMessages.Controls.Add(this.ListMyMessages);
             this.PanelMyMessages.Location = new System.Drawing.Point(215, 34);
             this.PanelMyMessages.Name = "PanelMyMessages";
             this.PanelMyMessages.Size = new System.Drawing.Size(625, 431);
             this.PanelMyMessages.TabIndex = 12;
             this.PanelMyMessages.Visible = false;
             // 
-            // listView3
+            // ListMyMessages
             // 
-            this.listView3.Location = new System.Drawing.Point(28, 24);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(552, 385);
-            this.listView3.TabIndex = 0;
-            this.listView3.UseCompatibleStateImageBehavior = false;
+            this.ListMyMessages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader3,
+            this.columnHeader4});
+            this.ListMyMessages.Location = new System.Drawing.Point(20, 20);
+            this.ListMyMessages.Name = "ListMyMessages";
+            this.ListMyMessages.Size = new System.Drawing.Size(579, 394);
+            this.ListMyMessages.TabIndex = 0;
+            this.ListMyMessages.UseCompatibleStateImageBehavior = false;
+            this.ListMyMessages.View = System.Windows.Forms.View.Details;
             // 
             // PanelHome
             // 
             this.PanelHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
-            this.PanelHome.Controls.Add(this.listView2);
+            this.PanelHome.Controls.Add(this.ListHomeFeed);
             this.PanelHome.Location = new System.Drawing.Point(215, 34);
             this.PanelHome.Name = "PanelHome";
             this.PanelHome.Size = new System.Drawing.Size(626, 431);
             this.PanelHome.TabIndex = 13;
             this.PanelHome.Visible = false;
             // 
-            // listView2
+            // ListHomeFeed
             // 
-            this.listView2.Location = new System.Drawing.Point(20, 20);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(579, 389);
-            this.listView2.TabIndex = 0;
-            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.ListHomeFeed.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.ListHomeFeed.Location = new System.Drawing.Point(20, 20);
+            this.ListHomeFeed.Name = "ListHomeFeed";
+            this.ListHomeFeed.Size = new System.Drawing.Size(579, 394);
+            this.ListHomeFeed.TabIndex = 0;
+            this.ListHomeFeed.UseCompatibleStateImageBehavior = false;
+            this.ListHomeFeed.View = System.Windows.Forms.View.Details;
             // 
             // PanelHomeFiltered
             // 
             this.PanelHomeFiltered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
-            this.PanelHomeFiltered.Controls.Add(this.listView1);
+            this.PanelHomeFiltered.Controls.Add(this.ListHomeFiltered);
             this.PanelHomeFiltered.Controls.Add(this.label7);
-            this.PanelHomeFiltered.Controls.Add(this.comboBox2);
-            this.PanelHomeFiltered.Controls.Add(this.textBox6);
-            this.PanelHomeFiltered.Controls.Add(this.button3);
+            this.PanelHomeFiltered.Controls.Add(this.ComboCategorySearch);
+            this.PanelHomeFiltered.Controls.Add(this.FieldCategorySearch);
+            this.PanelHomeFiltered.Controls.Add(this.ButtonFilterHome);
             this.PanelHomeFiltered.Location = new System.Drawing.Point(215, 34);
             this.PanelHomeFiltered.Name = "PanelHomeFiltered";
             this.PanelHomeFiltered.Size = new System.Drawing.Size(626, 431);
             this.PanelHomeFiltered.TabIndex = 14;
             this.PanelHomeFiltered.Visible = false;
             // 
-            // listView1
+            // ListHomeFiltered
             // 
-            this.listView1.Location = new System.Drawing.Point(78, 88);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(350, 283);
-            this.listView1.TabIndex = 14;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.ListHomeFiltered.Location = new System.Drawing.Point(108, 88);
+            this.ListHomeFiltered.Name = "ListHomeFiltered";
+            this.ListHomeFiltered.Size = new System.Drawing.Size(501, 283);
+            this.ListHomeFiltered.TabIndex = 14;
+            this.ListHomeFiltered.UseCompatibleStateImageBehavior = false;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 26);
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(20, 31);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 15);
+            this.label7.Size = new System.Drawing.Size(73, 21);
             this.label7.TabIndex = 13;
-            this.label7.Text = "label7";
+            this.label7.Text = "Category";
             // 
-            // comboBox2
+            // ComboCategorySearch
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(78, 26);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 23);
-            this.comboBox2.TabIndex = 12;
+            this.ComboCategorySearch.FormattingEnabled = true;
+            this.ComboCategorySearch.Items.AddRange(new object[] {
+            "News",
+            "Sports",
+            "TV"});
+            this.ComboCategorySearch.Location = new System.Drawing.Point(108, 31);
+            this.ComboCategorySearch.Name = "ComboCategorySearch";
+            this.ComboCategorySearch.Size = new System.Drawing.Size(141, 23);
+            this.ComboCategorySearch.TabIndex = 12;
             // 
-            // textBox6
+            // FieldCategorySearch
             // 
-            this.textBox6.Location = new System.Drawing.Point(328, 28);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 23);
-            this.textBox6.TabIndex = 11;
+            this.FieldCategorySearch.Location = new System.Drawing.Point(300, 31);
+            this.FieldCategorySearch.Name = "FieldCategorySearch";
+            this.FieldCategorySearch.Size = new System.Drawing.Size(128, 23);
+            this.FieldCategorySearch.TabIndex = 11;
             // 
-            // button3
+            // ButtonFilterHome
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonFilterHome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(434, 26);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(175, 23);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Search";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.LogOut_Click);
+            this.ButtonFilterHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.ButtonFilterHome.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonFilterHome.ForeColor = System.Drawing.Color.White;
+            this.ButtonFilterHome.Location = new System.Drawing.Point(434, 31);
+            this.ButtonFilterHome.Name = "ButtonFilterHome";
+            this.ButtonFilterHome.Size = new System.Drawing.Size(175, 23);
+            this.ButtonFilterHome.TabIndex = 10;
+            this.ButtonFilterHome.Text = "Search";
+            this.ButtonFilterHome.UseVisualStyleBackColor = false;
+            this.ButtonFilterHome.Click += new System.EventHandler(this.ButtonFilterHome_Click);
             // 
             // PanelSendReport
             // 
             this.PanelSendReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.PanelSendReport.Controls.Add(this.label2);
             this.PanelSendReport.Controls.Add(this.label1);
-            this.PanelSendReport.Controls.Add(this.textBox2);
-            this.PanelSendReport.Controls.Add(this.textBox1);
-            this.PanelSendReport.Controls.Add(this.button2);
+            this.PanelSendReport.Controls.Add(this.FieldReason);
+            this.PanelSendReport.Controls.Add(this.FieldReported);
+            this.PanelSendReport.Controls.Add(this.SearchReported);
             this.PanelSendReport.Controls.Add(this.ButtonReport);
             this.PanelSendReport.Location = new System.Drawing.Point(215, 34);
             this.PanelSendReport.Name = "PanelSendReport";
@@ -702,9 +683,9 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(20, 59);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 21);
+            this.label2.Size = new System.Drawing.Size(61, 21);
             this.label2.TabIndex = 11;
-            this.label2.Text = "label1";
+            this.label2.Text = "Reason";
             // 
             // label1
             // 
@@ -712,38 +693,39 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(20, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 21);
+            this.label1.Size = new System.Drawing.Size(81, 21);
             this.label1.TabIndex = 11;
-            this.label1.Text = "label1";
+            this.label1.Text = "Username";
             // 
-            // textBox2
+            // FieldReason
             // 
-            this.textBox2.Location = new System.Drawing.Point(111, 59);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 23);
-            this.textBox2.TabIndex = 2;
+            this.FieldReason.Location = new System.Drawing.Point(111, 59);
+            this.FieldReason.Multiline = true;
+            this.FieldReason.Name = "FieldReason";
+            this.FieldReason.Size = new System.Drawing.Size(196, 137);
+            this.FieldReason.TabIndex = 2;
             // 
-            // textBox1
+            // FieldReported
             // 
-            this.textBox1.Location = new System.Drawing.Point(111, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 1;
+            this.FieldReported.Location = new System.Drawing.Point(111, 29);
+            this.FieldReported.Name = "FieldReported";
+            this.FieldReported.Size = new System.Drawing.Size(196, 23);
+            this.FieldReported.TabIndex = 1;
             // 
-            // button2
+            // SearchReported
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.SearchReported.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(434, 27);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(175, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Search";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.LogOut_Click);
+            this.SearchReported.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.SearchReported.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SearchReported.ForeColor = System.Drawing.Color.White;
+            this.SearchReported.Location = new System.Drawing.Point(434, 27);
+            this.SearchReported.Name = "SearchReported";
+            this.SearchReported.Size = new System.Drawing.Size(175, 23);
+            this.SearchReported.TabIndex = 10;
+            this.SearchReported.Text = "Search";
+            this.SearchReported.UseVisualStyleBackColor = false;
+            this.SearchReported.Click += new System.EventHandler(this.SearchReported_Click);
             // 
             // ButtonReport
             // 
@@ -752,13 +734,13 @@
             this.ButtonReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
             this.ButtonReport.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ButtonReport.ForeColor = System.Drawing.Color.White;
-            this.ButtonReport.Location = new System.Drawing.Point(434, 382);
+            this.ButtonReport.Location = new System.Drawing.Point(434, 391);
             this.ButtonReport.Name = "ButtonReport";
             this.ButtonReport.Size = new System.Drawing.Size(175, 23);
             this.ButtonReport.TabIndex = 10;
             this.ButtonReport.Text = "Send report";
             this.ButtonReport.UseVisualStyleBackColor = false;
-            this.ButtonReport.Click += new System.EventHandler(this.LogOut_Click);
+            this.ButtonReport.Click += new System.EventHandler(this.ButtonReport_Click);
             // 
             // UserMain
             // 
@@ -769,13 +751,13 @@
             this.Controls.Add(this.SideBar);
             this.Controls.Add(this.WindowTitle);
             this.Controls.Add(this.MenuStrip);
-            this.Controls.Add(this.PanelCreatePost);
-            this.Controls.Add(this.PanelSendReport);
             this.Controls.Add(this.PanelHomeFiltered);
             this.Controls.Add(this.PanelHome);
             this.Controls.Add(this.PanelMyMessages);
             this.Controls.Add(this.PanelMyPosts);
             this.Controls.Add(this.PanelSendMessage);
+            this.Controls.Add(this.PanelCreatePost);
+            this.Controls.Add(this.PanelSendReport);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(340, 350);
@@ -821,37 +803,37 @@
         private Panel PanelHome;
         private Panel PanelHomeFiltered;
         private Panel PanelSendReport;
-        private TextBox textBox3;
         private Label label3;
         private Label label2;
         private Label label1;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private Button button2;
+        private TextBox FieldReason;
+        private TextBox FieldReported;
+        private Button SearchReported;
         private Button ButtonReport;
-        private ComboBox comboBox1;
-        private TextBox textBox5;
-        private TextBox textBox4;
+        private ComboBox ComboPriority;
+        private TextBox FieldContent;
         private Label label6;
         private Label label5;
-        private Label label4;
         private Button ButtonCreatePost;
-        private Label label11;
-        private Label label10;
         private Label label9;
         private Label label8;
-        private Button button4;
-        private TextBox textBox10;
-        private TextBox textBox9;
-        private TextBox textBox8;
-        private TextBox textBox7;
-        private ListView listView4;
-        private ListView listView3;
-        private ListView listView2;
-        private ListView listView1;
+        private Button ButtonCreateMessage;
+        private TextBox FieldBody;
+        private TextBox FieldMessageUsername;
+        private ListView ListMyPosts;
+        private ListView ListMyMessages;
+        private ListView ListHomeFeed;
+        private ListView ListHomeFiltered;
         private Label label7;
-        private ComboBox comboBox2;
-        private TextBox textBox6;
-        private Button button3;
+        private ComboBox ComboCategorySearch;
+        private Button ButtonFilterHome;
+        private ColumnHeader ColumnUsername;
+        private ColumnHeader ColumnContent;
+        private Button ButtonSearchReciever;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private TextBox FieldCategorySearch;
     }
 }

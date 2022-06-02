@@ -4,7 +4,7 @@ namespace GUI
 {
     public partial class UserMain : Form
     {
-        Account.User? CurrentUser;
+        Account.User? CurrentUser = UserLogin.CurrentUser;
 
         public UserMain()
         {
@@ -135,6 +135,19 @@ namespace GUI
             PanelHome.Visible = false;
             PanelHomeFiltered.Visible = false;
             PanelSendReport.Visible = false;
+
+            while (ListMyPosts.Items.Count > 1)
+            {
+                ListMyPosts.Items.RemoveAt(1);
+            }
+
+            var _ = CurrentUser ?? throw new Exception("User not found");
+            var posts = CurrentUser.ViewAllMyPosts();
+            var temp = posts.Split("\n");
+
+            ListViewItem i = new ListViewItem(temp[0]);
+            ListMyPosts.Items.Add(i);
+            i.SubItems.Add(temp[1]);
         }
 
         private void ButtonMyMessages_Click(object sender, EventArgs e)
@@ -155,6 +168,19 @@ namespace GUI
             PanelHome.Visible = false;
             PanelHomeFiltered.Visible = false;
             PanelSendReport.Visible = false;
+
+            while (ListMyMessages.Items.Count > 1)
+            {
+                ListMyMessages.Items.RemoveAt(1);
+            }
+
+            var _ = CurrentUser ?? throw new Exception("User not found");
+            var posts = CurrentUser.ViewAllMyReceivedMessages();
+            var temp = posts.Split("\n");
+
+            ListViewItem i = new ListViewItem(temp[0]);
+            ListMyMessages.Items.Add(i);
+            //i.SubItems.Add(temp[1]);
         }
 
         private void ButtonHome_Click(object sender, EventArgs e)
@@ -175,6 +201,20 @@ namespace GUI
             PanelMyMessages.Visible = false;
             PanelHomeFiltered.Visible = false;
             PanelSendReport.Visible = false;
+
+            while (ListHomeFeed.Items.Count > 1)
+            {
+                ListHomeFeed.Items.RemoveAt(1);
+            }
+
+            var _ = CurrentUser ?? throw new Exception("User not found");
+            var posts = CurrentUser.ViewAllMyLastUpdatedWall();
+            var temp = posts.Split("\n");
+
+            ListViewItem i = new ListViewItem(temp[0]);
+            ListHomeFeed.Items.Add(i);
+            i.SubItems.Add(temp[1]);
+
         }
 
         private void ButtonFilteredHome_Click(object sender, EventArgs e)
@@ -215,6 +255,134 @@ namespace GUI
             PanelMyMessages.Visible = false;
             PanelHome.Visible = false;
             PanelHomeFiltered.Visible = false;
+        }
+
+        private void ButtonCreatePost_Click(object sender, EventArgs e)
+        {
+            var _ = CurrentUser ?? throw new Exception("Current user is null");
+            bool priority = ComboPriority.Text == "High" ? true : false;
+            Database.Database.Instance.Add(
+                "posts",
+                new Actions.Post(this.CurrentUser.Username, FieldContent.Text, priority)
+                ); // this.Username -> Poster's username, content -> content
+        }
+
+        private bool isRecieverFound = false;
+
+        private void ButtonSearchReciever_Click(object sender, EventArgs e)
+        {
+            var table = Database.Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            foreach (var row in table.Rows.Values)
+            {
+                var u = (Account.User)row;
+                if (u.Username == FieldMessageUsername.Text)
+                {
+                    isRecieverFound = true;
+                }
+            }
+            isRecieverFound = false;
+        }
+
+        private void ButtonCreateMessage_Click(object sender, EventArgs e)
+        {
+            var _ = CurrentUser ?? throw new Exception("Current user is null");
+            if (isRecieverFound)
+            {
+                Database.Database.Instance.Add(
+                    "messages",
+                    new Actions.Message(this.CurrentUser.Username, FieldMessageUsername.Text, FieldBody.Text)
+                    ); // this.Username -> sender, username -> receiver, body -> message
+            }
+            else
+            {
+                MessageBox.Show("User not found");
+            }
+        }
+
+        private static bool isReported = false;
+        private void SearchReported_Click(object sender, EventArgs e)
+        {
+            var table = Database.Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            foreach (var row in table.Rows.Values)
+            {
+                var u = (Account.User)row;
+                if (u.Username == FieldMessageUsername.Text)
+                {
+                    isReported = true;
+                }
+            }
+            isReported = false;
+        }
+
+        private void ButtonReport_Click(object sender, EventArgs e)
+        {
+            var _ = CurrentUser ?? throw new Exception("Current user is null");
+            if (isReported)
+            {
+                var db = Database.Database.Instance;
+                var reporter = db.IndexOf("users", this.CurrentUser.Username);
+                var reported = db.IndexOf("users", FieldReported.Text);
+
+                db.Add("reports", new Actions.Report(
+                    reporter,
+                    reported,
+                    FieldReason.Text
+                    )); // this.Username -> reporter, content -> reports
+            }
+            else
+            {
+                MessageBox.Show("User not found");
+            }
+        }
+
+        private void ButtonFilterHome_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(FieldCategorySearch.Text) && string.IsNullOrEmpty(ComboCategorySearch.Text))
+            {
+                MessageBox.Show("Please enter a category");
+            }
+            else if (string.IsNullOrEmpty(FieldCategorySearch.Text) && !string.IsNullOrEmpty(ComboCategorySearch.Text))
+            {
+                var _ = CurrentUser ?? throw new Exception("Current user is null");
+                var posts = CurrentUser.FilterMyWall(ComboCategorySearch.Text);
+                var temp = posts.Split("\n");
+
+                while (ListHomeFiltered.Items.Count > 1)
+                {
+                    ListHomeFiltered.Items.RemoveAt(1);
+                }
+
+                ListViewItem i = new ListViewItem(temp[0]);
+                ListHomeFiltered.Items.Add(i);
+            }
+            else if (!string.IsNullOrEmpty(FieldCategorySearch.Text) && string.IsNullOrEmpty(ComboCategorySearch.Text))
+            {
+                var _ = CurrentUser ?? throw new Exception("Current user is null");
+                var posts = CurrentUser.FilterMyWall(FieldCategorySearch.Text);
+                var temp = posts.Split("\n");
+
+                while (ListHomeFiltered.Items.Count > 1)
+                {
+                    ListHomeFiltered.Items.RemoveAt(1);
+                }
+
+                ListViewItem i = new ListViewItem(temp[0]);
+                ListHomeFiltered.Items.Add(i);
+            }
+            else
+            {
+                var _ = CurrentUser ?? throw new Exception("Current user is null");
+                var posts = CurrentUser.FilterMyWall(FieldCategorySearch.Text);
+                var temp = posts.Split("\n");
+
+                while (ListHomeFiltered.Items.Count > 1)
+                {
+                    ListHomeFiltered.Items.RemoveAt(1);
+                }
+
+                ListViewItem i = new ListViewItem(temp[0]);
+                ListHomeFiltered.Items.Add(i);
+            }
         }
     }
 }

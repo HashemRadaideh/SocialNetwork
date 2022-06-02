@@ -4,7 +4,7 @@ namespace GUI
 {
     public partial class UserLogin : Form
     {
-        Account.User? CurrentUser;
+        public static Account.User? CurrentUser;
 
         public UserLogin()
         {
