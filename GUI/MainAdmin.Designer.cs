@@ -102,7 +102,7 @@
             this.PanelRegister = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.Friends = new System.Windows.Forms.Label();
-            this.Location = new System.Windows.Forms.Label();
+            this.LocationLabel = new System.Windows.Forms.Label();
             this.LastName = new System.Windows.Forms.Label();
             this.FirstName = new System.Windows.Forms.Label();
             this.RegisterUser = new System.Windows.Forms.Button();
@@ -128,16 +128,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.ListSuspend = new System.Windows.Forms.ListView();
+            this.ListReports = new System.Windows.Forms.ListView();
+            this.ListSuspendInfo = new System.Windows.Forms.ListView();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.ButtonSuspendUser = new System.Windows.Forms.Button();
             this.FieldSearch = new System.Windows.Forms.TextBox();
             this.PanelActivate = new System.Windows.Forms.Panel();
             this.ButtonSearch2 = new System.Windows.Forms.Button();
             this.ButtonActivate = new System.Windows.Forms.Button();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ListActivate = new System.Windows.Forms.ListView();
+            this.FieldUsernameActivate = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.MenuStrip.SuspendLayout();
@@ -318,7 +318,7 @@
             this.PanelRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.PanelRegister.Controls.Add(this.label2);
             this.PanelRegister.Controls.Add(this.Friends);
-            this.PanelRegister.Controls.Add(this.Location);
+            this.PanelRegister.Controls.Add(this.LocationLabel);
             this.PanelRegister.Controls.Add(this.LastName);
             this.PanelRegister.Controls.Add(this.FirstName);
             this.PanelRegister.Controls.Add(this.RegisterUser);
@@ -357,15 +357,15 @@
             this.Friends.TabIndex = 3;
             this.Friends.Text = "Friends";
             // 
-            // Location
+            // LocationLabel
             // 
-            this.Location.AutoSize = true;
-            this.Location.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Location.Location = new System.Drawing.Point(22, 141);
-            this.Location.Name = "Location";
-            this.Location.Size = new System.Drawing.Size(69, 21);
-            this.Location.TabIndex = 3;
-            this.Location.Text = "Location";
+            this.LocationLabel.AutoSize = true;
+            this.LocationLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LocationLabel.Location = new System.Drawing.Point(22, 141);
+            this.LocationLabel.Name = "LocationLabel";
+            this.LocationLabel.Size = new System.Drawing.Size(69, 21);
+            this.LocationLabel.TabIndex = 3;
+            this.LocationLabel.Text = "Location";
             // 
             // LastName
             // 
@@ -539,8 +539,8 @@
             this.PanelSuspend.Controls.Add(this.label4);
             this.PanelSuspend.Controls.Add(this.label3);
             this.PanelSuspend.Controls.Add(this.label1);
-            this.PanelSuspend.Controls.Add(this.listView1);
-            this.PanelSuspend.Controls.Add(this.ListSuspend);
+            this.PanelSuspend.Controls.Add(this.ListReports);
+            this.PanelSuspend.Controls.Add(this.ListSuspendInfo);
             this.PanelSuspend.Controls.Add(this.ButtonSearch);
             this.PanelSuspend.Controls.Add(this.ButtonSuspendUser);
             this.PanelSuspend.Controls.Add(this.FieldSearch);
@@ -580,21 +580,21 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Username";
             // 
-            // listView1
+            // ListReports
             // 
-            this.listView1.Location = new System.Drawing.Point(109, 252);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(247, 121);
-            this.listView1.TabIndex = 10;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.ListReports.Location = new System.Drawing.Point(109, 252);
+            this.ListReports.Name = "ListReports";
+            this.ListReports.Size = new System.Drawing.Size(247, 121);
+            this.ListReports.TabIndex = 10;
+            this.ListReports.UseCompatibleStateImageBehavior = false;
             // 
-            // ListSuspend
+            // ListSuspendInfo
             // 
-            this.ListSuspend.Location = new System.Drawing.Point(109, 99);
-            this.ListSuspend.Name = "ListSuspend";
-            this.ListSuspend.Size = new System.Drawing.Size(247, 121);
-            this.ListSuspend.TabIndex = 10;
-            this.ListSuspend.UseCompatibleStateImageBehavior = false;
+            this.ListSuspendInfo.Location = new System.Drawing.Point(109, 99);
+            this.ListSuspendInfo.Name = "ListSuspendInfo";
+            this.ListSuspendInfo.Size = new System.Drawing.Size(247, 121);
+            this.ListSuspendInfo.TabIndex = 10;
+            this.ListSuspendInfo.UseCompatibleStateImageBehavior = false;
             // 
             // ButtonSearch
             // 
@@ -609,6 +609,7 @@
             this.ButtonSearch.TabIndex = 9;
             this.ButtonSearch.Text = "Search";
             this.ButtonSearch.UseVisualStyleBackColor = false;
+            this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
             // 
             // ButtonSuspendUser
             // 
@@ -623,6 +624,7 @@
             this.ButtonSuspendUser.TabIndex = 9;
             this.ButtonSuspendUser.Text = "Suspend";
             this.ButtonSuspendUser.UseVisualStyleBackColor = false;
+            this.ButtonSuspendUser.Click += new System.EventHandler(this.ButtonSuspendUser_Click);
             // 
             // FieldSearch
             // 
@@ -639,8 +641,8 @@
             this.PanelActivate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.PanelActivate.Controls.Add(this.ButtonSearch2);
             this.PanelActivate.Controls.Add(this.ButtonActivate);
-            this.PanelActivate.Controls.Add(this.listView2);
-            this.PanelActivate.Controls.Add(this.textBox1);
+            this.PanelActivate.Controls.Add(this.ListActivate);
+            this.PanelActivate.Controls.Add(this.FieldUsernameActivate);
             this.PanelActivate.Controls.Add(this.label6);
             this.PanelActivate.Controls.Add(this.label5);
             this.PanelActivate.Location = new System.Drawing.Point(215, 34);
@@ -662,6 +664,7 @@
             this.ButtonSearch2.TabIndex = 9;
             this.ButtonSearch2.Text = "Search";
             this.ButtonSearch2.UseVisualStyleBackColor = false;
+            this.ButtonSearch2.Click += new System.EventHandler(this.ButtonSearch2_Click);
             // 
             // ButtonActivate
             // 
@@ -676,21 +679,23 @@
             this.ButtonActivate.TabIndex = 9;
             this.ButtonActivate.Text = "Activate";
             this.ButtonActivate.UseVisualStyleBackColor = false;
+            this.ButtonActivate.Click += new System.EventHandler(this.ButtonActivate_Click);
             // 
-            // listView2
+            // ListActivate
             // 
-            this.listView2.Location = new System.Drawing.Point(119, 99);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(256, 258);
-            this.listView2.TabIndex = 3;
-            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.ListActivate.Location = new System.Drawing.Point(119, 99);
+            this.ListActivate.Name = "ListActivate";
+            this.ListActivate.Size = new System.Drawing.Size(485, 258);
+            this.ListActivate.TabIndex = 3;
+            this.ListActivate.UseCompatibleStateImageBehavior = false;
+            this.ListActivate.View = System.Windows.Forms.View.Details;
             // 
-            // textBox1
+            // FieldUsernameActivate
             // 
-            this.textBox1.Location = new System.Drawing.Point(119, 38);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(256, 23);
-            this.textBox1.TabIndex = 1;
+            this.FieldUsernameActivate.Location = new System.Drawing.Point(119, 38);
+            this.FieldUsernameActivate.Name = "FieldUsernameActivate";
+            this.FieldUsernameActivate.Size = new System.Drawing.Size(256, 23);
+            this.FieldUsernameActivate.TabIndex = 1;
             // 
             // label6
             // 
@@ -721,10 +726,10 @@
             this.Controls.Add(this.SideBar);
             this.Controls.Add(this.WindowTitle);
             this.Controls.Add(this.MenuStrip);
-            this.Controls.Add(this.PanelActivate);
-            this.Controls.Add(this.PanelSuspend);
             this.Controls.Add(this.PanelViewAllUsers);
             this.Controls.Add(this.PanelRegister);
+            this.Controls.Add(this.PanelActivate);
+            this.Controls.Add(this.PanelSuspend);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(340, 350);
@@ -767,7 +772,7 @@
         private TextBox FieldFirstName;
         private TextBox FieldPassword;
         private TextBox FieldUsername;
-        private Label Location;
+        private Label LocationLabel;
         private Label Friends;
         private Button RegisterUser;
         private Panel PanelViewAllUsers;
@@ -786,15 +791,15 @@
         private Label label4;
         private Label label3;
         private Label label1;
-        private ListView listView1;
-        private ListView ListSuspend;
+        private ListView ListReports;
+        private ListView ListSuspendInfo;
         private Button ButtonSearch;
         private Button ButtonSuspendUser;
         private TextBox FieldSearch;
         private Button ButtonSearch2;
         private Button ButtonActivate;
-        private ListView listView2;
-        private TextBox textBox1;
+        private ListView ListActivate;
+        private TextBox FieldUsernameActivate;
         private Label label6;
         private Label label5;
     }

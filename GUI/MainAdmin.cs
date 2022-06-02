@@ -133,6 +133,13 @@ namespace GUI
             PanelSuspend.Hide();
             PanelActivate.Hide();
 
+
+            while (ListUsers.Items.Count > 1)
+            {
+                //leave the header
+                ListUsers.Items.RemoveAt(1);
+            }
+
             var users_accounts = Account.Administrator.Instance.ViewAllUserAccounts();
             var temp = users_accounts.Split("\n");
             foreach (var strs in temp)
@@ -173,6 +180,96 @@ namespace GUI
             PanelRegister.Hide();
             PanelViewAllUsers.Hide();
             PanelSuspend.Hide();
+        }
+
+        private void ButtonActivate_Click(object sender, EventArgs e)
+        {
+            if (FieldUsernameActivate.Text == "")
+            {
+                MessageBox.Show("Please enter a username");
+                return;
+            }
+            if (isFoundActivate)
+            {
+                Account.Administrator.Instance.ActivateUserAccount(FieldUsernameActivate.Text);
+            }
+        }
+
+        private bool isFoundActivate = false;
+
+        private void ButtonSearch2_Click(object sender, EventArgs e)
+        {
+            var table = Database.Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            Account.User? user = null;
+            foreach (var row in table.Rows.Values)
+            {
+                var u = (Account.User)row;
+                if (u.Username == FieldUsernameActivate.Text)
+                {
+                    user = u;
+                    isFoundActivate = true;
+                }
+            }
+
+            if (user is not null)
+            {
+                ListViewItem i = new ListViewItem(user.ToString());
+                ListActivate.Items.Add(i);
+            }
+            //{
+            //    FieldActivate.Text = user.Username;
+            //}
+            //else
+            //{
+            //    FieldActivate.Text = "User not found";
+            //}
+        }
+
+        private bool isFoundSuspend = false;
+
+        private void ButtonSearch_Click(object sender, EventArgs e)
+        {
+            var table = Database.Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            Account.User? user = null;
+            foreach (var row in table.Rows.Values)
+            {
+                var u = (Account.User)row;
+                if (u.Username == FieldSearch.Text)
+                {
+                    user = u;
+                    isFoundSuspend = true;
+                }
+            }
+
+            if (user is not null)
+            {
+                ListViewItem i = new ListViewItem(user.ToString());
+                ListActivate.Items.Add(i);
+            }
+        }
+
+        private void ButtonSuspendUser_Click(object sender, EventArgs e)
+        {
+            if (FieldSearch.Text == "")
+            {
+                MessageBox.Show("Please enter a username");
+                return;
+            }
+
+            var isSuspendable = false;
+            if (isFoundSuspend)
+            {
+                isSuspendable = Account.Administrator.Instance.SuspendUserAccount(FieldSearch.Text);
+            }
+
+            if (isSuspendable)
+            {
+                MessageBox.Show("User suspended");
+            }
+            else
+            {
+                MessageBox.Show("User not suspended");
+            }
         }
     }
 }

@@ -108,15 +108,20 @@ namespace Database
             var acc1 = new useraccount("HashemWasTaken", "0", true, "Hashem", "Al_Radaideh", "Irbid", 20);
             var acc2 = new useraccount("HashemIsTaken", "1", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1 });
             var acc3 = new useraccount("HashemTaken", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2 });
-            var acc4 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20);
-            var acc5 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2, acc3 });
+            var acc4 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2, acc3 });
 
             Add("users", acc1);
             Add("users", acc2);
             Add("users", acc3);
             Add("users", acc4);
-            Add("users", acc5);
 
+            Add("reports", new Actions.Report(IndexOf("users", acc1.Username), IndexOf("users", acc2.Username), "This is a report"));
+            Add("reports", new Actions.Report(IndexOf("users", acc3.Username), IndexOf("users", acc2.Username), "This is a report"));
+
+            Add("reports", new Actions.Report(IndexOf("users", acc2.Username), IndexOf("users", acc1.Username), "This is a report"));
+
+            Add("reports", new Actions.Report(IndexOf("users", acc1.Username), IndexOf("users", acc2.Username), "This is a report"));
+            Add("reports", new Actions.Report(IndexOf("users", acc3.Username), IndexOf("users", acc2.Username), "This is a report"));
             Save();
         }
 
@@ -158,7 +163,7 @@ namespace Database
             foreach (var user in table.Rows.Values)
             {
                 var u = (useraccount)user;
-                if (u.Username == username && u.Password == password)
+                if (u.Username == username && u.Password == password && u.Status)
                 {
                     return u;
                 }

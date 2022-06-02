@@ -124,6 +124,50 @@ namespace Account
         private bool IsSuspendable(string username)
         {
             username = username ?? throw new ArgumentNullException(nameof(username));
+            User? user = null;
+
+            // find the user
+            var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            foreach (var row in table.Rows.Values)
+            {
+                var u = (User)row;
+                if (u.Username == username)
+                {
+                    user = u;
+                }
+            }
+
+            if (user is null)
+            {
+                return false;
+            }
+
+            // return true if the user has 2 or more reports
+            var count = 0;
+            var table2 = database.Instance.GetTable("reports") ?? throw new Exception($"Table '{"reports"}' not found.");
+            foreach (var row in table2.Rows.Values)
+            {
+                var r = (Actions.Report)row;
+                if (r.Reporter == table.IndexOf(user.Username))
+                {
+                    count++;
+                }
+            }
+
+            if (count >= 2)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool SuspendUserAccount(string username)
+        {
+            if (!(IsSuspendable(username)))
+            {
+                return false;
+            }
 
             var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
             foreach (var row in table.Rows.Values)
@@ -131,27 +175,12 @@ namespace Account
                 var user = (User)row;
                 if (user.Username == username)
                 {
+                    user.Status = false;
                     return true;
                 }
             }
 
             return false;
-        }
-
-        public void SuspendUserAccount(string username)
-        {
-            if (IsSuspendable(username))
-            {
-                var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
-                foreach (var row in table.Rows.Values)
-                {
-                    var user = (User)row;
-                    if (user.Username == username)
-                    {
-                        user.Status = false;
-                    }
-                }
-            }
         }
 
         public void ActivateUserAccount(string username)
