@@ -168,11 +168,12 @@
             this.Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Exit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.Exit.Image = global::GUI.Properties.Resources.window_close;
-            this.Exit.Location = new System.Drawing.Point(830, -1);
+            this.Exit.Location = new System.Drawing.Point(824, -3);
             this.Exit.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(23, 23);
+            this.Exit.Size = new System.Drawing.Size(30, 30);
             this.Exit.TabIndex = 1;
+            this.Exit.TabStop = false;
             this.Exit.UseVisualStyleBackColor = false;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
@@ -182,10 +183,11 @@
             this.Maximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.Maximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Maximize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
-            this.Maximize.Location = new System.Drawing.Point(801, -1);
+            this.Maximize.Location = new System.Drawing.Point(794, -3);
             this.Maximize.Name = "Maximize";
-            this.Maximize.Size = new System.Drawing.Size(23, 23);
+            this.Maximize.Size = new System.Drawing.Size(30, 30);
             this.Maximize.TabIndex = 2;
+            this.Maximize.TabStop = false;
             this.Maximize.UseVisualStyleBackColor = false;
             this.Maximize.Click += new System.EventHandler(this.Maximize_Click);
             // 
@@ -196,10 +198,11 @@
             this.Minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Minimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.Minimize.Image = global::GUI.Properties.Resources.window_minimize;
-            this.Minimize.Location = new System.Drawing.Point(772, -1);
+            this.Minimize.Location = new System.Drawing.Point(764, -3);
             this.Minimize.Name = "Minimize";
-            this.Minimize.Size = new System.Drawing.Size(23, 23);
+            this.Minimize.Size = new System.Drawing.Size(30, 30);
             this.Minimize.TabIndex = 3;
+            this.Minimize.TabStop = false;
             this.Minimize.UseVisualStyleBackColor = false;
             this.Minimize.Click += new System.EventHandler(this.Minimize_Click);
             // 
@@ -225,10 +228,10 @@
             this.MenuStrip.Controls.Add(this.Exit);
             this.MenuStrip.Controls.Add(this.Minimize);
             this.MenuStrip.Controls.Add(this.Maximize);
-            this.MenuStrip.Location = new System.Drawing.Point(0, 1);
+            this.MenuStrip.Location = new System.Drawing.Point(1, 1);
             this.MenuStrip.MinimumSize = new System.Drawing.Size(100, 27);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(853, 27);
+            this.MenuStrip.Size = new System.Drawing.Size(851, 27);
             this.MenuStrip.TabIndex = 6;
             this.MenuStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseDown);
             this.MenuStrip.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseMove);
@@ -261,7 +264,7 @@
             this.ButtonMyMessages.Location = new System.Drawing.Point(12, 94);
             this.ButtonMyMessages.Name = "ButtonMyMessages";
             this.ButtonMyMessages.Size = new System.Drawing.Size(175, 23);
-            this.ButtonMyMessages.TabIndex = 10;
+            this.ButtonMyMessages.TabIndex = 3;
             this.ButtonMyMessages.Text = "My messages";
             this.ButtonMyMessages.UseVisualStyleBackColor = false;
             this.ButtonMyMessages.Click += new System.EventHandler(this.ButtonMyMessages_Click);
@@ -276,7 +279,7 @@
             this.ButtonSendMessage.Location = new System.Drawing.Point(12, 36);
             this.ButtonSendMessage.Name = "ButtonSendMessage";
             this.ButtonSendMessage.Size = new System.Drawing.Size(175, 23);
-            this.ButtonSendMessage.TabIndex = 10;
+            this.ButtonSendMessage.TabIndex = 1;
             this.ButtonSendMessage.Text = "Send a message";
             this.ButtonSendMessage.UseVisualStyleBackColor = false;
             this.ButtonSendMessage.Click += new System.EventHandler(this.ButtonSendMessage_Click);
@@ -291,7 +294,7 @@
             this.ButtonSendReport.Location = new System.Drawing.Point(12, 389);
             this.ButtonSendReport.Name = "ButtonSendReport";
             this.ButtonSendReport.Size = new System.Drawing.Size(175, 23);
-            this.ButtonSendReport.TabIndex = 10;
+            this.ButtonSendReport.TabIndex = 6;
             this.ButtonSendReport.Text = "Report";
             this.ButtonSendReport.UseVisualStyleBackColor = false;
             this.ButtonSendReport.Click += new System.EventHandler(this.ButtonSendReport_Click);
@@ -306,7 +309,7 @@
             this.ButtonCreateNewPost.Location = new System.Drawing.Point(12, 7);
             this.ButtonCreateNewPost.Name = "ButtonCreateNewPost";
             this.ButtonCreateNewPost.Size = new System.Drawing.Size(175, 23);
-            this.ButtonCreateNewPost.TabIndex = 10;
+            this.ButtonCreateNewPost.TabIndex = 0;
             this.ButtonCreateNewPost.Text = "Create new post";
             this.ButtonCreateNewPost.UseVisualStyleBackColor = false;
             this.ButtonCreateNewPost.Click += new System.EventHandler(this.ButtonCreateNewPost_Click);
@@ -321,7 +324,7 @@
             this.LogOut.Location = new System.Drawing.Point(12, 418);
             this.LogOut.Name = "LogOut";
             this.LogOut.Size = new System.Drawing.Size(175, 23);
-            this.LogOut.TabIndex = 10;
+            this.LogOut.TabIndex = 7;
             this.LogOut.Text = "Log out";
             this.LogOut.UseVisualStyleBackColor = false;
             this.LogOut.Click += new System.EventHandler(this.LogOut_Click);
@@ -336,7 +339,7 @@
             this.ButtonFilteredHome.Location = new System.Drawing.Point(12, 152);
             this.ButtonFilteredHome.Name = "ButtonFilteredHome";
             this.ButtonFilteredHome.Size = new System.Drawing.Size(175, 23);
-            this.ButtonFilteredHome.TabIndex = 10;
+            this.ButtonFilteredHome.TabIndex = 5;
             this.ButtonFilteredHome.Text = "Home filtered";
             this.ButtonFilteredHome.UseVisualStyleBackColor = false;
             this.ButtonFilteredHome.Click += new System.EventHandler(this.ButtonFilteredHome_Click);
@@ -351,7 +354,7 @@
             this.ButtonViewAllMyPosts.Location = new System.Drawing.Point(12, 65);
             this.ButtonViewAllMyPosts.Name = "ButtonViewAllMyPosts";
             this.ButtonViewAllMyPosts.Size = new System.Drawing.Size(175, 23);
-            this.ButtonViewAllMyPosts.TabIndex = 10;
+            this.ButtonViewAllMyPosts.TabIndex = 2;
             this.ButtonViewAllMyPosts.Text = "My posts";
             this.ButtonViewAllMyPosts.UseVisualStyleBackColor = false;
             this.ButtonViewAllMyPosts.Click += new System.EventHandler(this.ButtonViewAllMyPosts_Click);
@@ -366,7 +369,7 @@
             this.ButtonHome.Location = new System.Drawing.Point(11, 123);
             this.ButtonHome.Name = "ButtonHome";
             this.ButtonHome.Size = new System.Drawing.Size(175, 23);
-            this.ButtonHome.TabIndex = 10;
+            this.ButtonHome.TabIndex = 4;
             this.ButtonHome.Text = "Home";
             this.ButtonHome.UseVisualStyleBackColor = false;
             this.ButtonHome.Click += new System.EventHandler(this.ButtonHome_Click);
@@ -385,7 +388,7 @@
             this.PanelCreatePost.Location = new System.Drawing.Point(215, 34);
             this.PanelCreatePost.Name = "PanelCreatePost";
             this.PanelCreatePost.Size = new System.Drawing.Size(626, 431);
-            this.PanelCreatePost.TabIndex = 9;
+            this.PanelCreatePost.TabIndex = 0;
             this.PanelCreatePost.Visible = false;
             // 
             // ComboCategory
@@ -398,7 +401,7 @@
             this.ComboCategory.Location = new System.Drawing.Point(116, 22);
             this.ComboCategory.Name = "ComboCategory";
             this.ComboCategory.Size = new System.Drawing.Size(167, 23);
-            this.ComboCategory.TabIndex = 11;
+            this.ComboCategory.TabIndex = 0;
             // 
             // ComboPriority
             // 
@@ -409,7 +412,7 @@
             this.ComboPriority.Location = new System.Drawing.Point(116, 51);
             this.ComboPriority.Name = "ComboPriority";
             this.ComboPriority.Size = new System.Drawing.Size(167, 23);
-            this.ComboPriority.TabIndex = 11;
+            this.ComboPriority.TabIndex = 1;
             // 
             // FieldContent
             // 
@@ -417,7 +420,7 @@
             this.FieldContent.Multiline = true;
             this.FieldContent.Name = "FieldContent";
             this.FieldContent.Size = new System.Drawing.Size(167, 89);
-            this.FieldContent.TabIndex = 1;
+            this.FieldContent.TabIndex = 2;
             // 
             // label4
             // 
@@ -468,7 +471,7 @@
             this.ButtonCreatePost.Location = new System.Drawing.Point(434, 391);
             this.ButtonCreatePost.Name = "ButtonCreatePost";
             this.ButtonCreatePost.Size = new System.Drawing.Size(175, 23);
-            this.ButtonCreatePost.TabIndex = 10;
+            this.ButtonCreatePost.TabIndex = 3;
             this.ButtonCreatePost.Text = "Create";
             this.ButtonCreatePost.UseVisualStyleBackColor = false;
             this.ButtonCreatePost.Click += new System.EventHandler(this.ButtonCreatePost_Click);
@@ -518,7 +521,7 @@
             this.ButtonSearchReciever.Location = new System.Drawing.Point(434, 20);
             this.ButtonSearchReciever.Name = "ButtonSearchReciever";
             this.ButtonSearchReciever.Size = new System.Drawing.Size(175, 23);
-            this.ButtonSearchReciever.TabIndex = 10;
+            this.ButtonSearchReciever.TabIndex = 1;
             this.ButtonSearchReciever.Text = "Search";
             this.ButtonSearchReciever.UseVisualStyleBackColor = false;
             this.ButtonSearchReciever.Click += new System.EventHandler(this.ButtonSearchReciever_Click);
@@ -533,7 +536,7 @@
             this.ButtonCreateMessage.Location = new System.Drawing.Point(434, 391);
             this.ButtonCreateMessage.Name = "ButtonCreateMessage";
             this.ButtonCreateMessage.Size = new System.Drawing.Size(175, 23);
-            this.ButtonCreateMessage.TabIndex = 10;
+            this.ButtonCreateMessage.TabIndex = 3;
             this.ButtonCreateMessage.Text = "Log out";
             this.ButtonCreateMessage.UseVisualStyleBackColor = false;
             this.ButtonCreateMessage.Click += new System.EventHandler(this.ButtonCreateMessage_Click);
@@ -543,14 +546,14 @@
             this.FieldBody.Location = new System.Drawing.Point(111, 49);
             this.FieldBody.Multiline = true;
             this.FieldBody.Name = "FieldBody";
-            this.FieldBody.Size = new System.Drawing.Size(183, 88);
-            this.FieldBody.TabIndex = 0;
+            this.FieldBody.Size = new System.Drawing.Size(251, 88);
+            this.FieldBody.TabIndex = 2;
             // 
             // FieldMessageUsername
             // 
             this.FieldMessageUsername.Location = new System.Drawing.Point(111, 20);
             this.FieldMessageUsername.Name = "FieldMessageUsername";
-            this.FieldMessageUsername.Size = new System.Drawing.Size(183, 23);
+            this.FieldMessageUsername.Size = new System.Drawing.Size(251, 23);
             this.FieldMessageUsername.TabIndex = 0;
             // 
             // PanelMyPosts
@@ -755,7 +758,7 @@
             this.ButtonFilterHome.Location = new System.Drawing.Point(434, 31);
             this.ButtonFilterHome.Name = "ButtonFilterHome";
             this.ButtonFilterHome.Size = new System.Drawing.Size(175, 23);
-            this.ButtonFilterHome.TabIndex = 10;
+            this.ButtonFilterHome.TabIndex = 1;
             this.ButtonFilterHome.Text = "Search";
             this.ButtonFilterHome.UseVisualStyleBackColor = false;
             this.ButtonFilterHome.Click += new System.EventHandler(this.ButtonFilterHome_Click);
@@ -772,7 +775,8 @@
             this.PanelSendReport.Location = new System.Drawing.Point(215, 34);
             this.PanelSendReport.Name = "PanelSendReport";
             this.PanelSendReport.Size = new System.Drawing.Size(626, 431);
-            this.PanelSendReport.TabIndex = 15;
+            this.PanelSendReport.TabIndex = 1;
+            this.PanelSendReport.TabStop = true;
             this.PanelSendReport.Visible = false;
             // 
             // label2
@@ -800,15 +804,15 @@
             this.FieldReason.Location = new System.Drawing.Point(111, 59);
             this.FieldReason.Multiline = true;
             this.FieldReason.Name = "FieldReason";
-            this.FieldReason.Size = new System.Drawing.Size(196, 137);
+            this.FieldReason.Size = new System.Drawing.Size(251, 137);
             this.FieldReason.TabIndex = 2;
             // 
             // FieldReported
             // 
             this.FieldReported.Location = new System.Drawing.Point(111, 29);
             this.FieldReported.Name = "FieldReported";
-            this.FieldReported.Size = new System.Drawing.Size(196, 23);
-            this.FieldReported.TabIndex = 1;
+            this.FieldReported.Size = new System.Drawing.Size(251, 23);
+            this.FieldReported.TabIndex = 0;
             // 
             // SearchReported
             // 
@@ -820,7 +824,7 @@
             this.SearchReported.Location = new System.Drawing.Point(434, 27);
             this.SearchReported.Name = "SearchReported";
             this.SearchReported.Size = new System.Drawing.Size(175, 23);
-            this.SearchReported.TabIndex = 10;
+            this.SearchReported.TabIndex = 1;
             this.SearchReported.Text = "Search";
             this.SearchReported.UseVisualStyleBackColor = false;
             this.SearchReported.Click += new System.EventHandler(this.SearchReported_Click);
@@ -835,7 +839,7 @@
             this.ButtonReport.Location = new System.Drawing.Point(434, 391);
             this.ButtonReport.Name = "ButtonReport";
             this.ButtonReport.Size = new System.Drawing.Size(175, 23);
-            this.ButtonReport.TabIndex = 10;
+            this.ButtonReport.TabIndex = 3;
             this.ButtonReport.Text = "Send report";
             this.ButtonReport.UseVisualStyleBackColor = false;
             this.ButtonReport.Click += new System.EventHandler(this.ButtonReport_Click);
@@ -849,13 +853,13 @@
             this.Controls.Add(this.SideBar);
             this.Controls.Add(this.WindowTitle);
             this.Controls.Add(this.MenuStrip);
+            this.Controls.Add(this.PanelSendMessage);
+            this.Controls.Add(this.PanelCreatePost);
             this.Controls.Add(this.PanelSendReport);
             this.Controls.Add(this.PanelHomeFiltered);
             this.Controls.Add(this.PanelHome);
             this.Controls.Add(this.PanelMyMessages);
             this.Controls.Add(this.PanelMyPosts);
-            this.Controls.Add(this.PanelSendMessage);
-            this.Controls.Add(this.PanelCreatePost);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(340, 350);

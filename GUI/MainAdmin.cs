@@ -75,6 +75,22 @@ namespace GUI
             login.Show();
         }
 
+        private void RegisterNewUser_Click(object sender, EventArgs e)
+        {
+            if (!PanelRegister.Visible)
+            {
+                PanelRegister.Show();
+            }
+            else
+            {
+                PanelRegister.Hide();
+            }
+
+            PanelViewAllUsers.Hide();
+            PanelSuspend.Hide();
+            PanelActivate.Hide();
+        }
+
         private void RegisterUser_Click(object sender, EventArgs e)
         {
             var users_names = FieldFriends.Text;
@@ -100,22 +116,6 @@ namespace GUI
                 FieldLocation.Text, Convert.ToInt32(FieldAge.Text),
                 friends
                 );
-        }
-
-        private void RegisterNewUser_Click(object sender, EventArgs e)
-        {
-            if (!PanelRegister.Visible)
-            {
-                PanelRegister.Show();
-            }
-            else
-            {
-                PanelRegister.Hide();
-            }
-
-            PanelViewAllUsers.Hide();
-            PanelSuspend.Hide();
-            PanelActivate.Hide();
         }
 
         private void ViewAllUsers_Click(object sender, EventArgs e)
@@ -171,77 +171,6 @@ namespace GUI
             PanelViewAllUsers.Hide();
             PanelActivate.Hide();
 
-        }
-
-        private void ActivateUser_Click(object sender, EventArgs e)
-        {
-            if (!PanelActivate.Visible)
-            {
-                PanelActivate.Show();
-            }
-            else
-            {
-                PanelActivate.Hide();
-            }
-
-            PanelRegister.Hide();
-            PanelViewAllUsers.Hide();
-            PanelSuspend.Hide();
-        }
-
-        private void ButtonActivate_Click(object sender, EventArgs e)
-        {
-            if (FieldUsernameActivate.Text == "")
-            {
-                MessageBox.Show("Please enter a username.");
-                return;
-            }
-            if (isFoundActivate)
-            {
-                MessageBox.Show("User activated.");
-                Account.Administrator.Instance.ActivateUserAccount(FieldUsernameActivate.Text);
-            }
-        }
-
-        private bool isFoundActivate = false;
-
-        private void ButtonSearch2_Click(object sender, EventArgs e)
-        {
-            var table = Database.Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
-            Account.User? user = null;
-            foreach (var row in table.Rows.Values)
-            {
-                var u = (Account.User)row;
-                if (u.Username == FieldUsernameActivate.Text)
-                {
-                    user = u;
-                    isFoundActivate = true;
-                }
-            }
-
-            while (ListActivate.Items.Count > 0)
-            {
-                ListActivate.Items.RemoveAt(0);
-            }
-
-            if (user is not null)
-            {
-                var temp = (user + "").Split("\n");
-                ListViewItem item = new ListViewItem(temp[0].Split(":")[1]);
-                item.SubItems.Add(temp[1].Split(":")[1]);
-                item.SubItems.Add(temp[2].Split(":")[1]);
-                item.SubItems.Add(temp[3].Split(":")[1]);
-                item.SubItems.Add(temp[4].Split(":")[1]);
-                item.SubItems.Add(temp[5].Split(":")[1]);
-                item.SubItems.Add(temp[6].Split(":")[1]);
-                item.SubItems.Add(temp[7].Split(":")[1]);
-                ListActivate.Items.Add(item);
-            }
-            else
-            {
-                MessageBox.Show("User not found");
-                //FieldUsernameActivate.Text = "User not found";
-            }
         }
 
         private bool isFoundSuspend = false;
@@ -311,19 +240,86 @@ namespace GUI
                 return;
             }
 
-            var isSuspendable = false;
             if (isFoundSuspend)
             {
-                isSuspendable = Account.Administrator.Instance.SuspendUserAccount(FieldSearch.Text);
+                if (Account.Administrator.Instance.SuspendUserAccount(FieldSearch.Text))
+                {
+                    MessageBox.Show("User suspended.");
+                }
+                else
+                {
+                    MessageBox.Show("Invalid request");
+                }
             }
+        }
 
-            if (isSuspendable)
+        private void ActivateUser_Click(object sender, EventArgs e)
+        {
+            if (!PanelActivate.Visible)
             {
-                MessageBox.Show("User suspended");
+                PanelActivate.Show();
             }
             else
             {
-                MessageBox.Show("User not suspended");
+                PanelActivate.Hide();
+            }
+
+            PanelRegister.Hide();
+            PanelViewAllUsers.Hide();
+            PanelSuspend.Hide();
+        }
+
+        private bool isFoundActivate = false;
+
+        private void ButtonSearch2_Click(object sender, EventArgs e)
+        {
+            var table = Database.Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            Account.User? user = null;
+            foreach (var row in table.Rows.Values)
+            {
+                var u = (Account.User)row;
+                if (u.Username == FieldUsernameActivate.Text)
+                {
+                    user = u;
+                    isFoundActivate = true;
+                }
+            }
+
+            while (ListActivate.Items.Count > 0)
+            {
+                ListActivate.Items.RemoveAt(0);
+            }
+
+            if (user is not null)
+            {
+                var temp = (user + "").Split("\n");
+                ListViewItem item = new ListViewItem(temp[0].Split(":")[1]);
+                item.SubItems.Add(temp[1].Split(":")[1]);
+                item.SubItems.Add(temp[2].Split(":")[1]);
+                item.SubItems.Add(temp[3].Split(":")[1]);
+                item.SubItems.Add(temp[4].Split(":")[1]);
+                item.SubItems.Add(temp[5].Split(":")[1]);
+                item.SubItems.Add(temp[6].Split(":")[1]);
+                item.SubItems.Add(temp[7].Split(":")[1]);
+                ListActivate.Items.Add(item);
+            }
+            else
+            {
+                MessageBox.Show("User not found");
+            }
+        }
+
+        private void ButtonActivate_Click(object sender, EventArgs e)
+        {
+            if (FieldUsernameActivate.Text == "")
+            {
+                MessageBox.Show("Please enter a username.");
+                return;
+            }
+            if (isFoundActivate)
+            {
+                Account.Administrator.Instance.ActivateUserAccount(FieldUsernameActivate.Text);
+                MessageBox.Show("User activated.");
             }
         }
     }

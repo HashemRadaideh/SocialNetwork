@@ -110,11 +110,12 @@
             this.Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Exit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.Exit.Image = global::GUI.Properties.Resources.window_close;
-            this.Exit.Location = new System.Drawing.Point(830, -1);
+            this.Exit.Location = new System.Drawing.Point(824, -3);
             this.Exit.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(23, 23);
+            this.Exit.Size = new System.Drawing.Size(30, 30);
             this.Exit.TabIndex = 1;
+            this.Exit.TabStop = false;
             this.Exit.UseVisualStyleBackColor = false;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
@@ -124,10 +125,11 @@
             this.Maximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.Maximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Maximize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
-            this.Maximize.Location = new System.Drawing.Point(801, -1);
+            this.Maximize.Location = new System.Drawing.Point(794, -3);
             this.Maximize.Name = "Maximize";
-            this.Maximize.Size = new System.Drawing.Size(23, 23);
+            this.Maximize.Size = new System.Drawing.Size(30, 30);
             this.Maximize.TabIndex = 2;
+            this.Maximize.TabStop = false;
             this.Maximize.UseVisualStyleBackColor = false;
             this.Maximize.Click += new System.EventHandler(this.Maximize_Click);
             // 
@@ -138,10 +140,11 @@
             this.Minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Minimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.Minimize.Image = global::GUI.Properties.Resources.window_minimize;
-            this.Minimize.Location = new System.Drawing.Point(772, -1);
+            this.Minimize.Location = new System.Drawing.Point(764, -3);
             this.Minimize.Name = "Minimize";
-            this.Minimize.Size = new System.Drawing.Size(23, 23);
+            this.Minimize.Size = new System.Drawing.Size(30, 30);
             this.Minimize.TabIndex = 3;
+            this.Minimize.TabStop = false;
             this.Minimize.UseVisualStyleBackColor = false;
             this.Minimize.Click += new System.EventHandler(this.Minimize_Click);
             // 
@@ -182,7 +185,7 @@
             this.Remember.Location = new System.Drawing.Point(20, 198);
             this.Remember.Name = "Remember";
             this.Remember.Size = new System.Drawing.Size(104, 19);
-            this.Remember.TabIndex = 4;
+            this.Remember.TabIndex = 2;
             this.Remember.Text = "Remember me";
             this.Remember.UseVisualStyleBackColor = true;
             // 
@@ -195,7 +198,7 @@
             this.ReturnToUserLogin.Location = new System.Drawing.Point(90, 252);
             this.ReturnToUserLogin.Name = "ReturnToUserLogin";
             this.ReturnToUserLogin.Size = new System.Drawing.Size(146, 23);
-            this.ReturnToUserLogin.TabIndex = 2;
+            this.ReturnToUserLogin.TabIndex = 5;
             this.ReturnToUserLogin.Text = "Return to user login";
             this.ReturnToUserLogin.UseVisualStyleBackColor = false;
             this.ReturnToUserLogin.Click += new System.EventHandler(this.SignUp_Click);
@@ -209,7 +212,7 @@
             this.LogIn.Location = new System.Drawing.Point(90, 223);
             this.LogIn.Name = "LogIn";
             this.LogIn.Size = new System.Drawing.Size(146, 23);
-            this.LogIn.TabIndex = 2;
+            this.LogIn.TabIndex = 3;
             this.LogIn.Text = "Log in";
             this.LogIn.UseVisualStyleBackColor = false;
             this.LogIn.Click += new System.EventHandler(this.LogIn_Click);
@@ -238,10 +241,10 @@
             this.MenuStrip.Controls.Add(this.Exit);
             this.MenuStrip.Controls.Add(this.Minimize);
             this.MenuStrip.Controls.Add(this.Maximize);
-            this.MenuStrip.Location = new System.Drawing.Point(0, 1);
+            this.MenuStrip.Location = new System.Drawing.Point(1, 1);
             this.MenuStrip.MinimumSize = new System.Drawing.Size(100, 27);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(853, 27);
+            this.MenuStrip.Size = new System.Drawing.Size(851, 27);
             this.MenuStrip.TabIndex = 6;
             this.MenuStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseDown);
             this.MenuStrip.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseMove);

@@ -130,6 +130,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ListReports = new System.Windows.Forms.ListView();
+            this.columnHeader17 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader18 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader19 = new System.Windows.Forms.ColumnHeader();
             this.ListSuspendInfo = new System.Windows.Forms.ListView();
             this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
@@ -157,9 +160,6 @@
             this.FieldUsernameActivate = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.columnHeader17 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader18 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader19 = new System.Windows.Forms.ColumnHeader();
             this.MenuStrip.SuspendLayout();
             this.SideBar.SuspendLayout();
             this.PanelRegister.SuspendLayout();
@@ -175,11 +175,12 @@
             this.Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Exit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.Exit.Image = global::GUI.Properties.Resources.window_close;
-            this.Exit.Location = new System.Drawing.Point(830, -1);
+            this.Exit.Location = new System.Drawing.Point(824, -3);
             this.Exit.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(23, 23);
+            this.Exit.Size = new System.Drawing.Size(30, 30);
             this.Exit.TabIndex = 1;
+            this.Exit.TabStop = false;
             this.Exit.UseVisualStyleBackColor = false;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
@@ -189,10 +190,11 @@
             this.Maximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.Maximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Maximize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
-            this.Maximize.Location = new System.Drawing.Point(801, -1);
+            this.Maximize.Location = new System.Drawing.Point(794, -3);
             this.Maximize.Name = "Maximize";
-            this.Maximize.Size = new System.Drawing.Size(23, 23);
+            this.Maximize.Size = new System.Drawing.Size(30, 30);
             this.Maximize.TabIndex = 2;
+            this.Maximize.TabStop = false;
             this.Maximize.UseVisualStyleBackColor = false;
             this.Maximize.Click += new System.EventHandler(this.Maximize_Click);
             // 
@@ -203,10 +205,11 @@
             this.Minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Minimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.Minimize.Image = global::GUI.Properties.Resources.window_minimize;
-            this.Minimize.Location = new System.Drawing.Point(772, -1);
+            this.Minimize.Location = new System.Drawing.Point(764, -3);
             this.Minimize.Name = "Minimize";
-            this.Minimize.Size = new System.Drawing.Size(23, 23);
+            this.Minimize.Size = new System.Drawing.Size(30, 30);
             this.Minimize.TabIndex = 3;
+            this.Minimize.TabStop = false;
             this.Minimize.UseVisualStyleBackColor = false;
             this.Minimize.Click += new System.EventHandler(this.Minimize_Click);
             // 
@@ -232,10 +235,10 @@
             this.MenuStrip.Controls.Add(this.Exit);
             this.MenuStrip.Controls.Add(this.Minimize);
             this.MenuStrip.Controls.Add(this.Maximize);
-            this.MenuStrip.Location = new System.Drawing.Point(0, 1);
+            this.MenuStrip.Location = new System.Drawing.Point(1, 1);
             this.MenuStrip.MinimumSize = new System.Drawing.Size(100, 27);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(853, 27);
+            this.MenuStrip.Size = new System.Drawing.Size(851, 27);
             this.MenuStrip.TabIndex = 6;
             this.MenuStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseDown);
             this.MenuStrip.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuStrip_MouseMove);
@@ -265,7 +268,7 @@
             this.LogOut.Location = new System.Drawing.Point(12, 418);
             this.LogOut.Name = "LogOut";
             this.LogOut.Size = new System.Drawing.Size(175, 23);
-            this.LogOut.TabIndex = 9;
+            this.LogOut.TabIndex = 4;
             this.LogOut.Text = "Log out";
             this.LogOut.UseVisualStyleBackColor = false;
             this.LogOut.Click += new System.EventHandler(this.LogOut_Click);
@@ -280,7 +283,7 @@
             this.ActivateUser.Location = new System.Drawing.Point(12, 94);
             this.ActivateUser.Name = "ActivateUser";
             this.ActivateUser.Size = new System.Drawing.Size(175, 23);
-            this.ActivateUser.TabIndex = 9;
+            this.ActivateUser.TabIndex = 3;
             this.ActivateUser.Text = "Activate user";
             this.ActivateUser.UseVisualStyleBackColor = false;
             this.ActivateUser.Click += new System.EventHandler(this.ActivateUser_Click);
@@ -295,7 +298,7 @@
             this.SuspendUser.Location = new System.Drawing.Point(12, 65);
             this.SuspendUser.Name = "SuspendUser";
             this.SuspendUser.Size = new System.Drawing.Size(175, 23);
-            this.SuspendUser.TabIndex = 9;
+            this.SuspendUser.TabIndex = 2;
             this.SuspendUser.Text = "Suspend user";
             this.SuspendUser.UseVisualStyleBackColor = false;
             this.SuspendUser.Click += new System.EventHandler(this.SuspendUser_Click);
@@ -310,7 +313,7 @@
             this.ViewAllUsers.Location = new System.Drawing.Point(12, 36);
             this.ViewAllUsers.Name = "ViewAllUsers";
             this.ViewAllUsers.Size = new System.Drawing.Size(175, 23);
-            this.ViewAllUsers.TabIndex = 9;
+            this.ViewAllUsers.TabIndex = 1;
             this.ViewAllUsers.Text = "View All Users";
             this.ViewAllUsers.UseVisualStyleBackColor = false;
             this.ViewAllUsers.Click += new System.EventHandler(this.ViewAllUsers_Click);
@@ -325,7 +328,7 @@
             this.RegisterNewUser.Location = new System.Drawing.Point(12, 7);
             this.RegisterNewUser.Name = "RegisterNewUser";
             this.RegisterNewUser.Size = new System.Drawing.Size(175, 23);
-            this.RegisterNewUser.TabIndex = 9;
+            this.RegisterNewUser.TabIndex = 0;
             this.RegisterNewUser.Text = "Register new user";
             this.RegisterNewUser.UseVisualStyleBackColor = false;
             this.RegisterNewUser.Click += new System.EventHandler(this.RegisterNewUser_Click);
@@ -417,7 +420,7 @@
             this.RegisterUser.Location = new System.Drawing.Point(434, 391);
             this.RegisterUser.Name = "RegisterUser";
             this.RegisterUser.Size = new System.Drawing.Size(146, 23);
-            this.RegisterUser.TabIndex = 9;
+            this.RegisterUser.TabIndex = 7;
             this.RegisterUser.Text = "Register";
             this.RegisterUser.UseVisualStyleBackColor = false;
             this.RegisterUser.Click += new System.EventHandler(this.RegisterUser_Click);
@@ -448,42 +451,42 @@
             this.FieldFriends.Multiline = true;
             this.FieldFriends.Name = "FieldFriends";
             this.FieldFriends.Size = new System.Drawing.Size(284, 89);
-            this.FieldFriends.TabIndex = 1;
+            this.FieldFriends.TabIndex = 6;
             // 
             // FieldAge
             // 
             this.FieldAge.Location = new System.Drawing.Point(115, 170);
             this.FieldAge.Name = "FieldAge";
             this.FieldAge.Size = new System.Drawing.Size(284, 23);
-            this.FieldAge.TabIndex = 0;
+            this.FieldAge.TabIndex = 5;
             // 
             // FieldLocation
             // 
             this.FieldLocation.Location = new System.Drawing.Point(115, 141);
             this.FieldLocation.Name = "FieldLocation";
             this.FieldLocation.Size = new System.Drawing.Size(284, 23);
-            this.FieldLocation.TabIndex = 0;
+            this.FieldLocation.TabIndex = 4;
             // 
             // FieldLastName
             // 
             this.FieldLastName.Location = new System.Drawing.Point(115, 112);
             this.FieldLastName.Name = "FieldLastName";
             this.FieldLastName.Size = new System.Drawing.Size(284, 23);
-            this.FieldLastName.TabIndex = 0;
+            this.FieldLastName.TabIndex = 3;
             // 
             // FieldFirstName
             // 
             this.FieldFirstName.Location = new System.Drawing.Point(115, 83);
             this.FieldFirstName.Name = "FieldFirstName";
             this.FieldFirstName.Size = new System.Drawing.Size(284, 23);
-            this.FieldFirstName.TabIndex = 0;
+            this.FieldFirstName.TabIndex = 2;
             // 
             // FieldPassword
             // 
             this.FieldPassword.Location = new System.Drawing.Point(115, 54);
             this.FieldPassword.Name = "FieldPassword";
             this.FieldPassword.Size = new System.Drawing.Size(284, 23);
-            this.FieldPassword.TabIndex = 0;
+            this.FieldPassword.TabIndex = 1;
             // 
             // FieldUsername
             // 
@@ -635,6 +638,18 @@
             this.ListReports.UseCompatibleStateImageBehavior = false;
             this.ListReports.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Text = "Reporter";
+            // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Text = "Reported";
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Text = "Reason";
+            // 
             // ListSuspendInfo
             // 
             this.ListSuspendInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -699,7 +714,7 @@
             this.ButtonSearch.Location = new System.Drawing.Point(434, 37);
             this.ButtonSearch.Name = "ButtonSearch";
             this.ButtonSearch.Size = new System.Drawing.Size(146, 23);
-            this.ButtonSearch.TabIndex = 9;
+            this.ButtonSearch.TabIndex = 1;
             this.ButtonSearch.Text = "Search";
             this.ButtonSearch.UseVisualStyleBackColor = false;
             this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
@@ -714,7 +729,7 @@
             this.ButtonSuspendUser.Location = new System.Drawing.Point(434, 391);
             this.ButtonSuspendUser.Name = "ButtonSuspendUser";
             this.ButtonSuspendUser.Size = new System.Drawing.Size(146, 23);
-            this.ButtonSuspendUser.TabIndex = 9;
+            this.ButtonSuspendUser.TabIndex = 2;
             this.ButtonSuspendUser.Text = "Suspend";
             this.ButtonSuspendUser.UseVisualStyleBackColor = false;
             this.ButtonSuspendUser.Click += new System.EventHandler(this.ButtonSuspendUser_Click);
@@ -855,18 +870,6 @@
             this.label5.Size = new System.Drawing.Size(81, 21);
             this.label5.TabIndex = 0;
             this.label5.Text = "Username";
-            // 
-            // columnHeader17
-            // 
-            this.columnHeader17.Text = "Reporter";
-            // 
-            // columnHeader18
-            // 
-            this.columnHeader18.Text = "Reported";
-            // 
-            // columnHeader19
-            // 
-            this.columnHeader19.Text = "Reason";
             // 
             // AdminMain
             // 

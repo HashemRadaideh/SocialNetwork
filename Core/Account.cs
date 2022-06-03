@@ -138,6 +138,15 @@ namespace Account
 
             if (count > 1)
             {
+                foreach (var row in table.Rows.Values)
+                {
+                    var report = (rep)row;
+                    if (report.Reported == username)
+                    {
+                        database.Instance.Remove("reports", report);
+                    }
+                }
+
                 return true;
             }
 
@@ -156,8 +165,7 @@ namespace Account
                     return true;
                 }
             }
-
-            return false;
+            return true;
         }
 
         public void ActivateUserAccount(string username)
@@ -181,11 +189,6 @@ namespace Account
 
         public User(string username, string password, bool status, string firstName, string lastName, string location, int age, List<User>? friends) : base(username, password, status, firstName, lastName, location, age, friends) { }
 
-        public void PostNewContent(string content, bool priority, string category)
-        {
-            database.Instance.Add("posts", new pst(this.Username, content, priority, category)); // this.Username -> Poster's username, content -> content
-        }
-
         public void AddFriends(List<User> friends)
         {
             if (this.Friends is not null)
@@ -199,6 +202,11 @@ namespace Account
             {
                 this.Friends = friends;
             }
+        }
+
+        public void PostNewContent(string content, bool priority, string category)
+        {
+            database.Instance.Add("posts", new pst(this.Username, content, priority, category)); // this.Username -> Poster's username, content -> content
         }
 
         public void SendMessage(string username, string content)

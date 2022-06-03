@@ -4,8 +4,6 @@ namespace GUI
 {
     public partial class AdminLogin : Form
     {
-        Account.Administrator? admin;
-
         public AdminLogin()
         {
             InitializeComponent();
@@ -76,7 +74,6 @@ namespace GUI
             var temp = db.Login(this.Address.Text, this.Password.Text);
             if (temp is not null)
             {
-                admin = (Account.Administrator)temp;
                 this.Hide();
                 var main = new AdminMain();
                 main.Show();

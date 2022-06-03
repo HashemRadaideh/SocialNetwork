@@ -4,6 +4,7 @@ namespace GUI
 {
     public partial class UserMain : Form
     {
+
         Account.User? CurrentUser = UserLogin.CurrentUser;
 
         public UserMain()
@@ -97,6 +98,16 @@ namespace GUI
             PanelSendReport.Visible = false;
         }
 
+        private void ButtonCreatePost_Click(object sender, EventArgs e)
+        {
+            var _ = CurrentUser ?? throw new Exception("Current user is null");
+            bool priority = ComboPriority.Text == "High" ? true : false;
+            Database.Database.Instance.Add(
+                "posts",
+                new Actions.Post(this.CurrentUser.Username, FieldContent.Text, priority, ComboCategory.Text)
+                ); // this.Username -> Poster's username, content -> content
+        }
+
         private void ButtonSendMessage_Click(object sender, EventArgs e)
         {
             if (!PanelSendMessage.Visible)
@@ -115,6 +126,38 @@ namespace GUI
             PanelHome.Visible = false;
             PanelHomeFiltered.Visible = false;
             PanelSendReport.Visible = false;
+        }
+
+        private bool isRecieverFound = false;
+
+        private void ButtonSearchReciever_Click(object sender, EventArgs e)
+        {
+            var table = Database.Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            foreach (var row in table.Rows.Values)
+            {
+                var u = (Account.User)row;
+                if (u.Username == FieldMessageUsername.Text)
+                {
+                    isRecieverFound = true;
+                }
+            }
+            isRecieverFound = false;
+        }
+
+        private void ButtonCreateMessage_Click(object sender, EventArgs e)
+        {
+            var _ = CurrentUser ?? throw new Exception("Current user is null");
+            if (isRecieverFound)
+            {
+                Database.Database.Instance.Add(
+                    "messages",
+                    new Actions.Message(this.CurrentUser.Username, FieldMessageUsername.Text, FieldBody.Text)
+                    ); // this.Username -> sender, username -> receiver, body -> message
+            }
+            else
+            {
+                MessageBox.Show("User not found");
+            }
         }
 
         private void ButtonViewAllMyPosts_Click(object sender, EventArgs e)
@@ -136,9 +179,9 @@ namespace GUI
             PanelHomeFiltered.Visible = false;
             PanelSendReport.Visible = false;
 
-            while (ListMyPosts.Items.Count > 1)
+            while (ListMyPosts.Items.Count > 0)
             {
-                ListMyPosts.Items.RemoveAt(1);
+                ListMyPosts.Items.RemoveAt(0);
             }
 
             var _ = CurrentUser ?? throw new Exception("User not found");
@@ -174,18 +217,22 @@ namespace GUI
             PanelHomeFiltered.Visible = false;
             PanelSendReport.Visible = false;
 
-            while (ListMyMessages.Items.Count > 1)
+            while (ListMyMessages.Items.Count > 0)
             {
-                ListMyMessages.Items.RemoveAt(1);
+                ListMyMessages.Items.RemoveAt(0);
             }
 
             var _ = CurrentUser ?? throw new Exception("User not found");
             var posts = CurrentUser.ViewAllMyReceivedMessages();
             var temp = posts.Split("\n");
 
-            ListViewItem i = new ListViewItem(temp[0]);
-            ListMyMessages.Items.Add(i);
-            //i.SubItems.Add(temp[1]);
+            for (int i = 0; i < (temp.Length / 4); i++)
+            {
+                ListViewItem item = new ListViewItem(temp[(i * 3) + 0].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 3) + 1].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 3) + 2].Split(":")[1]);
+                ListMyMessages.Items.Add(item);
+            }
         }
 
         private void ButtonHome_Click(object sender, EventArgs e)
@@ -246,6 +293,34 @@ namespace GUI
             PanelSendReport.Visible = false;
         }
 
+        private void ButtonFilterHome_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ComboCategorySearch.Text))
+            {
+                MessageBox.Show("Please enter a category");
+            }
+            else
+            {
+                while (ListHomeFiltered.Items.Count > 0)
+                {
+                    ListHomeFiltered.Items.RemoveAt(0);
+                }
+
+                var _ = CurrentUser ?? throw new Exception("User not found");
+                var posts = CurrentUser.FilterMyWall(ComboCategorySearch.Text);
+                var temp = posts.Split("\n");
+
+                for (int i = 0; i < (temp.Length / 4); i++)
+                {
+                    ListViewItem item = new ListViewItem(temp[(i * 4) + 0].Split(":")[1]);
+                    item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
+                    item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
+                    item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
+                    ListHomeFiltered.Items.Add(item);
+                }
+            }
+        }
+
         private void ButtonSendReport_Click(object sender, EventArgs e)
         {
             if (!PanelSendReport.Visible)
@@ -264,48 +339,6 @@ namespace GUI
             PanelMyMessages.Visible = false;
             PanelHome.Visible = false;
             PanelHomeFiltered.Visible = false;
-        }
-
-        private void ButtonCreatePost_Click(object sender, EventArgs e)
-        {
-            var _ = CurrentUser ?? throw new Exception("Current user is null");
-            bool priority = ComboPriority.Text == "High" ? true : false;
-            Database.Database.Instance.Add(
-                "posts",
-                new Actions.Post(this.CurrentUser.Username, FieldContent.Text, priority, ComboCategory.Text)
-                ); // this.Username -> Poster's username, content -> content
-        }
-
-        private bool isRecieverFound = false;
-
-        private void ButtonSearchReciever_Click(object sender, EventArgs e)
-        {
-            var table = Database.Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
-            foreach (var row in table.Rows.Values)
-            {
-                var u = (Account.User)row;
-                if (u.Username == FieldMessageUsername.Text)
-                {
-                    isRecieverFound = true;
-                }
-            }
-            isRecieverFound = false;
-        }
-
-        private void ButtonCreateMessage_Click(object sender, EventArgs e)
-        {
-            var _ = CurrentUser ?? throw new Exception("Current user is null");
-            if (isRecieverFound)
-            {
-                Database.Database.Instance.Add(
-                    "messages",
-                    new Actions.Message(this.CurrentUser.Username, FieldMessageUsername.Text, FieldBody.Text)
-                    ); // this.Username -> sender, username -> receiver, body -> message
-            }
-            else
-            {
-                MessageBox.Show("User not found");
-            }
         }
 
         private static bool isReported = false;
@@ -339,34 +372,6 @@ namespace GUI
             else
             {
                 MessageBox.Show("User not found");
-            }
-        }
-
-        private void ButtonFilterHome_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(ComboCategorySearch.Text))
-            {
-                MessageBox.Show("Please enter a category");
-            }
-            else
-            {
-                while (ListHomeFiltered.Items.Count > 0)
-                {
-                    ListHomeFiltered.Items.RemoveAt(0);
-                }
-
-                var _ = CurrentUser ?? throw new Exception("User not found");
-                var posts = CurrentUser.FilterMyWall(ComboCategorySearch.Text);
-                var temp = posts.Split("\n");
-
-                for (int i = 0; i < (temp.Length / 4); i++)
-                {
-                    ListViewItem item = new ListViewItem(temp[(i * 4) + 0].Split(":")[1]);
-                    item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
-                    item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
-                    item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
-                    ListHomeFiltered.Items.Add(item);
-                }
             }
         }
     }

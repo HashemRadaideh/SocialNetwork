@@ -30,6 +30,11 @@ namespace Database
             this.rows.Add(id, data);
         }
 
+        public void RemoveData(object data)
+        {
+            this.rows.Remove(data);
+        }
+
         public int IndexOf(object data)
         {
             int index = 0;
@@ -165,6 +170,12 @@ namespace Database
         {
             var table = this.GetTable(tableName) ?? throw new Exception("Table does not exist");
             table.AddData(data);
+        }
+
+        public void Remove(string tableName, object data)
+        {
+            var table = this.GetTable(tableName) ?? throw new Exception("Table does not exist");
+            table.RemoveData(data);
         }
 
         public object? Login(string? username, string? password)
