@@ -204,9 +204,21 @@ namespace Account
 
         public User(string username, string password, bool status, string firstName, string lastName, string location, int age, List<User>? friends) : base(username, password, status, firstName, lastName, location, age, friends) { }
 
-        public void PostNewContent(string content, bool priority)
+        public void PostNewContent(string content, bool priority, string category)
         {
-            database.Instance.Add("posts", new pst(this.Username, content, priority)); // this.Username -> Poster's username, content -> content
+            database.Instance.Add("posts", new pst(this.Username, content, priority, category)); // this.Username -> Poster's username, content -> content
+        }
+
+        public void AddFriends(List<User> friends)
+        {
+            this.Friends = friends;
+        }
+        public void AddToFriends(List<User> friends)
+        {
+            foreach (var friend in friends)
+            {
+                this.Friends.Add(friend);
+            }
         }
 
         public void SendMessage(string username, string content)
@@ -252,17 +264,23 @@ namespace Account
 
         public string ViewAllMyLastUpdatedWall()
         {
-            // TODO: View all my last updated wall
             var temp = "";
             var db = database.Instance;
             var table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
 
+            if (this.Friends is null) return temp;
+
+            // get all posts from friends
             foreach (var row in table.Rows.Values)
             {
-                var post = (pst)row;
-                if (post.Author == db.IndexOf("users", this.Username))
+                foreach (var friend in this.Friends)
                 {
-                    temp += row + "\n";
+                    var post = (pst)row;
+                    if (post.Author == db.IndexOf("users", friend.Username))
+                    {
+                        temp += row + "\n";
+                        break;
+                    }
                 }
             }
 
@@ -275,12 +293,18 @@ namespace Account
             var db = database.Instance;
             var table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
 
+            if (Friends is null) return temp;
+
             foreach (var row in table.Rows.Values)
             {
-                var post = (pst)row;
-                if (post.Author == db.IndexOf("users", this.Username) && post.Content.Contains(filter))
+                foreach (var friend in this.Friends)
                 {
-                    temp += row + "\n";
+                    var post = (pst)row;
+                    if (post.Author == db.IndexOf("users", friend.Username) && filter == post.Category)
+                    {
+                        temp += row + "\n";
+                        break;
+                    }
                 }
             }
 

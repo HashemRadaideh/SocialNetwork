@@ -103,8 +103,10 @@
             this.ButtonViewAllMyPosts = new System.Windows.Forms.Button();
             this.ButtonHome = new System.Windows.Forms.Button();
             this.PanelCreatePost = new System.Windows.Forms.Panel();
+            this.ComboCategory = new System.Windows.Forms.ComboBox();
             this.ComboPriority = new System.Windows.Forms.ComboBox();
             this.FieldContent = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -128,11 +130,16 @@
             this.ListHomeFeed = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
             this.PanelHomeFiltered = new System.Windows.Forms.Panel();
             this.ListHomeFiltered = new System.Windows.Forms.ListView();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
             this.label7 = new System.Windows.Forms.Label();
             this.ComboCategorySearch = new System.Windows.Forms.ComboBox();
-            this.FieldCategorySearch = new System.Windows.Forms.TextBox();
             this.ButtonFilterHome = new System.Windows.Forms.Button();
             this.PanelSendReport = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -365,8 +372,10 @@
             // PanelCreatePost
             // 
             this.PanelCreatePost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
+            this.PanelCreatePost.Controls.Add(this.ComboCategory);
             this.PanelCreatePost.Controls.Add(this.ComboPriority);
             this.PanelCreatePost.Controls.Add(this.FieldContent);
+            this.PanelCreatePost.Controls.Add(this.label4);
             this.PanelCreatePost.Controls.Add(this.label6);
             this.PanelCreatePost.Controls.Add(this.label5);
             this.PanelCreatePost.Controls.Add(this.label3);
@@ -377,30 +386,52 @@
             this.PanelCreatePost.TabIndex = 9;
             this.PanelCreatePost.Visible = false;
             // 
+            // ComboCategory
+            // 
+            this.ComboCategory.FormattingEnabled = true;
+            this.ComboCategory.Items.AddRange(new object[] {
+            "News",
+            "Sports",
+            "TV"});
+            this.ComboCategory.Location = new System.Drawing.Point(116, 22);
+            this.ComboCategory.Name = "ComboCategory";
+            this.ComboCategory.Size = new System.Drawing.Size(167, 23);
+            this.ComboCategory.TabIndex = 11;
+            // 
             // ComboPriority
             // 
             this.ComboPriority.FormattingEnabled = true;
             this.ComboPriority.Items.AddRange(new object[] {
             "High",
             "Low"});
-            this.ComboPriority.Location = new System.Drawing.Point(111, 20);
+            this.ComboPriority.Location = new System.Drawing.Point(116, 51);
             this.ComboPriority.Name = "ComboPriority";
             this.ComboPriority.Size = new System.Drawing.Size(167, 23);
             this.ComboPriority.TabIndex = 11;
             // 
             // FieldContent
             // 
-            this.FieldContent.Location = new System.Drawing.Point(111, 48);
+            this.FieldContent.Location = new System.Drawing.Point(116, 79);
             this.FieldContent.Multiline = true;
             this.FieldContent.Name = "FieldContent";
             this.FieldContent.Size = new System.Drawing.Size(167, 89);
             this.FieldContent.TabIndex = 1;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(37, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(73, 21);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Category";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(37, 48);
+            this.label6.Location = new System.Drawing.Point(37, 79);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 21);
             this.label6.TabIndex = 0;
@@ -410,7 +441,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(37, 20);
+            this.label5.Location = new System.Drawing.Point(37, 51);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 21);
             this.label5.TabIndex = 0;
@@ -535,6 +566,8 @@
             this.ListMyPosts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColumnUsername,
             this.ColumnContent});
+            this.ListMyPosts.FullRowSelect = true;
+            this.ListMyPosts.GridLines = true;
             this.ListMyPosts.Location = new System.Drawing.Point(20, 20);
             this.ListMyPosts.Name = "ListMyPosts";
             this.ListMyPosts.Size = new System.Drawing.Size(579, 394);
@@ -567,12 +600,24 @@
             this.ListMyMessages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3,
             this.columnHeader4});
+            this.ListMyMessages.FullRowSelect = true;
+            this.ListMyMessages.GridLines = true;
             this.ListMyMessages.Location = new System.Drawing.Point(20, 20);
             this.ListMyMessages.Name = "ListMyMessages";
             this.ListMyMessages.Size = new System.Drawing.Size(579, 394);
             this.ListMyMessages.TabIndex = 0;
             this.ListMyMessages.UseCompatibleStateImageBehavior = false;
             this.ListMyMessages.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Sender";
+            this.columnHeader3.Width = 70;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Content";
+            this.columnHeader4.Width = 100;
             // 
             // PanelHome
             // 
@@ -588,7 +633,11 @@
             // 
             this.ListHomeFeed.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2});
+            this.columnHeader2,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.ListHomeFeed.FullRowSelect = true;
+            this.ListHomeFeed.GridLines = true;
             this.ListHomeFeed.Location = new System.Drawing.Point(20, 20);
             this.ListHomeFeed.Name = "ListHomeFeed";
             this.ListHomeFeed.Size = new System.Drawing.Size(579, 394);
@@ -596,13 +645,30 @@
             this.ListHomeFeed.UseCompatibleStateImageBehavior = false;
             this.ListHomeFeed.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Username";
+            this.columnHeader1.Width = 70;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Category";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Priority";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Content";
+            this.columnHeader10.Width = 100;
+            // 
             // PanelHomeFiltered
             // 
             this.PanelHomeFiltered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(34)))), ((int)(((byte)(46)))));
             this.PanelHomeFiltered.Controls.Add(this.ListHomeFiltered);
             this.PanelHomeFiltered.Controls.Add(this.label7);
             this.PanelHomeFiltered.Controls.Add(this.ComboCategorySearch);
-            this.PanelHomeFiltered.Controls.Add(this.FieldCategorySearch);
             this.PanelHomeFiltered.Controls.Add(this.ButtonFilterHome);
             this.PanelHomeFiltered.Location = new System.Drawing.Point(215, 34);
             this.PanelHomeFiltered.Name = "PanelHomeFiltered";
@@ -612,11 +678,38 @@
             // 
             // ListHomeFiltered
             // 
+            this.ListHomeFiltered.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader8,
+            this.columnHeader6,
+            this.columnHeader7});
+            this.ListHomeFiltered.FullRowSelect = true;
+            this.ListHomeFiltered.GridLines = true;
             this.ListHomeFiltered.Location = new System.Drawing.Point(108, 88);
             this.ListHomeFiltered.Name = "ListHomeFiltered";
             this.ListHomeFiltered.Size = new System.Drawing.Size(501, 283);
             this.ListHomeFiltered.TabIndex = 14;
             this.ListHomeFiltered.UseCompatibleStateImageBehavior = false;
+            this.ListHomeFiltered.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Username";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.DisplayIndex = 3;
+            this.columnHeader8.Text = "Category";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.DisplayIndex = 1;
+            this.columnHeader6.Text = "Priority";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.DisplayIndex = 2;
+            this.columnHeader7.Text = "Content";
             // 
             // label7
             // 
@@ -639,13 +732,6 @@
             this.ComboCategorySearch.Name = "ComboCategorySearch";
             this.ComboCategorySearch.Size = new System.Drawing.Size(141, 23);
             this.ComboCategorySearch.TabIndex = 12;
-            // 
-            // FieldCategorySearch
-            // 
-            this.FieldCategorySearch.Location = new System.Drawing.Point(300, 31);
-            this.FieldCategorySearch.Name = "FieldCategorySearch";
-            this.FieldCategorySearch.Size = new System.Drawing.Size(128, 23);
-            this.FieldCategorySearch.TabIndex = 11;
             // 
             // ButtonFilterHome
             // 
@@ -834,6 +920,13 @@
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
-        private TextBox FieldCategorySearch;
+        private ComboBox ComboCategory;
+        private Label label4;
+        private ColumnHeader columnHeader5;
+        private ColumnHeader columnHeader8;
+        private ColumnHeader columnHeader6;
+        private ColumnHeader columnHeader7;
+        private ColumnHeader columnHeader9;
+        private ColumnHeader columnHeader10;
     }
 }

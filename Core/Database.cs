@@ -104,23 +104,42 @@ namespace Database
             CreateNewTable("posts");
             CreateNewTable("messages");
 
-            var acc1 = new useraccount("HashemWasTaken", "0", true, "Hashem", "Al_Radaideh", "Irbid", 20);
-            var acc2 = new useraccount("HashemIsTaken", "1", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1 });
-            var acc3 = new useraccount("HashemTaken", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2 });
-            var acc4 = new useraccount("Hashem", "h", true, "Hashem", "Al_Radaideh", "Irbid", 20, new List<Account.User>() { acc1, acc2, acc3 });
+            var acc1 = new useraccount("UN1", "11", true, "Zaid", "Ahmad", "Irbid", 28);
+            var acc2 = new useraccount("UN2", "22", true, "Omar", "Farook", "Irbid", 30);
+            var acc3 = new useraccount("UN3", "33", true, "Maha", "Hani", "Amman", 42);
+            var acc4 = new useraccount("UN4", "44", true, "Hamzah", "Ali", "Zarqa", 37);
+            var acc5 = new useraccount("UN5", "55", true, "Salma", "Waleed", "Jerash", 40);
+            var acc6 = new useraccount("UN6", "66", false, "Ali", "Khaled", "Amman", 26);
+
+            acc1.AddFriends(new List<useraccount>() { acc2, acc3 });
+            acc2.AddFriends(new List<useraccount>() { acc1, acc3, acc5 });
+            acc3.AddFriends(new List<useraccount>() { acc2, acc4, acc6 });
+            acc4.AddFriends(new List<useraccount>() { acc5, acc6 });
+            acc5.AddFriends(new List<useraccount>() { acc1, acc3, acc4 });
+            acc6.AddFriends(new List<useraccount>() { acc1, acc2 });
 
             Add("users", acc1);
             Add("users", acc2);
             Add("users", acc3);
             Add("users", acc4);
+            Add("users", acc5);
+            Add("users", acc6);
+
+            Add("posts", new Actions.Post(acc1.Username, "Liverpool beats Man. City 2-1", true, "Sport"));
+            Add("posts", new Actions.Post(acc1.Username, "Apple expects to release iPhone 14 in October", true, "News"));
+            Add("posts", new Actions.Post(acc2.Username, "Expect snow next Sunday", true, "Weather"));
+            Add("posts", new Actions.Post(acc3.Username, "Italy fails to qualify for the world cup", true, "Sport"));
+            Add("posts", new Actions.Post(acc3.Username, "The deficit exceeds 2 million dollars", true, "Economy"));
+            Add("posts", new Actions.Post(acc5.Username, "The minimum wage has been raised to 300 dinars", true, "Economy"));
 
             Add("reports", new Actions.Report(IndexOf("users", acc1.Username), IndexOf("users", acc2.Username), "This is a report"));
             Add("reports", new Actions.Report(IndexOf("users", acc3.Username), IndexOf("users", acc2.Username), "This is a report"));
 
             Add("reports", new Actions.Report(IndexOf("users", acc2.Username), IndexOf("users", acc1.Username), "This is a report"));
 
-            Add("reports", new Actions.Report(IndexOf("users", acc1.Username), IndexOf("users", acc2.Username), "This is a report"));
-            Add("reports", new Actions.Report(IndexOf("users", acc3.Username), IndexOf("users", acc2.Username), "This is a report"));
+            Add("reports", new Actions.Report(IndexOf("users", acc1.Username), IndexOf("users", acc5.Username), "This is a report"));
+            Add("reports", new Actions.Report(IndexOf("users", acc3.Username), IndexOf("users", acc5.Username), "This is a report"));
+
             Save();
         }
 

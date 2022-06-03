@@ -134,10 +134,10 @@ namespace GUI
             PanelActivate.Hide();
 
 
-            while (ListUsers.Items.Count > 1)
+            while (ListUsers.Items.Count > 0)
             {
                 //leave the header
-                ListUsers.Items.RemoveAt(1);
+                ListUsers.Items.RemoveAt(0);
             }
 
             var users_accounts = Account.Administrator.Instance.ViewAllUserAccounts();

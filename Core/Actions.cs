@@ -24,22 +24,25 @@ namespace Actions
     {
         private int author = 0;
         private string content = "";
-        private string username;
+        private string username = "";
+        private string category = "";
         private bool priority = false;
 
-        public Post(string username, string content, bool priority)
+        public Post(string username, string content, bool priority, string category)
         {
             this.username = username;
             this.content = content;
             this.priority = priority;
+            this.category = category;
         }
 
         public string Content { get => content; set => content = value; }
         public int Author { get => author; set => author = value; }
+        public string Category { get => category; set => category = value; }
 
         public override string ToString()
         {
-            return $"u/{username}:\n{content}";
+            return $"Username: {username}\nCategory: {category}\nPriority: {priority}\nContent:{content}";
         }
     }
 

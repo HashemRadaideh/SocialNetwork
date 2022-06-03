@@ -185,7 +185,11 @@ namespace SocialNetwork
                             Console.Write("Enter Content: ");
                             bool priority = Convert.ToBoolean(Console.ReadLine());
 
-                            user.PostNewContent(content, priority);
+                            Console.Write("Enter Content: ");
+                            string? category = Console.ReadLine();
+                            category = category ?? throw new ArgumentNullException(nameof(category));
+
+                            user.PostNewContent(content, priority, category);
                         }
                         break;
 

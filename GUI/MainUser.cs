@@ -211,10 +211,14 @@ namespace GUI
             var posts = CurrentUser.ViewAllMyLastUpdatedWall();
             var temp = posts.Split("\n");
 
-            ListViewItem i = new ListViewItem(temp[0]);
-            ListHomeFeed.Items.Add(i);
-            i.SubItems.Add(temp[1]);
-
+            for (int i = 0; i < (temp.Length / 4); i++)
+            {
+                ListViewItem item = new ListViewItem(temp[(i * 4) + 0].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
+                ListHomeFeed.Items.Add(item);
+            }
         }
 
         private void ButtonFilteredHome_Click(object sender, EventArgs e)
@@ -263,7 +267,7 @@ namespace GUI
             bool priority = ComboPriority.Text == "High" ? true : false;
             Database.Database.Instance.Add(
                 "posts",
-                new Actions.Post(this.CurrentUser.Username, FieldContent.Text, priority)
+                new Actions.Post(this.CurrentUser.Username, FieldContent.Text, priority, ComboCategory.Text)
                 ); // this.Username -> Poster's username, content -> content
         }
 
@@ -337,51 +341,29 @@ namespace GUI
 
         private void ButtonFilterHome_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(FieldCategorySearch.Text) && string.IsNullOrEmpty(ComboCategorySearch.Text))
+            if (string.IsNullOrEmpty(ComboCategorySearch.Text))
             {
                 MessageBox.Show("Please enter a category");
             }
-            else if (string.IsNullOrEmpty(FieldCategorySearch.Text) && !string.IsNullOrEmpty(ComboCategorySearch.Text))
+            else
             {
-                var _ = CurrentUser ?? throw new Exception("Current user is null");
+                while (ListHomeFiltered.Items.Count > 1)
+                {
+                    ListHomeFiltered.Items.RemoveAt(1);
+                }
+
+                var _ = CurrentUser ?? throw new Exception("User not found");
                 var posts = CurrentUser.FilterMyWall(ComboCategorySearch.Text);
                 var temp = posts.Split("\n");
 
-                while (ListHomeFiltered.Items.Count > 1)
+                for (int i = 0; i < (temp.Length / 4); i++)
                 {
-                    ListHomeFiltered.Items.RemoveAt(1);
+                    ListViewItem item = new ListViewItem(temp[(i * 4) + 0].Split(":")[1]);
+                    item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
+                    item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
+                    item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
+                    ListHomeFiltered.Items.Add(item);
                 }
-
-                ListViewItem i = new ListViewItem(temp[0]);
-                ListHomeFiltered.Items.Add(i);
-            }
-            else if (!string.IsNullOrEmpty(FieldCategorySearch.Text) && string.IsNullOrEmpty(ComboCategorySearch.Text))
-            {
-                var _ = CurrentUser ?? throw new Exception("Current user is null");
-                var posts = CurrentUser.FilterMyWall(FieldCategorySearch.Text);
-                var temp = posts.Split("\n");
-
-                while (ListHomeFiltered.Items.Count > 1)
-                {
-                    ListHomeFiltered.Items.RemoveAt(1);
-                }
-
-                ListViewItem i = new ListViewItem(temp[0]);
-                ListHomeFiltered.Items.Add(i);
-            }
-            else
-            {
-                var _ = CurrentUser ?? throw new Exception("Current user is null");
-                var posts = CurrentUser.FilterMyWall(FieldCategorySearch.Text);
-                var temp = posts.Split("\n");
-
-                while (ListHomeFiltered.Items.Count > 1)
-                {
-                    ListHomeFiltered.Items.RemoveAt(1);
-                }
-
-                ListViewItem i = new ListViewItem(temp[0]);
-                ListHomeFiltered.Items.Add(i);
             }
         }
     }
