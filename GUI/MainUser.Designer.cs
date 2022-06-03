@@ -537,7 +537,7 @@
             this.ButtonCreateMessage.Name = "ButtonCreateMessage";
             this.ButtonCreateMessage.Size = new System.Drawing.Size(175, 23);
             this.ButtonCreateMessage.TabIndex = 3;
-            this.ButtonCreateMessage.Text = "Log out";
+            this.ButtonCreateMessage.Text = "Send";
             this.ButtonCreateMessage.UseVisualStyleBackColor = false;
             this.ButtonCreateMessage.Click += new System.EventHandler(this.ButtonCreateMessage_Click);
             // 

@@ -1,4 +1,4 @@
-using System.Runtime.InteropServices;
+using Core;
 
 namespace GUI
 {
@@ -9,23 +9,23 @@ namespace GUI
             InitializeComponent();
         }
 
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HTCAPTION = 0x2;
-        [DllImport("User32.dll")]
-        public static extern bool ReleaseCapture();
-        [DllImport("User32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        //public const int WM_NCLBUTTONDOWN = 0xA1;
+        //public const int HTCAPTION = 0x2;
+        //[DllImport("User32.dll")]
+        //public static extern bool ReleaseCapture();
+        //[DllImport("User32.dll")]
+        //public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
         private void MainWindow_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
-            }
+            //    if (e.Button == MouseButtons.Left)
+            //    {
+            //        _ = ReleaseCapture();
+            //        _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+            //    }
         }
 
-        Point lastPoint;
+        private Point lastPoint;
 
         private void MenuStrip_MouseDown(object sender, MouseEventArgs e)
         {
@@ -36,14 +36,14 @@ namespace GUI
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
+                Left += e.X - lastPoint.X;
+                Top += e.Y - lastPoint.Y;
             }
         }
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            Database.Database.Instance.Save();
+            Database.Instance.Save();
             Application.Exit();
         }
 
@@ -70,8 +70,8 @@ namespace GUI
 
         private void LogOut_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var login = new UserLogin();
+            Hide();
+            UserLogin? login = new();
             login.Show();
         }
 
@@ -93,16 +93,16 @@ namespace GUI
 
         private void RegisterUser_Click(object sender, EventArgs e)
         {
-            var users_names = FieldFriends.Text;
-            var friends = new List<Account.User>();
-            var db = Database.Database.Instance;
+            string? users_names = FieldFriends.Text;
+            List<User>? friends = new();
+            Database? db = Database.Instance;
 
-            var table = db.GetTable("users") ?? throw new Exception("Table does not exist");
-            foreach (var username in users_names.Split(" "))
+            Table? table = db.GetTable("users") ?? throw new Exception("Table does not exist");
+            foreach (string? username in users_names.Split(" "))
             {
-                foreach (var user in table.Rows.Values)
+                foreach (object? user in table.Rows.Values)
                 {
-                    var u = (Account.User)user;
+                    User? u = (User)user;
                     if (u.Username == username)
                     {
                         friends.Add(u);
@@ -110,7 +110,7 @@ namespace GUI
                 }
             }
 
-            Account.Administrator.Instance.RegisterNewUserAccount(
+            Administrator.RegisterNewUserAccount(
                 FieldUsername.Text, FieldPassword.Text,
                 FieldFirstName.Text, FieldLastName.Text,
                 FieldLocation.Text, Convert.ToInt32(FieldAge.Text),
@@ -140,19 +140,19 @@ namespace GUI
                 ListUsers.Items.RemoveAt(0);
             }
 
-            var users_accounts = Account.Administrator.Instance.ViewAllUserAccounts();
-            var temp = users_accounts.Split("\n");
+            string? users_accounts = Administrator.ViewAllUserAccounts();
+            string[]? temp = users_accounts.Split("\n");
             for (int i = 0; i < (temp.Length / 8); i++)
             {
                 ListViewItem item = new(temp[(i * 8) + 0].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 8) + 1].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 8) + 2].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 8) + 3].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 8) + 4].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 8) + 5].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 8) + 6].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 8) + 7].Split(":")[1]);
-                ListUsers.Items.Add(item);
+                _ = item.SubItems.Add(temp[(i * 8) + 1].Split(":")[1]);
+                _ = item.SubItems.Add(temp[(i * 8) + 2].Split(":")[1]);
+                _ = item.SubItems.Add(temp[(i * 8) + 3].Split(":")[1]);
+                _ = item.SubItems.Add(temp[(i * 8) + 4].Split(":")[1]);
+                _ = item.SubItems.Add(temp[(i * 8) + 5].Split(":")[1]);
+                _ = item.SubItems.Add(temp[(i * 8) + 6].Split(":")[1]);
+                _ = item.SubItems.Add(temp[(i * 8) + 7].Split(":")[1]);
+                _ = ListUsers.Items.Add(item);
             }
         }
 
@@ -177,11 +177,11 @@ namespace GUI
 
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            var table = Database.Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
-            Account.User? user = null;
-            foreach (var row in table.Rows.Values)
+            Table? table = Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            User? user = null;
+            foreach (object? row in table.Rows.Values)
             {
-                var u = (Account.User)row;
+                User? u = (User)row;
                 if (u.Username == FieldSearch.Text)
                 {
                     user = u;
@@ -196,38 +196,38 @@ namespace GUI
 
             if (user is null)
             {
-                MessageBox.Show("User not found");
+                _ = MessageBox.Show("User not found");
                 return;
             }
 
-            var temp = (user + "").Split("\n");
+            string[]? temp = (user + "").Split("\n");
             ListViewItem item = new(temp[0].Split(":")[1]);
-            item.SubItems.Add(temp[1].Split(":")[1]);
-            item.SubItems.Add(temp[2].Split(":")[1]);
-            item.SubItems.Add(temp[3].Split(":")[1]);
-            item.SubItems.Add(temp[4].Split(":")[1]);
-            item.SubItems.Add(temp[5].Split(":")[1]);
-            item.SubItems.Add(temp[6].Split(":")[1]);
-            item.SubItems.Add(temp[7].Split(":")[1]);
-            ListSuspendInfo.Items.Add(item);
+            _ = item.SubItems.Add(temp[1].Split(":")[1]);
+            _ = item.SubItems.Add(temp[2].Split(":")[1]);
+            _ = item.SubItems.Add(temp[3].Split(":")[1]);
+            _ = item.SubItems.Add(temp[4].Split(":")[1]);
+            _ = item.SubItems.Add(temp[5].Split(":")[1]);
+            _ = item.SubItems.Add(temp[6].Split(":")[1]);
+            _ = item.SubItems.Add(temp[7].Split(":")[1]);
+            _ = ListSuspendInfo.Items.Add(item);
 
-            var table_report = Database.Database.Instance.GetTable("reports") ?? throw new Exception($"Table '{"reports"}' not found.");
+            Table? table_report = Database.Instance.GetTable("reports") ?? throw new Exception($"Table '{"reports"}' not found.");
 
             while (ListReports.Items.Count > 0)
             {
                 ListReports.Items.RemoveAt(0);
             }
 
-            foreach (var rep in table_report.Rows.Values)
+            foreach (object? rep in table_report.Rows.Values)
             {
-                var report = (Actions.Report)rep;
+                Report? report = (Report)rep;
                 if (report.Reported == user.Username)
                 {
-                    var temps = (report + "").Split("\n");
+                    string[]? temps = (report + "").Split("\n");
                     ListViewItem items = new(temps[0].Split(":")[1]);
-                    items.SubItems.Add(temps[1].Split(":")[1]);
-                    items.SubItems.Add(temps[2].Split(":")[1]);
-                    ListReports.Items.Add(items);
+                    _ = items.SubItems.Add(temps[1].Split(":")[1]);
+                    _ = items.SubItems.Add(temps[2].Split(":")[1]);
+                    _ = ListReports.Items.Add(items);
                 }
             }
         }
@@ -236,20 +236,15 @@ namespace GUI
         {
             if (FieldSearch.Text == "")
             {
-                MessageBox.Show("Please enter a username");
+                _ = MessageBox.Show("Please enter a username");
                 return;
             }
 
             if (isFoundSuspend)
             {
-                if (Account.Administrator.Instance.SuspendUserAccount(FieldSearch.Text))
-                {
-                    MessageBox.Show("User suspended.");
-                }
-                else
-                {
-                    MessageBox.Show("Invalid request");
-                }
+                _ = Administrator.SuspendUserAccount(FieldSearch.Text)
+                    ? MessageBox.Show("User suspended.")
+                    : MessageBox.Show("Invalid request");
             }
         }
 
@@ -273,11 +268,11 @@ namespace GUI
 
         private void ButtonSearch2_Click(object sender, EventArgs e)
         {
-            var table = Database.Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
-            Account.User? user = null;
-            foreach (var row in table.Rows.Values)
+            Table? table = Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            User? user = null;
+            foreach (object? row in table.Rows.Values)
             {
-                var u = (Account.User)row;
+                User? u = (User)row;
                 if (u.Username == FieldUsernameActivate.Text)
                 {
                     user = u;
@@ -292,20 +287,20 @@ namespace GUI
 
             if (user is not null)
             {
-                var temp = (user + "").Split("\n");
+                string[]? temp = (user + "").Split("\n");
                 ListViewItem item = new(temp[0].Split(":")[1]);
-                item.SubItems.Add(temp[1].Split(":")[1]);
-                item.SubItems.Add(temp[2].Split(":")[1]);
-                item.SubItems.Add(temp[3].Split(":")[1]);
-                item.SubItems.Add(temp[4].Split(":")[1]);
-                item.SubItems.Add(temp[5].Split(":")[1]);
-                item.SubItems.Add(temp[6].Split(":")[1]);
-                item.SubItems.Add(temp[7].Split(":")[1]);
-                ListActivate.Items.Add(item);
+                _ = item.SubItems.Add(temp[1].Split(":")[1]);
+                _ = item.SubItems.Add(temp[2].Split(":")[1]);
+                _ = item.SubItems.Add(temp[3].Split(":")[1]);
+                _ = item.SubItems.Add(temp[4].Split(":")[1]);
+                _ = item.SubItems.Add(temp[5].Split(":")[1]);
+                _ = item.SubItems.Add(temp[6].Split(":")[1]);
+                _ = item.SubItems.Add(temp[7].Split(":")[1]);
+                _ = ListActivate.Items.Add(item);
             }
             else
             {
-                MessageBox.Show("User not found");
+                _ = MessageBox.Show("User not found");
             }
         }
 
@@ -313,13 +308,13 @@ namespace GUI
         {
             if (FieldUsernameActivate.Text == "")
             {
-                MessageBox.Show("Please enter a username.");
+                _ = MessageBox.Show("Please enter a username.");
                 return;
             }
             if (isFoundActivate)
             {
-                Account.Administrator.Instance.ActivateUserAccount(FieldUsernameActivate.Text);
-                MessageBox.Show("User activated.");
+                Administrator.ActivateUserAccount(FieldUsernameActivate.Text);
+                _ = MessageBox.Show("User activated.");
             }
         }
     }

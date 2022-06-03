@@ -1,5 +1,4 @@
-using Account;
-using System.Runtime.InteropServices;
+using Core;
 
 namespace GUI
 {
@@ -10,28 +9,23 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void MainWindow_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HTCAPTION = 0x2;
-        [DllImport("User32.dll")]
-        public static extern bool ReleaseCapture();
-        [DllImport("User32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        //public const int WM_NCLBUTTONDOWN = 0xA1;
+        //public const int HTCAPTION = 0x2;
+        //[DllImport("User32.dll")]
+        //public static extern bool ReleaseCapture();
+        //[DllImport("User32.dll")]
+        //public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
         private void MainWindow_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
-            }
+            //    if (e.Button == MouseButtons.Left)
+            //    {
+            //        _ = ReleaseCapture();
+            //        _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+            //    }
         }
 
-        Point lastPoint;
+        private Point lastPoint;
 
         private void MenuStrip_MouseDown(object sender, MouseEventArgs e)
         {
@@ -42,14 +36,14 @@ namespace GUI
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
+                Left += e.X - lastPoint.X;
+                Top += e.Y - lastPoint.Y;
             }
         }
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            Database.Database.Instance.Save();
+            Database.Instance.Save();
             Application.Exit();
         }
 
@@ -78,29 +72,29 @@ namespace GUI
 
         private void LogIn_Click(object sender, EventArgs e)
         {
-            var db = Database.Database.Instance;
-            var user = db.Login(this.Address.Text, this.Password.Text);
+            Database? db = Database.Instance;
+            object? user = db.Login(Address.Text, Password.Text);
             if (user is not null && user != Administrator.Instance)
             {
                 CurrentUser = (User)user;
-                this.Hide();
-                var main = new UserMain();
+                Hide();
+                UserMain? main = new();
                 main.Show();
             }
             else if (user == Administrator.Instance)
             {
-                MessageBox.Show("Admin login detected, login from admin panel");
+                _ = MessageBox.Show("Admin login detected, login from admin panel");
             }
             else
             {
-                MessageBox.Show("Invalid username or password");
+                _ = MessageBox.Show("Invalid username or password");
             }
         }
 
         private void SignUp_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var adminLogin = new AdminLogin();
+            Hide();
+            AdminLogin? adminLogin = new();
             adminLogin.Show();
         }
     }

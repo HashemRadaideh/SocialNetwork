@@ -1,4 +1,4 @@
-namespace Actions
+namespace Core
 {
     [Serializable]
     public class Report
@@ -32,9 +32,9 @@ namespace Actions
         private string category = "";
         private bool priority = false;
 
-        public Post(string username, string content, bool priority, string category)
+        public Post(string author, string content, bool priority, string category)
         {
-            this.author = username;
+            this.author = author;
             this.content = content;
             this.priority = priority;
             this.category = category;

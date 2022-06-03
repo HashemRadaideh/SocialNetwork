@@ -263,7 +263,6 @@
             this.MinimumSize = new System.Drawing.Size(340, 350);
             this.Name = "UserLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainWindow_MouseDown);
             this.LoginScreen.ResumeLayout(false);
             this.LoginScreen.PerformLayout();

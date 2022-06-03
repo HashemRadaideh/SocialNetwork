@@ -1,14 +1,14 @@
-﻿using administrator = Account.Administrator;
-using database = Database.Database;
-using useraccount = Account.User;
+﻿using administrator = Core.Administrator;
+using database = Core.Database;
+using useraccount = Core.User;
 
-namespace SocialNetwork
+namespace Core
 {
     public class Program
     {
         public static void Main()
         {
-            var db = database.Instance;
+            database? db = database.Instance;
             while (true)
             {
                 Console.WriteLine("[1] Login as administrator");
@@ -16,7 +16,7 @@ namespace SocialNetwork
                 Console.WriteLine("[3] Exit");
 
                 Console.Write("Enter your choice: ");
-                var choice = Console.ReadLine();
+                string? choice = Console.ReadLine();
 
                 switch (choice)
                 {
@@ -67,8 +67,7 @@ namespace SocialNetwork
 
         public static void AdminLoop()
         {
-            var db = database.Instance;
-            var admin = administrator.Instance;
+            database? db = database.Instance;
 
             while (true)
             {
@@ -80,7 +79,7 @@ namespace SocialNetwork
                 Console.WriteLine("5. Exit");
 
                 Console.Write("\nEnter your choice: ");
-                var choice = Console.ReadLine();
+                string? choice = Console.ReadLine();
 
                 switch (choice)
                 {
@@ -108,19 +107,14 @@ namespace SocialNetwork
                             location = location ?? throw new ArgumentNullException(nameof(location));
 
                             Console.Write("Enter Age: ");
-                            int age;
-                            if (int.TryParse(Console.ReadLine(), out int result))
-                                age = result;
-                            else
-                                throw new ArgumentException("Age must be a number");
-
-                            admin.RegisterNewUserAccount(username, password, firstName, lastName, location, age);
+                            int age = int.TryParse(Console.ReadLine(), out int result) ? result : throw new ArgumentException("Age must be a number");
+                            administrator.RegisterNewUserAccount(username, password, firstName, lastName, location, age);
                         }
                         break;
 
                     case "2":
                         {
-                            var str = admin.ViewAllUserAccounts();
+                            string? str = administrator.ViewAllUserAccounts();
                             Console.WriteLine(str);
                         }
                         break;
@@ -131,7 +125,7 @@ namespace SocialNetwork
                             string? username = Console.ReadLine();
                             username = username ?? throw new ArgumentNullException(nameof(username));
 
-                            admin.SuspendUserAccount(username);
+                            _ = administrator.SuspendUserAccount(username);
                         }
                         break;
 
@@ -141,7 +135,7 @@ namespace SocialNetwork
                             string? username = Console.ReadLine();
                             username = username ?? throw new ArgumentNullException(nameof(username));
 
-                            admin.ActivateUserAccount(username);
+                            administrator.ActivateUserAccount(username);
                         }
                         break;
 
@@ -158,7 +152,7 @@ namespace SocialNetwork
 
         public static void UserLoop(useraccount user)
         {
-            var db = database.Instance;
+            database? db = database.Instance;
             while (true)
             {
                 Console.WriteLine($"\nWelcome back {user.Username}, What would you like to do?");
@@ -172,7 +166,7 @@ namespace SocialNetwork
                 Console.WriteLine("8. Exit");
 
                 Console.Write("\nEnter your choice: ");
-                var choice = Console.ReadLine();
+                string? choice = Console.ReadLine();
 
                 switch (choice)
                 {
@@ -180,14 +174,14 @@ namespace SocialNetwork
                         {
                             Console.Write("Enter Content: ");
                             string? content = Console.ReadLine();
-                            content = content ?? throw new ArgumentNullException(nameof(content));
+                            if (content is null) return;
 
                             Console.Write("Enter Content: ");
                             bool priority = Convert.ToBoolean(Console.ReadLine());
 
                             Console.Write("Enter Content: ");
                             string? category = Console.ReadLine();
-                            category = category ?? throw new ArgumentNullException(nameof(category));
+                            if (category is null) return;
 
                             user.PostNewContent(content, priority, category);
                         }
@@ -197,11 +191,11 @@ namespace SocialNetwork
                         {
                             Console.Write("Enter Username: ");
                             string? username = Console.ReadLine();
-                            username = username ?? throw new ArgumentNullException(nameof(username));
+                            if (username is null) return;
 
                             Console.Write("Enter Content: ");
                             string? content = Console.ReadLine();
-                            content = content ?? throw new ArgumentNullException(nameof(content));
+                            if (content is null) return;
 
                             user.SendMessage(username, content);
                         }
@@ -209,21 +203,21 @@ namespace SocialNetwork
 
                     case "3":
                         {
-                            var temp = user.ViewAllMyPosts();
+                            string? temp = user.ViewAllMyPosts();
                             Console.WriteLine(temp);
                         }
                         break;
 
                     case "4":
                         {
-                            var temp = user.ViewAllMyReceivedMessages();
+                            string? temp = user.ViewAllMyReceivedMessages();
                             Console.WriteLine(temp);
                         }
                         break;
 
                     case "5":
                         {
-                            var temp = user.ViewAllMyLastUpdatedWall();
+                            string? temp = user.ViewAllMyLastUpdatedWall();
                             Console.WriteLine(temp);
                         }
                         break;
@@ -232,9 +226,9 @@ namespace SocialNetwork
                         {
                             Console.Write("Enter Filter: ");
                             string? filter = Console.ReadLine();
-                            filter = filter ?? throw new ArgumentNullException(nameof(filter));
+                            if (filter is null) return;
 
-                            user.FilterMyWall(filter);
+                            _ = user.FilterMyWall(filter);
                         }
                         break;
 
@@ -242,11 +236,11 @@ namespace SocialNetwork
                         {
                             Console.Write("Enter Username: ");
                             string? username = Console.ReadLine();
-                            username = username ?? throw new ArgumentNullException(nameof(username));
+                            if (username is null) return;
 
                             Console.Write("Enter Content: ");
                             string? content = Console.ReadLine();
-                            content = content ?? throw new ArgumentNullException(nameof(content));
+                            if (content is null) return;
 
                             user.SendReportToAdministrator(username, content);
                         }
@@ -266,14 +260,14 @@ namespace SocialNetwork
         public static (string? username, string? password) GetLogin()
         {
             Console.Write("Enter username: ");
-            var username = Console.ReadLine();
+            string? username = Console.ReadLine();
             Console.Write("Enter password: ");
-            var password = string.Empty;
+            string? password = string.Empty;
 
             ConsoleKey key;
             do
             {
-                var keyInfo = Console.ReadKey(intercept: true);
+                ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
                 key = keyInfo.Key;
 
                 if (key == ConsoleKey.Backspace && password.Length > 0)

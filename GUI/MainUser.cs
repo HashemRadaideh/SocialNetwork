@@ -1,33 +1,33 @@
-using System.Runtime.InteropServices;
+using Core;
 
 namespace GUI
 {
     public partial class UserMain : Form
     {
-        readonly Account.User? CurrentUser = UserLogin.CurrentUser;
+        private readonly User? CurrentUser = UserLogin.CurrentUser;
 
         public UserMain()
         {
             InitializeComponent();
         }
 
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HTCAPTION = 0x2;
-        [DllImport("User32.dll")]
-        public static extern bool ReleaseCapture();
-        [DllImport("User32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        //public const int WM_NCLBUTTONDOWN = 0xA1;
+        //public const int HTCAPTION = 0x2;
+        //[DllImport("User32.dll")]
+        //public static extern bool ReleaseCapture();
+        //[DllImport("User32.dll")]
+        //public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
         private void MainWindow_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
-            }
+            //    if (e.Button == MouseButtons.Left)
+            //    {
+            //        _ = ReleaseCapture();
+            //        _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+            //    }
         }
 
-        Point lastPoint;
+        private Point lastPoint;
 
         private void MenuStrip_MouseDown(object sender, MouseEventArgs e)
         {
@@ -38,14 +38,14 @@ namespace GUI
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
+                Left += e.X - lastPoint.X;
+                Top += e.Y - lastPoint.Y;
             }
         }
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            Database.Database.Instance.Save();
+            Database.Instance.Save();
             Application.Exit();
         }
 
@@ -72,8 +72,8 @@ namespace GUI
 
         private void LogOut_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var login = new UserLogin();
+            Hide();
+            UserLogin? login = new();
             login.Show();
         }
 
@@ -99,11 +99,11 @@ namespace GUI
 
         private void ButtonCreatePost_Click(object sender, EventArgs e)
         {
-            var _ = CurrentUser ?? throw new Exception("Current user is null");
+            User? _ = CurrentUser ?? throw new Exception("Current user is null");
             bool priority = ComboPriority.Text == "High";
-            Database.Database.Instance.Add(
+            Database.Instance.Add(
                 "posts",
-                new Actions.Post(this.CurrentUser.Username, FieldContent.Text, priority, ComboCategory.Text)
+                new Post(CurrentUser.Username, FieldContent.Text, priority, ComboCategory.Text)
                 ); // this.Username -> Poster's username, content -> content
         }
 
@@ -131,10 +131,10 @@ namespace GUI
 
         private void ButtonSearchReciever_Click(object sender, EventArgs e)
         {
-            var table = Database.Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
-            foreach (var row in table.Rows.Values)
+            Table? table = Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            foreach (object? row in table.Rows.Values)
             {
-                var u = (Account.User)row;
+                User? u = (User)row;
                 if (u.Username == FieldMessageUsername.Text)
                 {
                     isRecieverFound = true;
@@ -145,17 +145,17 @@ namespace GUI
 
         private void ButtonCreateMessage_Click(object sender, EventArgs e)
         {
-            var _ = CurrentUser ?? throw new Exception("Current user is null");
+            _ = CurrentUser ?? throw new Exception("Current user is null");
             if (isRecieverFound)
             {
-                Database.Database.Instance.Add(
+                Database.Instance.Add(
                     "messages",
-                    new Actions.Message(this.CurrentUser.Username, FieldMessageUsername.Text, FieldBody.Text)
+                    new Core.Message(CurrentUser.Username, FieldMessageUsername.Text, FieldBody.Text)
                     ); // this.Username -> sender, username -> receiver, body -> message
             }
             else
             {
-                MessageBox.Show("User not found");
+                _ = MessageBox.Show("User not found");
             }
         }
 
@@ -183,17 +183,17 @@ namespace GUI
                 ListMyPosts.Items.RemoveAt(0);
             }
 
-            var _ = CurrentUser ?? throw new Exception("User not found");
-            var posts = CurrentUser.ViewAllMyPosts();
-            var temp = posts.Split("\n");
+            _ = CurrentUser ?? throw new Exception("User not found");
+            string? posts = CurrentUser.ViewAllMyPosts();
+            string[]? temp = posts.Split("\n");
 
             for (int i = 0; i < (temp.Length / 4); i++)
             {
                 ListViewItem item = new(temp[(i * 4) + 0].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
-                ListMyPosts.Items.Add(item);
+                _ = item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
+                _ = item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
+                _ = item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
+                _ = ListMyPosts.Items.Add(item);
             }
         }
 
@@ -221,16 +221,16 @@ namespace GUI
                 ListMyMessages.Items.RemoveAt(0);
             }
 
-            var _ = CurrentUser ?? throw new Exception("User not found");
-            var posts = CurrentUser.ViewAllMyReceivedMessages();
-            var temp = posts.Split("\n");
+            _ = CurrentUser ?? throw new Exception("User not found");
+            string? posts = CurrentUser.ViewAllMyReceivedMessages();
+            string[]? temp = posts.Split("\n");
 
             for (int i = 0; i < (temp.Length / 4); i++)
             {
                 ListViewItem item = new(temp[(i * 3) + 0].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 3) + 1].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 3) + 2].Split(":")[1]);
-                ListMyMessages.Items.Add(item);
+                _ = item.SubItems.Add(temp[(i * 3) + 1].Split(":")[1]);
+                _ = item.SubItems.Add(temp[(i * 3) + 2].Split(":")[1]);
+                _ = ListMyMessages.Items.Add(item);
             }
         }
 
@@ -258,17 +258,17 @@ namespace GUI
                 ListHomeFeed.Items.RemoveAt(0);
             }
 
-            var _ = CurrentUser ?? throw new Exception("User not found");
-            var posts = CurrentUser.ViewAllMyLastUpdatedWall();
-            var temp = posts.Split("\n");
+            _ = CurrentUser ?? throw new Exception("User not found");
+            string? posts = CurrentUser.ViewAllMyLastUpdatedWall();
+            string[]? temp = posts.Split("\n");
 
             for (int i = 0; i < (temp.Length / 4); i++)
             {
                 ListViewItem item = new(temp[(i * 4) + 0].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
-                item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
-                ListHomeFeed.Items.Add(item);
+                _ = item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
+                _ = item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
+                _ = item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
+                _ = ListHomeFeed.Items.Add(item);
             }
         }
 
@@ -296,7 +296,7 @@ namespace GUI
         {
             if (string.IsNullOrEmpty(ComboCategorySearch.Text))
             {
-                MessageBox.Show("Please enter a category");
+                _ = MessageBox.Show("Please enter a category");
             }
             else
             {
@@ -305,17 +305,17 @@ namespace GUI
                     ListHomeFiltered.Items.RemoveAt(0);
                 }
 
-                var _ = CurrentUser ?? throw new Exception("User not found");
-                var posts = CurrentUser.FilterMyWall(ComboCategorySearch.Text);
-                var temp = posts.Split("\n");
+                _ = CurrentUser ?? throw new Exception("User not found");
+                string? posts = CurrentUser.FilterMyWall(ComboCategorySearch.Text);
+                string[]? temp = posts.Split("\n");
 
                 for (int i = 0; i < (temp.Length / 4); i++)
                 {
                     ListViewItem item = new(temp[(i * 4) + 0].Split(":")[1]);
-                    item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
-                    item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
-                    item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
-                    ListHomeFiltered.Items.Add(item);
+                    _ = item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
+                    _ = item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
+                    _ = item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
+                    _ = ListHomeFiltered.Items.Add(item);
                 }
             }
         }
@@ -343,10 +343,10 @@ namespace GUI
         private static bool isReported = false;
         private void SearchReported_Click(object sender, EventArgs e)
         {
-            var table = Database.Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
-            foreach (var row in table.Rows.Values)
+            Table? table = Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            foreach (object? row in table.Rows.Values)
             {
-                var u = (Account.User)row;
+                User? u = (User)row;
                 if (u.Username == FieldMessageUsername.Text)
                 {
                     isReported = true;
@@ -357,20 +357,20 @@ namespace GUI
 
         private void ButtonReport_Click(object sender, EventArgs e)
         {
-            var _ = CurrentUser ?? throw new Exception("Current user is null");
+            _ = CurrentUser ?? throw new Exception("Current user is null");
             if (isReported)
             {
-                var db = Database.Database.Instance;
+                Database? db = Database.Instance;
 
-                db.Add("reports", new Actions.Report(
-                    this.CurrentUser.Username,
+                db.Add("reports", new Report(
+                    CurrentUser.Username,
                     FieldReported.Text,
                     FieldReason.Text
                     )); // this.Username -> reporter, content -> reports
             }
             else
             {
-                MessageBox.Show("User not found");
+                _ = MessageBox.Show("User not found");
             }
         }
     }

@@ -1,12 +1,12 @@
-using database = Database.Database;
-using msg = Actions.Message;
-using pst = Actions.Post;
-using rep = Actions.Report;
+using database = Core.Database;
+using msg = Core.Message;
+using pst = Core.Post;
+using rep = Core.Report;
 
 /// <summary>
 /// Account type implementation as the project description states.
 /// </summary>
-namespace Account
+namespace Core
 {
     [Serializable]
     public class Account
@@ -31,14 +31,14 @@ namespace Account
 
         public Account()
         {
-            this.username = "";
-            this.password = "";
-            this.status = false;
-            this.firstName = "";
-            this.lastName = "";
-            this.location = "";
-            this.age = 0;
-            this.friends = new List<User>();
+            username = "";
+            password = "";
+            status = false;
+            firstName = "";
+            lastName = "";
+            location = "";
+            age = 0;
+            friends = new List<User>();
         }
 
         public Account(string username, string password, bool status, string firstName, string lastName, string location, int age)
@@ -50,7 +50,7 @@ namespace Account
             this.lastName = lastName;
             this.location = location;
             this.age = age;
-            this.friends = new List<User>();
+            friends = new List<User>();
         }
 
         public Account(string username, string password, bool status, string firstName, string lastName, string location, int age, List<User>? friends)
@@ -67,9 +67,9 @@ namespace Account
 
         public override string? ToString()
         {
-            var names = "";
-            var _ = this.friends ?? throw new ArgumentNullException(nameof(this.friends));
-            foreach (var friend in this.friends)
+            string? names = "";
+            List<User>? _ = friends ?? throw new ArgumentNullException(nameof(friends));
+            foreach (User? friend in friends)
             {
                 names += friend.Username + " ";
             }
@@ -88,32 +88,32 @@ namespace Account
         private static readonly Administrator instance = new();
         private Administrator() : base()
         {
-            this.Username = "admin";
-            this.Password = "0";
-            this.Status = true;
-            this.FirstName = "Admin";
-            this.LastName = "Admin";
-            this.Location = "Private";
-            this.Age = 0;
-            this.Friends = new List<User>();
+            Username = "admin";
+            Password = "0";
+            Status = true;
+            FirstName = "Admin";
+            LastName = "Admin";
+            Location = "Private";
+            Age = 0;
+            Friends = new List<User>();
         }
-        public static Administrator Instance { get { return instance; } }
+        public static Administrator Instance => instance;
 
-        public void RegisterNewUserAccount(string username, string password, string firstName, string lastName, string location, int age)
+        public static void RegisterNewUserAccount(string username, string password, string firstName, string lastName, string location, int age)
         {
             database.Instance.Add("users", new User(username, password, true, firstName, lastName, location, age));
         }
-        public void RegisterNewUserAccount(string username, string password, string firstName, string lastName, string location, int age, List<User> friends)
+        public static void RegisterNewUserAccount(string username, string password, string firstName, string lastName, string location, int age, List<User> friends)
         {
             database.Instance.Add("users", new User(username, password, true, firstName, lastName, location, age, friends));
         }
 
-        public string ViewAllUserAccounts()
+        public static string ViewAllUserAccounts()
         {
-            var temp = "";
+            string? temp = "";
 
-            var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
-            foreach (var row in table.Rows.Values)
+            Table? table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            foreach (object? row in table.Rows.Values)
             {
                 temp += row + "\n";
             }
@@ -121,15 +121,15 @@ namespace Account
             return temp;
         }
 
-        private bool IsSuspendable(string username)
+        private static bool IsSuspendable(string username)
         {
             // if user has more than 2 reports return true
-            var table = database.Instance.GetTable("reports") ?? throw new Exception($"Table '{"reports"}' not found.");
+            Table? table = database.Instance.GetTable("reports") ?? throw new Exception($"Table '{"reports"}' not found.");
 
             int count = 0;
-            foreach (var row in table.Rows.Values)
+            foreach (object? row in table.Rows.Values)
             {
-                var report = (rep)row;
+                rep? report = (rep)row;
                 if (report.Reported == username)
                 {
                     count++;
@@ -138,9 +138,9 @@ namespace Account
 
             if (count > 1)
             {
-                foreach (var row in table.Rows.Values)
+                foreach (object? row in table.Rows.Values)
                 {
-                    var report = (rep)row;
+                    rep? report = (rep)row;
                     if (report.Reported == username)
                     {
                         database.Instance.Remove("reports", report);
@@ -153,12 +153,12 @@ namespace Account
             return false;
         }
 
-        public bool SuspendUserAccount(string username)
+        public static bool SuspendUserAccount(string username)
         {
-            var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
-            foreach (var user in table.Rows.Values)
+            Table? table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            foreach (object? user in table.Rows.Values)
             {
-                var u = (User)user;
+                User? u = (User)user;
                 if (username == u.Username && IsSuspendable(u.Username))
                 {
                     u.Status = false;
@@ -168,12 +168,12 @@ namespace Account
             return true;
         }
 
-        public void ActivateUserAccount(string username)
+        public static void ActivateUserAccount(string username)
         {
-            var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
-            foreach (var row in table.Rows.Values)
+            Table? table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            foreach (object? row in table.Rows.Values)
             {
-                var user = (User)row;
+                User? user = (User)row;
                 if (user.Username == username)
                 {
                     user.Status = true;
@@ -191,39 +191,39 @@ namespace Account
 
         public void AddFriends(List<User> friends)
         {
-            if (this.Friends is not null)
+            if (Friends is not null)
             {
-                foreach (var friend in friends)
+                foreach (User? friend in friends)
                 {
-                    this.Friends.Add(friend);
+                    Friends.Add(friend);
                 }
             }
             else
             {
-                this.Friends = friends;
+                Friends = friends;
             }
         }
 
         public void PostNewContent(string content, bool priority, string category)
         {
-            database.Instance.Add("posts", new pst(this.Username, content, priority, category)); // this.Username -> Poster's username, content -> content
+            database.Instance.Add("posts", new pst(Username, content, priority, category)); // this.Username -> Poster's username, content -> content
         }
 
         public void SendMessage(string username, string content)
         {
-            database.Instance.Add("messages", new msg(this.Username, username, content)); // this.Username -> sender, username -> receiver, content -> message
+            database.Instance.Add("messages", new msg(Username, username, content)); // this.Username -> sender, username -> receiver, content -> message
         }
 
         public string ViewAllMyPosts()
         {
-            var temp = "";
-            var db = database.Instance;
-            var table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
+            string? temp = "";
+            database? db = database.Instance;
+            Table? table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
 
-            foreach (var row in table.Rows.Values)
+            foreach (object? row in table.Rows.Values)
             {
-                var post = (pst)row;
-                if (post.Author == this.Username)
+                pst? post = (pst)row;
+                if (post.Author == Username)
                 {
                     temp += row + "\n";
                 }
@@ -234,14 +234,14 @@ namespace Account
 
         public string ViewAllMyReceivedMessages()
         {
-            var temp = "";
-            var db = database.Instance;
-            var table = db.GetTable("messages") ?? throw new Exception($"Table '{"messages"}' not found.");
+            string? temp = "";
+            database? db = database.Instance;
+            Table? table = db.GetTable("messages") ?? throw new Exception($"Table '{"messages"}' not found.");
 
-            foreach (var row in table.Rows.Values)
+            foreach (object? row in table.Rows.Values)
             {
-                var message = (msg)row;
-                if (message.Receiver == this.Username)
+                msg? message = (msg)row;
+                if (message.Receiver == Username)
                 {
                     temp += row + "\n";
                 }
@@ -252,18 +252,21 @@ namespace Account
 
         public string ViewAllMyLastUpdatedWall()
         {
-            var temp = "";
-            var db = database.Instance;
-            var table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
+            string? temp = "";
+            database? db = database.Instance;
+            Table? table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
 
-            if (this.Friends is null) return temp;
+            if (Friends is null)
+            {
+                return temp;
+            }
 
             // get all posts from friends
-            foreach (var row in table.Rows.Values)
+            foreach (object? row in table.Rows.Values)
             {
-                foreach (var friend in this.Friends)
+                foreach (User? friend in Friends)
                 {
-                    var post = (pst)row;
+                    pst? post = (pst)row;
                     if (post.Author == friend.Username)
                     {
                         temp += row + "\n";
@@ -277,17 +280,20 @@ namespace Account
 
         public string FilterMyWall(string filter)
         {
-            var temp = "";
-            var db = database.Instance;
-            var table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
+            string? temp = "";
+            database? db = database.Instance;
+            Table? table = db.GetTable("posts") ?? throw new Exception($"Table '{"posts"}' not found.");
 
-            if (Friends is null) return temp;
-
-            foreach (var row in table.Rows.Values)
+            if (Friends is null)
             {
-                foreach (var friend in this.Friends)
+                return temp;
+            }
+
+            foreach (object? row in table.Rows.Values)
+            {
+                foreach (User? friend in Friends)
                 {
-                    var post = (pst)row;
+                    pst? post = (pst)row;
                     if (post.Author == friend.Username && filter == post.Category)
                     {
                         temp += row + "\n";
@@ -302,9 +308,9 @@ namespace Account
         public void SendReportToAdministrator(string username, string content)
         {
             // TODO: Send report to administrator
-            var db = database.Instance;
+            database? db = database.Instance;
 
-            db.Add("reports", new rep(this.Username, username, content)); // this.Username -> reporter, content -> reports
+            db.Add("reports", new rep(Username, username, content)); // this.Username -> reporter, content -> reports
         }
     }
 }

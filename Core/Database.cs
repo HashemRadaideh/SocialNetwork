@@ -1,11 +1,11 @@
 using System.Collections;
-using administrator = Account.Administrator;
-using useraccount = Account.User;
+using administrator = Core.Administrator;
+using useraccount = Core.User;
 
 /// <summary>
 /// Database implementation for the Social Network project.
 /// </summary>
-namespace Database
+namespace Core
 {
     [Serializable]
     public class Table
@@ -27,19 +27,19 @@ namespace Database
         public void AddData(object data)
         {
             id++;
-            this.rows.Add(id, data);
+            rows.Add(id, data);
         }
 
         public void RemoveData(object data)
         {
-            this.rows.Remove(data);
+            rows.Remove(data);
         }
 
         public int IndexOf(object data)
         {
             int index = 0;
 
-            foreach (object val in this.rows.Values)
+            foreach (object val in rows.Values)
             {
                 if (val.Equals(data))
                 {
@@ -72,7 +72,7 @@ namespace Database
         {
             // Load database from binary formated file Database.dat
             // If the file does not exist, create a new database
-            if (!System.IO.File.Exists("Database.dat"))
+            if (!File.Exists("Database.dat"))
             {
                 CreateNewDatabase();
             }
@@ -81,7 +81,7 @@ namespace Database
                 // Load database from binary formated file Database.dat
                 using FileStream fs = new("Database.dat", FileMode.Open);
                 System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                this.tables = formatter.Deserialize(fs) as List<Table>;
+                tables = (List<Table>)formatter.Deserialize(fs);
             }
         }
 
@@ -90,7 +90,7 @@ namespace Database
             // Save database to binary formated file Database.dat
             using FileStream fs = new("Database.dat", FileMode.Create);
             System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-            formatter.Serialize(fs, this.tables);
+            formatter.Serialize(fs, tables);
         }
 
         ~Database()
@@ -105,12 +105,12 @@ namespace Database
             CreateNewTable("posts");
             CreateNewTable("messages");
 
-            var acc1 = new useraccount("UN1", "11", true, "Zaid", "Ahmad", "Irbid", 28);
-            var acc2 = new useraccount("UN2", "22", true, "Omar", "Farook", "Irbid", 30);
-            var acc3 = new useraccount("UN3", "33", true, "Maha", "Hani", "Amman", 42);
-            var acc4 = new useraccount("UN4", "44", true, "Hamzah", "Ali", "Zarqa", 37);
-            var acc5 = new useraccount("UN5", "55", true, "Salma", "Waleed", "Jerash", 40);
-            var acc6 = new useraccount("UN6", "66", false, "Ali", "Khaled", "Amman", 26);
+            useraccount? acc1 = new("UN1", "11", true, "Zaid", "Ahmad", "Irbid", 28);
+            useraccount? acc2 = new("UN2", "22", true, "Omar", "Farook", "Irbid", 30);
+            useraccount? acc3 = new("UN3", "33", true, "Maha", "Hani", "Amman", 42);
+            useraccount? acc4 = new("UN4", "44", true, "Hamzah", "Ali", "Zarqa", 37);
+            useraccount? acc5 = new("UN5", "55", true, "Salma", "Waleed", "Jerash", 40);
+            useraccount? acc6 = new("UN6", "66", false, "Ali", "Khaled", "Amman", 26);
 
             acc1.AddFriends(new List<useraccount>() { acc2, acc3 });
             acc2.AddFriends(new List<useraccount>() { acc1, acc3, acc5 });
@@ -126,32 +126,32 @@ namespace Database
             Add("users", acc5);
             Add("users", acc6);
 
-            Add("posts", new Actions.Post(acc1.Username, "Liverpool beats Man. City 2-1", true, "Sport"));
-            Add("posts", new Actions.Post(acc1.Username, "Apple expects to release iPhone 14 in October", true, "News"));
-            Add("posts", new Actions.Post(acc2.Username, "Expect snow next Sunday", true, "Weather"));
-            Add("posts", new Actions.Post(acc3.Username, "Italy fails to qualify for the world cup", true, "Sport"));
-            Add("posts", new Actions.Post(acc3.Username, "The deficit exceeds 2 million dollars", true, "Economy"));
-            Add("posts", new Actions.Post(acc5.Username, "The minimum wage has been raised to 300 dinars", true, "Economy"));
+            Add("posts", new Post(acc1.Username, "Liverpool beats Man. City 2-1", true, "Sport"));
+            Add("posts", new Post(acc1.Username, "Apple expects to release iPhone 14 in October", true, "News"));
+            Add("posts", new Post(acc2.Username, "Expect snow next Sunday", true, "Weather"));
+            Add("posts", new Post(acc3.Username, "Italy fails to qualify for the world cup", true, "Sport"));
+            Add("posts", new Post(acc3.Username, "The deficit exceeds 2 million dollars", true, "Economy"));
+            Add("posts", new Post(acc5.Username, "The minimum wage has been raised to 300 dinars", true, "Economy"));
 
-            Add("reports", new Actions.Report(acc1.Username, acc2.Username, "He is gay!?"));
-            Add("reports", new Actions.Report(acc3.Username, acc2.Username, "Hello, World!"));
+            Add("reports", new Report(acc1.Username, acc2.Username, "He is gay!?"));
+            Add("reports", new Report(acc3.Username, acc2.Username, "Hello, World!"));
 
-            Add("reports", new Actions.Report(acc2.Username, acc1.Username, "I like one piece!"));
+            Add("reports", new Report(acc2.Username, acc1.Username, "I like one piece!"));
 
-            Add("reports", new Actions.Report(acc1.Username, acc5.Username, "Hey, there!"));
-            Add("reports", new Actions.Report(acc3.Username, acc5.Username, "This is a report."));
+            Add("reports", new Report(acc1.Username, acc5.Username, "Hey, there!"));
+            Add("reports", new Report(acc3.Username, acc5.Username, "This is a report."));
 
             Save();
         }
 
         public void CreateNewTable(string name)
         {
-            this.tables.Add(new Table(name));
+            tables.Add(new Table(name));
         }
 
         public Table? GetTable(string name)
         {
-            foreach (Table table in this.tables)
+            foreach (Table table in tables)
             {
                 if (table.Name.Equals(name))
                 {
@@ -164,13 +164,13 @@ namespace Database
 
         public void Add(string tableName, object data)
         {
-            var table = this.GetTable(tableName) ?? throw new Exception("Table does not exist");
+            Table? table = GetTable(tableName) ?? throw new Exception("Table does not exist");
             table.AddData(data);
         }
 
         public void Remove(string tableName, object data)
         {
-            var table = this.GetTable(tableName) ?? throw new Exception("Table does not exist");
+            Table? table = GetTable(tableName) ?? throw new Exception("Table does not exist");
             table.RemoveData(data);
         }
 
@@ -184,10 +184,10 @@ namespace Database
                 return administrator.Instance;
             }
 
-            var table = GetTable("users") ?? throw new Exception("Table does not exist");
-            foreach (var user in table.Rows.Values)
+            Table? table = GetTable("users") ?? throw new Exception("Table does not exist");
+            foreach (object? user in table.Rows.Values)
             {
-                var u = (useraccount)user;
+                useraccount? u = (useraccount)user;
                 if (u.Username == username && u.Password == password && u.Status)
                 {
                     return u;
@@ -199,13 +199,13 @@ namespace Database
 
         public int IndexOf(string TableName, string Username)
         {
-            var table = GetTable(TableName) ?? throw new Exception("Table does not exist");
+            Table? table = GetTable(TableName) ?? throw new Exception("Table does not exist");
 
             int index = 0;
 
-            foreach (var user in table.Rows.Values)
+            foreach (object? user in table.Rows.Values)
             {
-                var u = (useraccount)user;
+                useraccount? u = (useraccount)user;
                 if (u.Username == Username)
                 {
                     return index;

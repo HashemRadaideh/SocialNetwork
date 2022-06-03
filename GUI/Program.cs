@@ -1,3 +1,5 @@
+using Core;
+
 namespace GUI
 {
     internal static class Program
@@ -6,9 +8,9 @@ namespace GUI
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static int Main(string[] args)
+        private static int Main(string[] args)
         {
-            var db = Database.Database.Instance;
+            Database? db = Database.Instance;
 
             if (args.Length > 0)
             {
@@ -22,7 +24,7 @@ namespace GUI
                 }
                 else if (args[0] == "--cmd")
                 {
-                    SocialNetwork.Program.Main();
+                    Core.Program.Main();
                     db.Save();
                     return 0;
                 }
