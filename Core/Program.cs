@@ -6,7 +6,7 @@ namespace SocialNetwork
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             var db = database.Instance;
             while (true)
@@ -108,7 +108,7 @@ namespace SocialNetwork
                             location = location ?? throw new ArgumentNullException(nameof(location));
 
                             Console.Write("Enter Age: ");
-                            int age = 0;
+                            int age;
                             if (int.TryParse(Console.ReadLine(), out int result))
                                 age = result;
                             else

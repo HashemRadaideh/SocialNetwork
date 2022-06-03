@@ -4,8 +4,7 @@ namespace GUI
 {
     public partial class UserMain : Form
     {
-
-        Account.User? CurrentUser = UserLogin.CurrentUser;
+        readonly Account.User? CurrentUser = UserLogin.CurrentUser;
 
         public UserMain()
         {
@@ -101,7 +100,7 @@ namespace GUI
         private void ButtonCreatePost_Click(object sender, EventArgs e)
         {
             var _ = CurrentUser ?? throw new Exception("Current user is null");
-            bool priority = ComboPriority.Text == "High" ? true : false;
+            bool priority = ComboPriority.Text == "High";
             Database.Database.Instance.Add(
                 "posts",
                 new Actions.Post(this.CurrentUser.Username, FieldContent.Text, priority, ComboCategory.Text)
@@ -190,7 +189,7 @@ namespace GUI
 
             for (int i = 0; i < (temp.Length / 4); i++)
             {
-                ListViewItem item = new ListViewItem(temp[(i * 4) + 0].Split(":")[1]);
+                ListViewItem item = new(temp[(i * 4) + 0].Split(":")[1]);
                 item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
                 item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
                 item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
@@ -228,7 +227,7 @@ namespace GUI
 
             for (int i = 0; i < (temp.Length / 4); i++)
             {
-                ListViewItem item = new ListViewItem(temp[(i * 3) + 0].Split(":")[1]);
+                ListViewItem item = new(temp[(i * 3) + 0].Split(":")[1]);
                 item.SubItems.Add(temp[(i * 3) + 1].Split(":")[1]);
                 item.SubItems.Add(temp[(i * 3) + 2].Split(":")[1]);
                 ListMyMessages.Items.Add(item);
@@ -265,7 +264,7 @@ namespace GUI
 
             for (int i = 0; i < (temp.Length / 4); i++)
             {
-                ListViewItem item = new ListViewItem(temp[(i * 4) + 0].Split(":")[1]);
+                ListViewItem item = new(temp[(i * 4) + 0].Split(":")[1]);
                 item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
                 item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
                 item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
@@ -312,7 +311,7 @@ namespace GUI
 
                 for (int i = 0; i < (temp.Length / 4); i++)
                 {
-                    ListViewItem item = new ListViewItem(temp[(i * 4) + 0].Split(":")[1]);
+                    ListViewItem item = new(temp[(i * 4) + 0].Split(":")[1]);
                     item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
                     item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
                     item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);

@@ -22,7 +22,7 @@ namespace GUI
                 }
                 else if (args[0] == "--cmd")
                 {
-                    SocialNetwork.Program.Main(args);
+                    SocialNetwork.Program.Main();
                     db.Save();
                     return 0;
                 }

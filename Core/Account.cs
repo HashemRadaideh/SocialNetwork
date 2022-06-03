@@ -18,7 +18,7 @@ namespace Account
         private string lastName = "";
         private string location = "";
         private int age = 0;
-        private List<User>? friends = new List<User>();
+        private List<User>? friends = new();
 
         public string Username { get => username; set => username = value; }
         public string Password { get => password; set => password = value; }
@@ -85,7 +85,7 @@ namespace Account
         /// The administrator class is a singleton class, which means that there is only one instance of it.
         /// And that means there is only one administrator in the system.
         /// </summary>
-        private static readonly Administrator instance = new Administrator();
+        private static readonly Administrator instance = new();
         private Administrator() : base()
         {
             this.Username = "admin";

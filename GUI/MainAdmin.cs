@@ -144,7 +144,7 @@ namespace GUI
             var temp = users_accounts.Split("\n");
             for (int i = 0; i < (temp.Length / 8); i++)
             {
-                ListViewItem item = new ListViewItem(temp[(i * 8) + 0].Split(":")[1]);
+                ListViewItem item = new(temp[(i * 8) + 0].Split(":")[1]);
                 item.SubItems.Add(temp[(i * 8) + 1].Split(":")[1]);
                 item.SubItems.Add(temp[(i * 8) + 2].Split(":")[1]);
                 item.SubItems.Add(temp[(i * 8) + 3].Split(":")[1]);
@@ -201,7 +201,7 @@ namespace GUI
             }
 
             var temp = (user + "").Split("\n");
-            ListViewItem item = new ListViewItem(temp[0].Split(":")[1]);
+            ListViewItem item = new(temp[0].Split(":")[1]);
             item.SubItems.Add(temp[1].Split(":")[1]);
             item.SubItems.Add(temp[2].Split(":")[1]);
             item.SubItems.Add(temp[3].Split(":")[1]);
@@ -224,7 +224,7 @@ namespace GUI
                 if (report.Reported == user.Username)
                 {
                     var temps = (report + "").Split("\n");
-                    ListViewItem items = new ListViewItem(temps[0].Split(":")[1]);
+                    ListViewItem items = new(temps[0].Split(":")[1]);
                     items.SubItems.Add(temps[1].Split(":")[1]);
                     items.SubItems.Add(temps[2].Split(":")[1]);
                     ListReports.Items.Add(items);
@@ -293,7 +293,7 @@ namespace GUI
             if (user is not null)
             {
                 var temp = (user + "").Split("\n");
-                ListViewItem item = new ListViewItem(temp[0].Split(":")[1]);
+                ListViewItem item = new(temp[0].Split(":")[1]);
                 item.SubItems.Add(temp[1].Split(":")[1]);
                 item.SubItems.Add(temp[2].Split(":")[1]);
                 item.SubItems.Add(temp[3].Split(":")[1]);

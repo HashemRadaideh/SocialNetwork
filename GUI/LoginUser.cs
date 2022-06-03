@@ -1,12 +1,10 @@
+using Account;
 using System.Runtime.InteropServices;
 
 namespace GUI
 {
     public partial class UserLogin : Form
     {
-
-        public static Account.User? CurrentUser;
-
         public UserLogin()
         {
             InitializeComponent();
@@ -57,6 +55,8 @@ namespace GUI
 
         private static bool MAXIMIZED = false;
 
+        public static User? CurrentUser { get; set; }
+
         private void Maximize_Click(object sender, EventArgs e)
         {
             if (MAXIMIZED)
@@ -80,14 +80,14 @@ namespace GUI
         {
             var db = Database.Database.Instance;
             var user = db.Login(this.Address.Text, this.Password.Text);
-            if (user is not null && user != Account.Administrator.Instance)
+            if (user is not null && user != Administrator.Instance)
             {
-                CurrentUser = (Account.User)user;
+                CurrentUser = (User)user;
                 this.Hide();
                 var main = new UserMain();
                 main.Show();
             }
-            else if (user == Account.Administrator.Instance)
+            else if (user == Administrator.Instance)
             {
                 MessageBox.Show("Admin login detected, login from admin panel");
             }

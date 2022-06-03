@@ -43,6 +43,7 @@ namespace Actions
         public string Content { get => content; set => content = value; }
         public string Author { get => author; set => author = value; }
         public string Category { get => category; set => category = value; }
+        public bool Priority { get => priority; set => priority = value; }
 
         public override string ToString()
         {

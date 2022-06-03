@@ -10,14 +10,14 @@ namespace Database
     [Serializable]
     public class Table
     {
-        private string name = "";
-        private Hashtable rows = new Hashtable();
+        private readonly string name = "";
+        private readonly Hashtable rows = new();
         // ID is used as the the primary key for the table
         private int id = 0;
 
-        public string Name { get => name; }
-        public Hashtable Rows { get => rows; }
-        public int ID { get => id; }
+        public string Name => name;
+        public Hashtable Rows => rows;
+        public int ID => id;
 
         public Table(string name)
         {
@@ -57,16 +57,16 @@ namespace Database
         // Design pattern: Singleton
         // The Database class is a singleton, meaning that there is only one instance of the database
         // This is done to ensure that there is one and only one database in the System
-        private static readonly Database instance = new Database();
+        private static readonly Database instance = new();
         private Database()
         {
             // Load database from binary formated file Database.dat
             Load();
         }
 
-        public static Database Instance { get { return instance; } }
+        public static Database Instance => instance;
 
-        private List<Table> tables = new List<Table>();
+        private List<Table> tables = new();
 
         public void Load()
         {
@@ -79,22 +79,18 @@ namespace Database
             else
             {
                 // Load database from binary formated file Database.dat
-                using (System.IO.FileStream fs = new System.IO.FileStream("Database.dat", System.IO.FileMode.Open))
-                {
-                    System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                    this.tables = (List<Table>)formatter.Deserialize(fs);
-                }
+                using FileStream fs = new("Database.dat", FileMode.Open);
+                System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                this.tables = formatter.Deserialize(fs) as List<Table>;
             }
         }
 
         public void Save()
         {
             // Save database to binary formated file Database.dat
-            using (System.IO.FileStream fs = new System.IO.FileStream("Database.dat", System.IO.FileMode.Create))
-            {
-                System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                formatter.Serialize(fs, this.tables);
-            }
+            using FileStream fs = new("Database.dat", FileMode.Create);
+            System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            formatter.Serialize(fs, this.tables);
         }
 
         ~Database()
