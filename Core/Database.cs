@@ -24,17 +24,31 @@ namespace Core
             this.name = name;
         }
 
+        /// <summary>
+        /// Adds a new row to the table.
+        /// </summary>
+        /// <param name="row">The row to add.</param>
+        /// <returns>The ID of the row.</returns>
         public void AddData(object data)
         {
             id++;
             rows.Add(id, data);
         }
 
+        /// <summary>
+        /// Removes a row from the table.
+        /// </summary>
+        /// <param name="id">The ID of the row to remove.</param>
         public void RemoveData(object data)
         {
             rows.Remove(data);
         }
 
+        /// <summary>
+        /// Gets a row from the table.
+        /// </summary>
+        /// <param name="id">The ID of the row to get.</param>
+        /// <returns>The row.</returns>
         public int IndexOf(object data)
         {
             int index = 0;
@@ -63,11 +77,13 @@ namespace Core
             // Load database from binary formated file Database.dat
             Load();
         }
-
         public static Database Instance => instance;
 
         private List<Table> tables = new();
 
+        /// <summary>
+        /// Loads previously saved database from file.
+        /// </summary>
         public void Load()
         {
             // Load database from binary formated file Database.dat
@@ -85,6 +101,9 @@ namespace Core
             }
         }
 
+        /// <summary>
+        /// Saves the database to file.
+        /// </summary>
         public void Save()
         {
             // Save database to binary formated file Database.dat
@@ -98,6 +117,9 @@ namespace Core
             Save();
         }
 
+        /// <summary>
+        /// Fallback action in case no database file was found , creates a new database.
+        /// </summary>
         private void CreateNewDatabase()
         {
             CreateNewTable("users");
@@ -144,11 +166,19 @@ namespace Core
             Save();
         }
 
+        /// <summary>
+        /// Creates a new table.
+        /// </summary>
+        /// <param name="name">The name of the table.</param>
         public void CreateNewTable(string name)
         {
             tables.Add(new Table(name));
         }
 
+        /// <summary>
+        /// Adds a new row to the table.
+        /// </summary>
+        /// <param name="tableName">The name of the table.</param>
         public Table? GetTable(string name)
         {
             foreach (Table table in tables)
@@ -162,18 +192,34 @@ namespace Core
             return null;
         }
 
+        /// <summary>
+        /// Adds a new row to the table.
+        /// </summary>
+        /// <param name="tableName">The name of the table.</param>
+        /// <param name="data">The data to add.</param>
         public void Add(string tableName, object data)
         {
             Table? table = GetTable(tableName) ?? throw new Exception("Table does not exist");
             table.AddData(data);
         }
 
+        /// <summary>
+        /// Removes a row from the table.
+        /// </summary>
+        /// <param name="tableName">The name of the table.</param>
+        /// <param name="data">The data to remove.</param>
         public void Remove(string tableName, object data)
         {
             Table? table = GetTable(tableName) ?? throw new Exception("Table does not exist");
             table.RemoveData(data);
         }
 
+        /// <summary>
+        /// Gets a row from the table.
+        /// </summary>
+        /// <param name="tableName">The name of the table.</param>
+        /// <param name="data">The data to get.</param>
+        /// <returns>The user or admin.</returns>
         public object? Login(string? username, string? password)
         {
             username ??= "";
@@ -197,6 +243,12 @@ namespace Core
             return null;
         }
 
+        /// <summary>
+        /// Gets a row from the table.
+        /// </summary>
+        /// <param name="tableName">The name of the table.</param>
+        /// <param name="data">The data to get.</param>
+        /// <returns>The user or admin.</returns>
         public int IndexOf(string TableName, string Username)
         {
             Table? table = GetTable(TableName) ?? throw new Exception("Table does not exist");

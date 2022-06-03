@@ -1,4 +1,5 @@
-﻿using administrator = Core.Administrator;
+﻿#pragma warning disable CA2208 // Instantiate argument exceptions correctly
+using administrator = Core.Administrator;
 using database = Core.Database;
 using useraccount = Core.User;
 
@@ -6,7 +7,11 @@ namespace Core
 {
     public class Program
     {
-        public static void Main()
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        public static void Main(string[] args)
         {
             database? db = database.Instance;
             while (true)
@@ -64,7 +69,9 @@ namespace Core
             }
         }
 
-
+        /// <summary>
+        /// Part of the main loop for the administrator.
+        /// </summary>
         public static void AdminLoop()
         {
             database? db = database.Instance;
@@ -108,7 +115,17 @@ namespace Core
 
                             Console.Write("Enter Age: ");
                             int age = int.TryParse(Console.ReadLine(), out int result) ? result : throw new ArgumentException("Age must be a number");
-                            administrator.RegisterNewUserAccount(username, password, firstName, lastName, location, age);
+
+                            var status = administrator.RegisterNewUserAccount(username, password, firstName, lastName, location, age);
+
+                            if (status)
+                            {
+                                Console.WriteLine("\nUser account successfully registered!\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nUser account already exists!\n");
+                            }
                         }
                         break;
 
@@ -125,7 +142,16 @@ namespace Core
                             string? username = Console.ReadLine();
                             username = username ?? throw new ArgumentNullException(nameof(username));
 
-                            _ = administrator.SuspendUserAccount(username);
+                            var status = administrator.SuspendUserAccount(username);
+
+                            if (status)
+                            {
+                                Console.WriteLine("\nUser account successfully suspended!\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nUser account does not exist!\n");
+                            }
                         }
                         break;
 
@@ -135,7 +161,16 @@ namespace Core
                             string? username = Console.ReadLine();
                             username = username ?? throw new ArgumentNullException(nameof(username));
 
-                            administrator.ActivateUserAccount(username);
+                            var status = administrator.ActivateUserAccount(username);
+
+                            if (status)
+                            {
+                                Console.WriteLine("\nUser account successfully activated!\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nUser account does not exist!\n");
+                            }
                         }
                         break;
 
@@ -150,6 +185,10 @@ namespace Core
             }
         }
 
+        /// <summary>
+        /// Part of the main loop for the user.
+        /// </summary>
+        /// <param name="user">The user.</param>
         public static void UserLoop(useraccount user)
         {
             database? db = database.Instance;
@@ -174,16 +213,24 @@ namespace Core
                         {
                             Console.Write("Enter Content: ");
                             string? content = Console.ReadLine();
-                            if (content is null) return;
+                            content = content ?? throw new ArgumentNullException(nameof(content));
 
                             Console.Write("Enter Content: ");
                             bool priority = Convert.ToBoolean(Console.ReadLine());
 
                             Console.Write("Enter Content: ");
                             string? category = Console.ReadLine();
-                            if (category is null) return;
+                            category = category ?? throw new ArgumentNullException(nameof(category));
 
-                            user.PostNewContent(content, priority, category);
+                            var status = user.PostNewContent(content, priority, category);
+                            if (status)
+                            {
+                                Console.WriteLine("\nContent successfully posted!\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nContent already exists!\n");
+                            }
                         }
                         break;
 
@@ -191,13 +238,21 @@ namespace Core
                         {
                             Console.Write("Enter Username: ");
                             string? username = Console.ReadLine();
-                            if (username is null) return;
+                            username = username ?? throw new ArgumentNullException(nameof(username));
 
                             Console.Write("Enter Content: ");
                             string? content = Console.ReadLine();
-                            if (content is null) return;
+                            content = content ?? throw new ArgumentNullException(nameof(content));
 
-                            user.SendMessage(username, content);
+                            var status = user.SendMessage(username, content);
+                            if (status)
+                            {
+                                Console.WriteLine("\nMessage successfully sent!\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nMessage already exists!\n");
+                            }
                         }
                         break;
 
@@ -226,9 +281,10 @@ namespace Core
                         {
                             Console.Write("Enter Filter: ");
                             string? filter = Console.ReadLine();
-                            if (filter is null) return;
+                            filter = filter ?? throw new ArgumentNullException(nameof(filter));
 
-                            _ = user.FilterMyWall(filter);
+                            var temp = user.FilterMyWall(filter);
+                            Console.WriteLine(temp);
                         }
                         break;
 
@@ -236,13 +292,21 @@ namespace Core
                         {
                             Console.Write("Enter Username: ");
                             string? username = Console.ReadLine();
-                            if (username is null) return;
+                            username = username ?? throw new ArgumentNullException(nameof(username));
 
                             Console.Write("Enter Content: ");
                             string? content = Console.ReadLine();
-                            if (content is null) return;
+                            content = content ?? throw new ArgumentNullException(nameof(content));
 
-                            user.SendReportToAdministrator(username, content);
+                            var status = user.SendReportToAdministrator(username, content);
+                            if (status)
+                            {
+                                Console.WriteLine("\nReport successfully sent!\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nReport already exists!\n");
+                            }
                         }
                         break;
 
@@ -257,6 +321,10 @@ namespace Core
             }
         }
 
+        /// <summary>
+        /// Gets the login.
+        /// </summary>
+        /// <returns>The username and password.</returns>
         public static (string? username, string? password) GetLogin()
         {
             Console.Write("Enter username: ");
@@ -288,3 +356,4 @@ namespace Core
         }
     }
 }
+#pragma warning restore CA2208 // Instantiate argument exceptions correctly

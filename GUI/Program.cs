@@ -24,7 +24,7 @@ namespace GUI
                 }
                 else if (args[0] == "--cmd")
                 {
-                    Core.Program.Main();
+                    Core.Program.Main(args);
                     db.Save();
                     return 0;
                 }

@@ -155,7 +155,7 @@ namespace GUI
             }
             else
             {
-                _ = MessageBox.Show("User not found");
+                MessageBox.Show("User not found");
             }
         }
 
@@ -190,10 +190,10 @@ namespace GUI
             for (int i = 0; i < (temp.Length / 4); i++)
             {
                 ListViewItem item = new(temp[(i * 4) + 0].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
-                _ = ListMyPosts.Items.Add(item);
+                item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
+                ListMyPosts.Items.Add(item);
             }
         }
 
@@ -228,9 +228,9 @@ namespace GUI
             for (int i = 0; i < (temp.Length / 4); i++)
             {
                 ListViewItem item = new(temp[(i * 3) + 0].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 3) + 1].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 3) + 2].Split(":")[1]);
-                _ = ListMyMessages.Items.Add(item);
+                item.SubItems.Add(temp[(i * 3) + 1].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 3) + 2].Split(":")[1]);
+                ListMyMessages.Items.Add(item);
             }
         }
 
@@ -265,10 +265,10 @@ namespace GUI
             for (int i = 0; i < (temp.Length / 4); i++)
             {
                 ListViewItem item = new(temp[(i * 4) + 0].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
-                _ = ListHomeFeed.Items.Add(item);
+                item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
+                ListHomeFeed.Items.Add(item);
             }
         }
 
@@ -296,7 +296,7 @@ namespace GUI
         {
             if (string.IsNullOrEmpty(ComboCategorySearch.Text))
             {
-                _ = MessageBox.Show("Please enter a category");
+                MessageBox.Show("Please enter a category");
             }
             else
             {
@@ -312,10 +312,10 @@ namespace GUI
                 for (int i = 0; i < (temp.Length / 4); i++)
                 {
                     ListViewItem item = new(temp[(i * 4) + 0].Split(":")[1]);
-                    _ = item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
-                    _ = item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
-                    _ = item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
-                    _ = ListHomeFiltered.Items.Add(item);
+                    item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
+                    item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
+                    item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
+                    ListHomeFiltered.Items.Add(item);
                 }
             }
         }
@@ -370,7 +370,7 @@ namespace GUI
             }
             else
             {
-                _ = MessageBox.Show("User not found");
+                MessageBox.Show("User not found");
             }
         }
     }

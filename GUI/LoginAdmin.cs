@@ -80,7 +80,7 @@ namespace GUI
             }
             else
             {
-                _ = MessageBox.Show("Incorrect admin credentials");
+                MessageBox.Show("Incorrect admin credentials");
             }
         }
 

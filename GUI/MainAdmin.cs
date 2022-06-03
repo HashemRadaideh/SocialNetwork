@@ -145,14 +145,14 @@ namespace GUI
             for (int i = 0; i < (temp.Length / 8); i++)
             {
                 ListViewItem item = new(temp[(i * 8) + 0].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 8) + 1].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 8) + 2].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 8) + 3].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 8) + 4].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 8) + 5].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 8) + 6].Split(":")[1]);
-                _ = item.SubItems.Add(temp[(i * 8) + 7].Split(":")[1]);
-                _ = ListUsers.Items.Add(item);
+                item.SubItems.Add(temp[(i * 8) + 1].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 2].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 3].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 4].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 5].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 6].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 7].Split(":")[1]);
+                ListUsers.Items.Add(item);
             }
         }
 
@@ -196,20 +196,20 @@ namespace GUI
 
             if (user is null)
             {
-                _ = MessageBox.Show("User not found");
+                MessageBox.Show("User not found");
                 return;
             }
 
             string[]? temp = (user + "").Split("\n");
             ListViewItem item = new(temp[0].Split(":")[1]);
-            _ = item.SubItems.Add(temp[1].Split(":")[1]);
-            _ = item.SubItems.Add(temp[2].Split(":")[1]);
-            _ = item.SubItems.Add(temp[3].Split(":")[1]);
-            _ = item.SubItems.Add(temp[4].Split(":")[1]);
-            _ = item.SubItems.Add(temp[5].Split(":")[1]);
-            _ = item.SubItems.Add(temp[6].Split(":")[1]);
-            _ = item.SubItems.Add(temp[7].Split(":")[1]);
-            _ = ListSuspendInfo.Items.Add(item);
+            item.SubItems.Add(temp[1].Split(":")[1]);
+            item.SubItems.Add(temp[2].Split(":")[1]);
+            item.SubItems.Add(temp[3].Split(":")[1]);
+            item.SubItems.Add(temp[4].Split(":")[1]);
+            item.SubItems.Add(temp[5].Split(":")[1]);
+            item.SubItems.Add(temp[6].Split(":")[1]);
+            item.SubItems.Add(temp[7].Split(":")[1]);
+            ListSuspendInfo.Items.Add(item);
 
             Table? table_report = Database.Instance.GetTable("reports") ?? throw new Exception($"Table '{"reports"}' not found.");
 
@@ -225,9 +225,9 @@ namespace GUI
                 {
                     string[]? temps = (report + "").Split("\n");
                     ListViewItem items = new(temps[0].Split(":")[1]);
-                    _ = items.SubItems.Add(temps[1].Split(":")[1]);
-                    _ = items.SubItems.Add(temps[2].Split(":")[1]);
-                    _ = ListReports.Items.Add(items);
+                    items.SubItems.Add(temps[1].Split(":")[1]);
+                    items.SubItems.Add(temps[2].Split(":")[1]);
+                    ListReports.Items.Add(items);
                 }
             }
         }
@@ -236,15 +236,21 @@ namespace GUI
         {
             if (FieldSearch.Text == "")
             {
-                _ = MessageBox.Show("Please enter a username");
+                MessageBox.Show("Please enter a username");
                 return;
             }
 
             if (isFoundSuspend)
             {
-                _ = Administrator.SuspendUserAccount(FieldSearch.Text)
-                    ? MessageBox.Show("User suspended.")
-                    : MessageBox.Show("Invalid request");
+                bool status = Administrator.SuspendUserAccount(FieldSearch.Text);
+                if (status)
+                {
+                    MessageBox.Show("User suspended");
+                }
+                else
+                {
+                    MessageBox.Show("User not suspended");
+                }
             }
         }
 
@@ -289,18 +295,18 @@ namespace GUI
             {
                 string[]? temp = (user + "").Split("\n");
                 ListViewItem item = new(temp[0].Split(":")[1]);
-                _ = item.SubItems.Add(temp[1].Split(":")[1]);
-                _ = item.SubItems.Add(temp[2].Split(":")[1]);
-                _ = item.SubItems.Add(temp[3].Split(":")[1]);
-                _ = item.SubItems.Add(temp[4].Split(":")[1]);
-                _ = item.SubItems.Add(temp[5].Split(":")[1]);
-                _ = item.SubItems.Add(temp[6].Split(":")[1]);
-                _ = item.SubItems.Add(temp[7].Split(":")[1]);
-                _ = ListActivate.Items.Add(item);
+                item.SubItems.Add(temp[1].Split(":")[1]);
+                item.SubItems.Add(temp[2].Split(":")[1]);
+                item.SubItems.Add(temp[3].Split(":")[1]);
+                item.SubItems.Add(temp[4].Split(":")[1]);
+                item.SubItems.Add(temp[5].Split(":")[1]);
+                item.SubItems.Add(temp[6].Split(":")[1]);
+                item.SubItems.Add(temp[7].Split(":")[1]);
+                ListActivate.Items.Add(item);
             }
             else
             {
-                _ = MessageBox.Show("User not found");
+                MessageBox.Show("User not found");
             }
         }
 
@@ -308,13 +314,20 @@ namespace GUI
         {
             if (FieldUsernameActivate.Text == "")
             {
-                _ = MessageBox.Show("Please enter a username.");
+                MessageBox.Show("Please enter a username.");
                 return;
             }
             if (isFoundActivate)
             {
-                Administrator.ActivateUserAccount(FieldUsernameActivate.Text);
-                _ = MessageBox.Show("User activated.");
+                var status = Administrator.ActivateUserAccount(FieldUsernameActivate.Text);
+                if (status)
+                {
+                    MessageBox.Show("User activated");
+                }
+                else
+                {
+                    MessageBox.Show("User not activated");
+                }
             }
         }
     }

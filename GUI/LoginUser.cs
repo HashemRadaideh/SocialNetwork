@@ -83,11 +83,11 @@ namespace GUI
             }
             else if (user == Administrator.Instance)
             {
-                _ = MessageBox.Show("Admin login detected, login from admin panel");
+                MessageBox.Show("Admin login detected, login from admin panel");
             }
             else
             {
-                _ = MessageBox.Show("Invalid username or password");
+                MessageBox.Show("Invalid username or password");
             }
         }
 
