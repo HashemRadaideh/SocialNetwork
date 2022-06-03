@@ -142,10 +142,17 @@ namespace GUI
 
             var users_accounts = Account.Administrator.Instance.ViewAllUserAccounts();
             var temp = users_accounts.Split("\n");
-            foreach (var strs in temp)
+            for (int i = 0; i < (temp.Length / 8); i++)
             {
-                ListViewItem i = new ListViewItem(strs.Split(" "));
-                ListUsers.Items.Add(i);
+                ListViewItem item = new ListViewItem(temp[(i * 8) + 0].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 1].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 2].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 3].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 4].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 5].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 6].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 8) + 7].Split(":")[1]);
+                ListUsers.Items.Add(item);
             }
         }
 
@@ -186,11 +193,12 @@ namespace GUI
         {
             if (FieldUsernameActivate.Text == "")
             {
-                MessageBox.Show("Please enter a username");
+                MessageBox.Show("Please enter a username.");
                 return;
             }
             if (isFoundActivate)
             {
+                MessageBox.Show("User activated.");
                 Account.Administrator.Instance.ActivateUserAccount(FieldUsernameActivate.Text);
             }
         }
@@ -211,18 +219,29 @@ namespace GUI
                 }
             }
 
+            while (ListActivate.Items.Count > 0)
+            {
+                ListActivate.Items.RemoveAt(0);
+            }
+
             if (user is not null)
             {
-                ListViewItem i = new ListViewItem(user.ToString());
-                ListActivate.Items.Add(i);
+                var temp = (user + "").Split("\n");
+                ListViewItem item = new ListViewItem(temp[0].Split(":")[1]);
+                item.SubItems.Add(temp[1].Split(":")[1]);
+                item.SubItems.Add(temp[2].Split(":")[1]);
+                item.SubItems.Add(temp[3].Split(":")[1]);
+                item.SubItems.Add(temp[4].Split(":")[1]);
+                item.SubItems.Add(temp[5].Split(":")[1]);
+                item.SubItems.Add(temp[6].Split(":")[1]);
+                item.SubItems.Add(temp[7].Split(":")[1]);
+                ListActivate.Items.Add(item);
             }
-            //{
-            //    FieldActivate.Text = user.Username;
-            //}
-            //else
-            //{
-            //    FieldActivate.Text = "User not found";
-            //}
+            else
+            {
+                MessageBox.Show("User not found");
+                //FieldUsernameActivate.Text = "User not found";
+            }
         }
 
         private bool isFoundSuspend = false;
@@ -241,10 +260,28 @@ namespace GUI
                 }
             }
 
+            while (ListSuspendInfo.Items.Count > 0)
+            {
+                ListSuspendInfo.Items.RemoveAt(0);
+            }
+
             if (user is not null)
             {
-                ListViewItem i = new ListViewItem(user.ToString());
-                ListActivate.Items.Add(i);
+                var temp = (user + "").Split("\n");
+                ListViewItem item = new ListViewItem(temp[0].Split(":")[1]);
+                item.SubItems.Add(temp[1].Split(":")[1]);
+                item.SubItems.Add(temp[2].Split(":")[1]);
+                item.SubItems.Add(temp[3].Split(":")[1]);
+                item.SubItems.Add(temp[4].Split(":")[1]);
+                item.SubItems.Add(temp[5].Split(":")[1]);
+                item.SubItems.Add(temp[6].Split(":")[1]);
+                item.SubItems.Add(temp[7].Split(":")[1]);
+                ListSuspendInfo.Items.Add(item);
+            }
+            else
+            {
+                MessageBox.Show("User not found");
+                //FieldUsernameActivate.Text = "User not found";
             }
         }
 

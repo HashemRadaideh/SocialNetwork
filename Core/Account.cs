@@ -1,13 +1,13 @@
+using database = Database.Database;
+using msg = Actions.Message;
+using pst = Actions.Post;
+using rep = Actions.Report;
+
 /// <summary>
 /// Account type implementation as the project description states.
 /// </summary>
 namespace Account
 {
-    using database = Database.Database;
-    using msg = Actions.Message;
-    using pst = Actions.Post;
-    using rep = Actions.Report;
-
     [Serializable]
     public class Account
     {

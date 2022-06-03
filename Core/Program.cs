@@ -1,9 +1,9 @@
-﻿namespace SocialNetwork
-{
-    using administrator = Account.Administrator;
-    using database = Database.Database;
-    using useraccount = Account.User;
+﻿using administrator = Account.Administrator;
+using database = Database.Database;
+using useraccount = Account.User;
 
+namespace SocialNetwork
+{
     public class Program
     {
         public static void Main(string[] args)

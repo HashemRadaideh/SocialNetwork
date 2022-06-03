@@ -1,13 +1,12 @@
+using System.Collections;
+using administrator = Account.Administrator;
+using useraccount = Account.User;
+
 /// <summary>
 /// Database implementation for the Social Network project.
 /// </summary>
 namespace Database
 {
-    using System;
-    using System.Collections;
-    using administrator = Account.Administrator;
-    using useraccount = Account.User;
-
     [Serializable]
     public class Table
     {

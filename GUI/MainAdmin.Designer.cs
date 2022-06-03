@@ -119,7 +119,8 @@
             this.ListUsers = new System.Windows.Forms.ListView();
             this.ColumnUsername = new System.Windows.Forms.ColumnHeader();
             this.ColumnPassword = new System.Windows.Forms.ColumnHeader();
-            this.ColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.ColumnStatus = new System.Windows.Forms.ColumnHeader();
+            this.ColumnFirstName = new System.Windows.Forms.ColumnHeader();
             this.ColumnLastName = new System.Windows.Forms.ColumnHeader();
             this.ColumnLocation = new System.Windows.Forms.ColumnHeader();
             this.ColumnAge = new System.Windows.Forms.ColumnHeader();
@@ -130,6 +131,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ListReports = new System.Windows.Forms.ListView();
             this.ListSuspendInfo = new System.Windows.Forms.ListView();
+            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader12 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader13 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader14 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader15 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader16 = new System.Windows.Forms.ColumnHeader();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.ButtonSuspendUser = new System.Windows.Forms.Button();
             this.FieldSearch = new System.Windows.Forms.TextBox();
@@ -137,6 +146,14 @@
             this.ButtonSearch2 = new System.Windows.Forms.Button();
             this.ButtonActivate = new System.Windows.Forms.Button();
             this.ListActivate = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
             this.FieldUsernameActivate = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -487,14 +504,20 @@
             // 
             // ListUsers
             // 
+            this.ListUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ListUsers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColumnUsername,
             this.ColumnPassword,
-            this.ColumnHeader,
+            this.ColumnStatus,
+            this.ColumnFirstName,
             this.ColumnLastName,
             this.ColumnLocation,
             this.ColumnAge,
             this.ColumnFriends});
+            this.ListUsers.FullRowSelect = true;
+            this.ListUsers.GridLines = true;
             this.ListUsers.Location = new System.Drawing.Point(22, 12);
             this.ListUsers.Name = "ListUsers";
             this.ListUsers.Size = new System.Drawing.Size(575, 402);
@@ -505,30 +528,42 @@
             // ColumnUsername
             // 
             this.ColumnUsername.Text = "Username";
+            this.ColumnUsername.Width = 70;
             // 
             // ColumnPassword
             // 
             this.ColumnPassword.Text = "Password";
+            this.ColumnPassword.Width = 70;
             // 
-            // ColumnHeader
+            // ColumnStatus
             // 
-            this.ColumnHeader.Text = "FirstName";
+            this.ColumnStatus.Text = "Status";
+            this.ColumnStatus.Width = 50;
+            // 
+            // ColumnFirstName
+            // 
+            this.ColumnFirstName.Text = "First name";
+            this.ColumnFirstName.Width = 70;
             // 
             // ColumnLastName
             // 
-            this.ColumnLastName.Text = "Last Name";
+            this.ColumnLastName.Text = "Last name";
+            this.ColumnLastName.Width = 70;
             // 
             // ColumnLocation
             // 
             this.ColumnLocation.Text = "Location";
+            this.ColumnLocation.Width = 70;
             // 
             // ColumnAge
             // 
             this.ColumnAge.Text = "Age";
+            this.ColumnAge.Width = 40;
             // 
             // ColumnFriends
             // 
             this.ColumnFriends.Text = "Friends";
+            this.ColumnFriends.Width = 100;
             // 
             // PanelSuspend
             // 
@@ -582,19 +617,70 @@
             // 
             // ListReports
             // 
+            this.ListReports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListReports.FullRowSelect = true;
+            this.ListReports.GridLines = true;
             this.ListReports.Location = new System.Drawing.Point(109, 252);
             this.ListReports.Name = "ListReports";
-            this.ListReports.Size = new System.Drawing.Size(247, 121);
+            this.ListReports.Size = new System.Drawing.Size(471, 121);
             this.ListReports.TabIndex = 10;
             this.ListReports.UseCompatibleStateImageBehavior = false;
+            this.ListReports.View = System.Windows.Forms.View.Details;
             // 
             // ListSuspendInfo
             // 
+            this.ListSuspendInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListSuspendInfo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader15,
+            this.columnHeader16});
+            this.ListSuspendInfo.FullRowSelect = true;
+            this.ListSuspendInfo.GridLines = true;
             this.ListSuspendInfo.Location = new System.Drawing.Point(109, 99);
             this.ListSuspendInfo.Name = "ListSuspendInfo";
-            this.ListSuspendInfo.Size = new System.Drawing.Size(247, 121);
+            this.ListSuspendInfo.Size = new System.Drawing.Size(471, 121);
             this.ListSuspendInfo.TabIndex = 10;
             this.ListSuspendInfo.UseCompatibleStateImageBehavior = false;
+            this.ListSuspendInfo.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Username";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Password";
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Status";
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "First name";
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Last name";
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "Location";
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "Age";
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "Friends";
             // 
             // ButtonSearch
             // 
@@ -653,8 +739,7 @@
             // 
             // ButtonSearch2
             // 
-            this.ButtonSearch2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonSearch2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonSearch2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
             this.ButtonSearch2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ButtonSearch2.ForeColor = System.Drawing.Color.White;
@@ -668,8 +753,7 @@
             // 
             // ButtonActivate
             // 
-            this.ButtonActivate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonActivate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonActivate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
             this.ButtonActivate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ButtonActivate.ForeColor = System.Drawing.Color.White;
@@ -683,6 +767,20 @@
             // 
             // ListActivate
             // 
+            this.ListActivate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListActivate.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+            this.ListActivate.FullRowSelect = true;
+            this.ListActivate.GridLines = true;
             this.ListActivate.Location = new System.Drawing.Point(119, 99);
             this.ListActivate.Name = "ListActivate";
             this.ListActivate.Size = new System.Drawing.Size(485, 258);
@@ -690,8 +788,42 @@
             this.ListActivate.UseCompatibleStateImageBehavior = false;
             this.ListActivate.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Username";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Password";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Status";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "First name";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Last name";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Age";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Location";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Friends";
+            // 
             // FieldUsernameActivate
             // 
+            this.FieldUsernameActivate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.FieldUsernameActivate.Location = new System.Drawing.Point(119, 38);
             this.FieldUsernameActivate.Name = "FieldUsernameActivate";
             this.FieldUsernameActivate.Size = new System.Drawing.Size(256, 23);
@@ -783,7 +915,7 @@
         private Panel PanelActivate;
         private ColumnHeader ColumnUsername;
         private ColumnHeader ColumnPassword;
-        private ColumnHeader ColumnHeader;
+        private ColumnHeader ColumnFirstName;
         private ColumnHeader ColumnLastName;
         private ColumnHeader ColumnLocation;
         private ColumnHeader ColumnAge;
@@ -802,5 +934,22 @@
         private TextBox FieldUsernameActivate;
         private Label label6;
         private Label label5;
+        private ColumnHeader ColumnStatus;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private ColumnHeader columnHeader5;
+        private ColumnHeader columnHeader6;
+        private ColumnHeader columnHeader7;
+        private ColumnHeader columnHeader8;
+        private ColumnHeader columnHeader9;
+        private ColumnHeader columnHeader10;
+        private ColumnHeader columnHeader11;
+        private ColumnHeader columnHeader12;
+        private ColumnHeader columnHeader13;
+        private ColumnHeader columnHeader14;
+        private ColumnHeader columnHeader15;
+        private ColumnHeader columnHeader16;
     }
 }
