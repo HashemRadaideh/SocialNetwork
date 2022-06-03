@@ -265,23 +265,41 @@ namespace GUI
                 ListSuspendInfo.Items.RemoveAt(0);
             }
 
-            if (user is not null)
-            {
-                var temp = (user + "").Split("\n");
-                ListViewItem item = new ListViewItem(temp[0].Split(":")[1]);
-                item.SubItems.Add(temp[1].Split(":")[1]);
-                item.SubItems.Add(temp[2].Split(":")[1]);
-                item.SubItems.Add(temp[3].Split(":")[1]);
-                item.SubItems.Add(temp[4].Split(":")[1]);
-                item.SubItems.Add(temp[5].Split(":")[1]);
-                item.SubItems.Add(temp[6].Split(":")[1]);
-                item.SubItems.Add(temp[7].Split(":")[1]);
-                ListSuspendInfo.Items.Add(item);
-            }
-            else
+            if (user is null)
             {
                 MessageBox.Show("User not found");
-                //FieldUsernameActivate.Text = "User not found";
+                return;
+            }
+
+            var temp = (user + "").Split("\n");
+            ListViewItem item = new ListViewItem(temp[0].Split(":")[1]);
+            item.SubItems.Add(temp[1].Split(":")[1]);
+            item.SubItems.Add(temp[2].Split(":")[1]);
+            item.SubItems.Add(temp[3].Split(":")[1]);
+            item.SubItems.Add(temp[4].Split(":")[1]);
+            item.SubItems.Add(temp[5].Split(":")[1]);
+            item.SubItems.Add(temp[6].Split(":")[1]);
+            item.SubItems.Add(temp[7].Split(":")[1]);
+            ListSuspendInfo.Items.Add(item);
+
+            var table_report = Database.Database.Instance.GetTable("reports") ?? throw new Exception($"Table '{"reports"}' not found.");
+
+            while (ListReports.Items.Count > 0)
+            {
+                ListReports.Items.RemoveAt(0);
+            }
+
+            foreach (var rep in table_report.Rows.Values)
+            {
+                var report = (Actions.Report)rep;
+                if (report.Reported == user.Username)
+                {
+                    var temps = (report + "").Split("\n");
+                    ListViewItem items = new ListViewItem(temps[0].Split(":")[1]);
+                    items.SubItems.Add(temps[1].Split(":")[1]);
+                    items.SubItems.Add(temps[2].Split(":")[1]);
+                    ListReports.Items.Add(items);
+                }
             }
         }
 

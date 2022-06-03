@@ -3,71 +3,73 @@ namespace Actions
     [Serializable]
     public class Report
     {
-        private int reported = 0;
-        private int reporter = 0;
+        private string reported = "";
+        private string reporter = "";
         private string reason = "";
 
-        public Report(int reporter, int reported, string reason)
+        public Report(string reporter, string reported, string reason)
         {
             this.reporter = reporter;
             this.reported = reported;
             this.reason = reason;
         }
 
-        public int Reported { get => reported; set => reported = value; }
-        public int Reporter { get => reporter; set => reporter = value; }
+        public string Reported { get => reported; set => reported = value; }
+        public string Reporter { get => reporter; set => reporter = value; }
         public string Reason { get => reason; set => reason = value; }
+
+        public override string ToString()
+        {
+            return $"Reporter: {reporter}\nReported: {reported}\nReason: {reason}";
+        }
     }
 
     [Serializable]
     public class Post
     {
-        private int author = 0;
         private string content = "";
-        private string username = "";
+        private string author = "";
         private string category = "";
         private bool priority = false;
 
         public Post(string username, string content, bool priority, string category)
         {
-            this.username = username;
+            this.author = username;
             this.content = content;
             this.priority = priority;
             this.category = category;
         }
 
         public string Content { get => content; set => content = value; }
-        public int Author { get => author; set => author = value; }
+        public string Author { get => author; set => author = value; }
         public string Category { get => category; set => category = value; }
 
         public override string ToString()
         {
-            return $"Username: {username}\nCategory: {category}\nPriority: {priority}\nContent:{content}";
+            return $"Username: {author}\nCategory: {category}\nPriority: {priority}\nContent:{content}";
         }
     }
 
     [Serializable]
     public class Message
     {
-        private int sender = 0;
-        private int receiver = 0;
+        private string sender = "";
+        private string reciever = "";
         private string content = "";
-        private string username1;
-        private string username2;
 
-        public Message(string username1, string username2, string content)
+        public Message(string sender, string reciever, string content)
         {
-            this.username1 = username1;
-            this.username2 = username2;
+            this.sender = sender;
+            this.reciever = reciever;
             this.content = content;
         }
 
-        public int Sender { get => sender; set => sender = value; }
-        public int Receiver { get => receiver; set => receiver = value; }
+        public string Sender { get => sender; set => sender = value; }
+        public string Receiver { get => reciever; set => reciever = value; }
         public string Content { get => content; set => content = value; }
         public override string ToString()
         {
-            return $"from: {username1}\nTo: {username2}\nContent:{content}";
+            return $"from: {sender}\nTo: {reciever}\nContent:{content}";
         }
     }
 }

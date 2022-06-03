@@ -122,6 +122,8 @@
             this.ListMyPosts = new System.Windows.Forms.ListView();
             this.ColumnUsername = new System.Windows.Forms.ColumnHeader();
             this.ColumnContent = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader12 = new System.Windows.Forms.ColumnHeader();
             this.PanelMyMessages = new System.Windows.Forms.Panel();
             this.ListMyMessages = new System.Windows.Forms.ListView();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
@@ -565,7 +567,9 @@
             // 
             this.ListMyPosts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColumnUsername,
-            this.ColumnContent});
+            this.ColumnContent,
+            this.columnHeader11,
+            this.columnHeader12});
             this.ListMyPosts.FullRowSelect = true;
             this.ListMyPosts.GridLines = true;
             this.ListMyPosts.Location = new System.Drawing.Point(20, 20);
@@ -578,12 +582,20 @@
             // ColumnUsername
             // 
             this.ColumnUsername.Text = "Username";
-            this.ColumnUsername.Width = 100;
+            this.ColumnUsername.Width = 70;
             // 
             // ColumnContent
             // 
-            this.ColumnContent.Text = "Content";
-            this.ColumnContent.Width = 200;
+            this.ColumnContent.Text = "Category";
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Priority";
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Content";
+            this.columnHeader12.Width = 300;
             // 
             // PanelMyMessages
             // 
@@ -837,13 +849,13 @@
             this.Controls.Add(this.SideBar);
             this.Controls.Add(this.WindowTitle);
             this.Controls.Add(this.MenuStrip);
+            this.Controls.Add(this.PanelSendReport);
             this.Controls.Add(this.PanelHomeFiltered);
             this.Controls.Add(this.PanelHome);
             this.Controls.Add(this.PanelMyMessages);
             this.Controls.Add(this.PanelMyPosts);
             this.Controls.Add(this.PanelSendMessage);
             this.Controls.Add(this.PanelCreatePost);
-            this.Controls.Add(this.PanelSendReport);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(340, 350);
@@ -928,5 +940,7 @@
         private ColumnHeader columnHeader7;
         private ColumnHeader columnHeader9;
         private ColumnHeader columnHeader10;
+        private ColumnHeader columnHeader11;
+        private ColumnHeader columnHeader12;
     }
 }

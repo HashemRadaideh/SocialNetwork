@@ -157,6 +157,9 @@
             this.FieldUsernameActivate = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.columnHeader17 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader18 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader19 = new System.Windows.Forms.ColumnHeader();
             this.MenuStrip.SuspendLayout();
             this.SideBar.SuspendLayout();
             this.PanelRegister.SuspendLayout();
@@ -619,6 +622,10 @@
             // 
             this.ListReports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListReports.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader17,
+            this.columnHeader18,
+            this.columnHeader19});
             this.ListReports.FullRowSelect = true;
             this.ListReports.GridLines = true;
             this.ListReports.Location = new System.Drawing.Point(109, 252);
@@ -849,6 +856,18 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Username";
             // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Text = "Reporter";
+            // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Text = "Reported";
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Text = "Reason";
+            // 
             // AdminMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -858,10 +877,10 @@
             this.Controls.Add(this.SideBar);
             this.Controls.Add(this.WindowTitle);
             this.Controls.Add(this.MenuStrip);
+            this.Controls.Add(this.PanelSuspend);
             this.Controls.Add(this.PanelViewAllUsers);
             this.Controls.Add(this.PanelRegister);
             this.Controls.Add(this.PanelActivate);
-            this.Controls.Add(this.PanelSuspend);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(340, 350);
@@ -951,5 +970,8 @@
         private ColumnHeader columnHeader14;
         private ColumnHeader columnHeader15;
         private ColumnHeader columnHeader16;
+        private ColumnHeader columnHeader17;
+        private ColumnHeader columnHeader18;
+        private ColumnHeader columnHeader19;
     }
 }

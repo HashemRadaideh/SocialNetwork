@@ -123,38 +123,20 @@ namespace Account
 
         private bool IsSuspendable(string username)
         {
-            username = username ?? throw new ArgumentNullException(nameof(username));
-            User? user = null;
+            // if user has more than 2 reports return true
+            var table = database.Instance.GetTable("reports") ?? throw new Exception($"Table '{"reports"}' not found.");
 
-            // find the user
-            var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+            int count = 0;
             foreach (var row in table.Rows.Values)
             {
-                var u = (User)row;
-                if (u.Username == username)
-                {
-                    user = u;
-                }
-            }
-
-            if (user is null)
-            {
-                return false;
-            }
-
-            // return true if the user has 2 or more reports
-            var count = 0;
-            var table2 = database.Instance.GetTable("reports") ?? throw new Exception($"Table '{"reports"}' not found.");
-            foreach (var row in table2.Rows.Values)
-            {
-                var r = (Actions.Report)row;
-                if (r.Reporter == table.IndexOf(user.Username))
+                var report = (rep)row;
+                if (report.Reported == username)
                 {
                     count++;
                 }
             }
 
-            if (count >= 2)
+            if (count > 1)
             {
                 return true;
             }
@@ -164,18 +146,13 @@ namespace Account
 
         public bool SuspendUserAccount(string username)
         {
-            if (!(IsSuspendable(username)))
-            {
-                return false;
-            }
-
             var table = database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
-            foreach (var row in table.Rows.Values)
+            foreach (var user in table.Rows.Values)
             {
-                var user = (User)row;
-                if (user.Username == username)
+                var u = (User)user;
+                if (username == u.Username && IsSuspendable(u.Username))
                 {
-                    user.Status = false;
+                    u.Status = false;
                     return true;
                 }
             }
@@ -211,13 +188,16 @@ namespace Account
 
         public void AddFriends(List<User> friends)
         {
-            this.Friends = friends;
-        }
-        public void AddToFriends(List<User> friends)
-        {
-            foreach (var friend in friends)
+            if (this.Friends is not null)
             {
-                this.Friends.Add(friend);
+                foreach (var friend in friends)
+                {
+                    this.Friends.Add(friend);
+                }
+            }
+            else
+            {
+                this.Friends = friends;
             }
         }
 
@@ -235,7 +215,7 @@ namespace Account
             foreach (var row in table.Rows.Values)
             {
                 var post = (pst)row;
-                if (post.Author == db.IndexOf("users", this.Username))
+                if (post.Author == this.Username)
                 {
                     temp += row + "\n";
                 }
@@ -253,7 +233,7 @@ namespace Account
             foreach (var row in table.Rows.Values)
             {
                 var message = (msg)row;
-                if (message.Receiver == db.IndexOf("users", this.Username))
+                if (message.Receiver == this.Username)
                 {
                     temp += row + "\n";
                 }
@@ -276,7 +256,7 @@ namespace Account
                 foreach (var friend in this.Friends)
                 {
                     var post = (pst)row;
-                    if (post.Author == db.IndexOf("users", friend.Username))
+                    if (post.Author == friend.Username)
                     {
                         temp += row + "\n";
                         break;
@@ -300,7 +280,7 @@ namespace Account
                 foreach (var friend in this.Friends)
                 {
                     var post = (pst)row;
-                    if (post.Author == db.IndexOf("users", friend.Username) && filter == post.Category)
+                    if (post.Author == friend.Username && filter == post.Category)
                     {
                         temp += row + "\n";
                         break;
@@ -315,10 +295,8 @@ namespace Account
         {
             // TODO: Send report to administrator
             var db = database.Instance;
-            var reporter = db.IndexOf("users", this.Username);
-            var reported = db.IndexOf("users", username);
 
-            db.Add("reports", new rep(reporter, reported, content)); // this.Username -> reporter, content -> reports
+            db.Add("reports", new rep(this.Username, username, content)); // this.Username -> reporter, content -> reports
         }
     }
 }

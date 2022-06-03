@@ -132,13 +132,13 @@ namespace Database
             Add("posts", new Actions.Post(acc3.Username, "The deficit exceeds 2 million dollars", true, "Economy"));
             Add("posts", new Actions.Post(acc5.Username, "The minimum wage has been raised to 300 dinars", true, "Economy"));
 
-            Add("reports", new Actions.Report(IndexOf("users", acc1.Username), IndexOf("users", acc2.Username), "This is a report"));
-            Add("reports", new Actions.Report(IndexOf("users", acc3.Username), IndexOf("users", acc2.Username), "This is a report"));
+            Add("reports", new Actions.Report(acc1.Username, acc2.Username, "He is gay!?"));
+            Add("reports", new Actions.Report(acc3.Username, acc2.Username, "Hello, World!"));
 
-            Add("reports", new Actions.Report(IndexOf("users", acc2.Username), IndexOf("users", acc1.Username), "This is a report"));
+            Add("reports", new Actions.Report(acc2.Username, acc1.Username, "I like one piece!"));
 
-            Add("reports", new Actions.Report(IndexOf("users", acc1.Username), IndexOf("users", acc5.Username), "This is a report"));
-            Add("reports", new Actions.Report(IndexOf("users", acc3.Username), IndexOf("users", acc5.Username), "This is a report"));
+            Add("reports", new Actions.Report(acc1.Username, acc5.Username, "Hey, there!"));
+            Add("reports", new Actions.Report(acc3.Username, acc5.Username, "This is a report."));
 
             Save();
         }

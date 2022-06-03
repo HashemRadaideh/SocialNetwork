@@ -145,9 +145,14 @@ namespace GUI
             var posts = CurrentUser.ViewAllMyPosts();
             var temp = posts.Split("\n");
 
-            ListViewItem i = new ListViewItem(temp[0]);
-            ListMyPosts.Items.Add(i);
-            i.SubItems.Add(temp[1]);
+            for (int i = 0; i < (temp.Length / 4); i++)
+            {
+                ListViewItem item = new ListViewItem(temp[(i * 4) + 0].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 4) + 1].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 4) + 2].Split(":")[1]);
+                item.SubItems.Add(temp[(i * 4) + 3].Split(":")[1]);
+                ListMyPosts.Items.Add(item);
+            }
         }
 
         private void ButtonMyMessages_Click(object sender, EventArgs e)
@@ -202,9 +207,9 @@ namespace GUI
             PanelHomeFiltered.Visible = false;
             PanelSendReport.Visible = false;
 
-            while (ListHomeFeed.Items.Count > 1)
+            while (ListHomeFeed.Items.Count > 0)
             {
-                ListHomeFeed.Items.RemoveAt(1);
+                ListHomeFeed.Items.RemoveAt(0);
             }
 
             var _ = CurrentUser ?? throw new Exception("User not found");
@@ -324,12 +329,10 @@ namespace GUI
             if (isReported)
             {
                 var db = Database.Database.Instance;
-                var reporter = db.IndexOf("users", this.CurrentUser.Username);
-                var reported = db.IndexOf("users", FieldReported.Text);
 
                 db.Add("reports", new Actions.Report(
-                    reporter,
-                    reported,
+                    this.CurrentUser.Username,
+                    FieldReported.Text,
                     FieldReason.Text
                     )); // this.Username -> reporter, content -> reports
             }
@@ -347,9 +350,9 @@ namespace GUI
             }
             else
             {
-                while (ListHomeFiltered.Items.Count > 1)
+                while (ListHomeFiltered.Items.Count > 0)
                 {
-                    ListHomeFiltered.Items.RemoveAt(1);
+                    ListHomeFiltered.Items.RemoveAt(0);
                 }
 
                 var _ = CurrentUser ?? throw new Exception("User not found");
