@@ -236,11 +236,9 @@ namespace Core
                             database.Instance.Remove("reports", report);
                         }
                     }
-
                     return true;
                 }
             }
-
             return true;
         }
 

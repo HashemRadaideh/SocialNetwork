@@ -880,10 +880,10 @@
             this.Controls.Add(this.SideBar);
             this.Controls.Add(this.WindowTitle);
             this.Controls.Add(this.MenuStrip);
+            this.Controls.Add(this.PanelActivate);
             this.Controls.Add(this.PanelSuspend);
             this.Controls.Add(this.PanelViewAllUsers);
             this.Controls.Add(this.PanelRegister);
-            this.Controls.Add(this.PanelActivate);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(340, 350);

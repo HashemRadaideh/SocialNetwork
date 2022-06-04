@@ -117,7 +117,7 @@
             this.ButtonSearchReciever = new System.Windows.Forms.Button();
             this.ButtonCreateMessage = new System.Windows.Forms.Button();
             this.FieldBody = new System.Windows.Forms.TextBox();
-            this.FieldMessageUsername = new System.Windows.Forms.TextBox();
+            this.FieldRecieverUsername = new System.Windows.Forms.TextBox();
             this.PanelMyPosts = new System.Windows.Forms.Panel();
             this.ListMyPosts = new System.Windows.Forms.ListView();
             this.ColumnUsername = new System.Windows.Forms.ColumnHeader();
@@ -128,6 +128,7 @@
             this.ListMyMessages = new System.Windows.Forms.ListView();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader13 = new System.Windows.Forms.ColumnHeader();
             this.PanelHome = new System.Windows.Forms.Panel();
             this.ListHomeFeed = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
@@ -400,7 +401,7 @@
             "TV"});
             this.ComboCategory.Location = new System.Drawing.Point(116, 22);
             this.ComboCategory.Name = "ComboCategory";
-            this.ComboCategory.Size = new System.Drawing.Size(167, 23);
+            this.ComboCategory.Size = new System.Drawing.Size(246, 23);
             this.ComboCategory.TabIndex = 0;
             // 
             // ComboPriority
@@ -411,7 +412,7 @@
             "Low"});
             this.ComboPriority.Location = new System.Drawing.Point(116, 51);
             this.ComboPriority.Name = "ComboPriority";
-            this.ComboPriority.Size = new System.Drawing.Size(167, 23);
+            this.ComboPriority.Size = new System.Drawing.Size(246, 23);
             this.ComboPriority.TabIndex = 1;
             // 
             // FieldContent
@@ -419,7 +420,7 @@
             this.FieldContent.Location = new System.Drawing.Point(116, 79);
             this.FieldContent.Multiline = true;
             this.FieldContent.Name = "FieldContent";
-            this.FieldContent.Size = new System.Drawing.Size(167, 89);
+            this.FieldContent.Size = new System.Drawing.Size(246, 117);
             this.FieldContent.TabIndex = 2;
             // 
             // label4
@@ -484,7 +485,7 @@
             this.PanelSendMessage.Controls.Add(this.ButtonSearchReciever);
             this.PanelSendMessage.Controls.Add(this.ButtonCreateMessage);
             this.PanelSendMessage.Controls.Add(this.FieldBody);
-            this.PanelSendMessage.Controls.Add(this.FieldMessageUsername);
+            this.PanelSendMessage.Controls.Add(this.FieldRecieverUsername);
             this.PanelSendMessage.Location = new System.Drawing.Point(215, 34);
             this.PanelSendMessage.Name = "PanelSendMessage";
             this.PanelSendMessage.Size = new System.Drawing.Size(626, 431);
@@ -549,12 +550,12 @@
             this.FieldBody.Size = new System.Drawing.Size(251, 88);
             this.FieldBody.TabIndex = 2;
             // 
-            // FieldMessageUsername
+            // FieldRecieverUsername
             // 
-            this.FieldMessageUsername.Location = new System.Drawing.Point(111, 20);
-            this.FieldMessageUsername.Name = "FieldMessageUsername";
-            this.FieldMessageUsername.Size = new System.Drawing.Size(251, 23);
-            this.FieldMessageUsername.TabIndex = 0;
+            this.FieldRecieverUsername.Location = new System.Drawing.Point(111, 20);
+            this.FieldRecieverUsername.Name = "FieldRecieverUsername";
+            this.FieldRecieverUsername.Size = new System.Drawing.Size(251, 23);
+            this.FieldRecieverUsername.TabIndex = 0;
             // 
             // PanelMyPosts
             // 
@@ -614,7 +615,8 @@
             // 
             this.ListMyMessages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader13});
             this.ListMyMessages.FullRowSelect = true;
             this.ListMyMessages.GridLines = true;
             this.ListMyMessages.Location = new System.Drawing.Point(20, 20);
@@ -631,8 +633,12 @@
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Content";
-            this.columnHeader4.Width = 100;
+            this.columnHeader4.Text = "Reciever";
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Content";
+            this.columnHeader13.Width = 200;
             // 
             // PanelHome
             // 
@@ -745,7 +751,7 @@
             "TV"});
             this.ComboCategorySearch.Location = new System.Drawing.Point(108, 31);
             this.ComboCategorySearch.Name = "ComboCategorySearch";
-            this.ComboCategorySearch.Size = new System.Drawing.Size(141, 23);
+            this.ComboCategorySearch.Size = new System.Drawing.Size(254, 23);
             this.ComboCategorySearch.TabIndex = 12;
             // 
             // ButtonFilterHome
@@ -853,13 +859,13 @@
             this.Controls.Add(this.SideBar);
             this.Controls.Add(this.WindowTitle);
             this.Controls.Add(this.MenuStrip);
-            this.Controls.Add(this.PanelSendMessage);
-            this.Controls.Add(this.PanelCreatePost);
             this.Controls.Add(this.PanelSendReport);
             this.Controls.Add(this.PanelHomeFiltered);
             this.Controls.Add(this.PanelHome);
             this.Controls.Add(this.PanelMyMessages);
             this.Controls.Add(this.PanelMyPosts);
+            this.Controls.Add(this.PanelSendMessage);
+            this.Controls.Add(this.PanelCreatePost);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(340, 350);
@@ -921,7 +927,7 @@
         private Label label8;
         private Button ButtonCreateMessage;
         private TextBox FieldBody;
-        private TextBox FieldMessageUsername;
+        private TextBox FieldRecieverUsername;
         private ListView ListMyPosts;
         private ListView ListMyMessages;
         private ListView ListHomeFeed;
@@ -946,5 +952,6 @@
         private ColumnHeader columnHeader10;
         private ColumnHeader columnHeader11;
         private ColumnHeader columnHeader12;
+        private ColumnHeader columnHeader13;
     }
 }

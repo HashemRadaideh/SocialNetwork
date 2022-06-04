@@ -186,7 +186,9 @@ namespace GUI
                 {
                     user = u;
                     isFoundSuspend = true;
+                    break;
                 }
+                isFoundSuspend = false;
             }
 
             while (ListSuspendInfo.Items.Count > 0)
@@ -242,16 +244,10 @@ namespace GUI
 
             if (isFoundSuspend)
             {
-                bool status = Administrator.SuspendUserAccount(FieldSearch.Text);
-                if (status)
-                {
-                    MessageBox.Show("User suspended");
-                }
-                else
-                {
-                    MessageBox.Show("User not suspended");
-                }
+                Administrator.SuspendUserAccount(FieldSearch.Text);
+                return;
             }
+            MessageBox.Show("User couldn't be suspended");
         }
 
         private void ActivateUser_Click(object sender, EventArgs e)
@@ -274,6 +270,7 @@ namespace GUI
 
         private void ButtonSearch2_Click(object sender, EventArgs e)
         {
+            isFoundActivate = false;
             Table? table = Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
             User? user = null;
             foreach (object? row in table.Rows.Values)
@@ -317,18 +314,13 @@ namespace GUI
                 MessageBox.Show("Please enter a username.");
                 return;
             }
+
             if (isFoundActivate)
             {
-                var status = Administrator.ActivateUserAccount(FieldUsernameActivate.Text);
-                if (status)
-                {
-                    MessageBox.Show("User activated");
-                }
-                else
-                {
-                    MessageBox.Show("User not activated");
-                }
+                Administrator.ActivateUserAccount(FieldUsernameActivate.Text);
+                return;
             }
+            MessageBox.Show("User couldn't be activated");
         }
     }
 }

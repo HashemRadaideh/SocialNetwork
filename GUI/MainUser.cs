@@ -131,16 +131,17 @@ namespace GUI
 
         private void ButtonSearchReciever_Click(object sender, EventArgs e)
         {
+            isRecieverFound = false;
             Table? table = Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+
             foreach (object? row in table.Rows.Values)
             {
                 User? u = (User)row;
-                if (u.Username == FieldMessageUsername.Text)
+                if (u.Username == FieldRecieverUsername.Text)
                 {
                     isRecieverFound = true;
                 }
             }
-            isRecieverFound = false;
         }
 
         private void ButtonCreateMessage_Click(object sender, EventArgs e)
@@ -150,7 +151,7 @@ namespace GUI
             {
                 Database.Instance.Add(
                     "messages",
-                    new Core.Message(CurrentUser.Username, FieldMessageUsername.Text, FieldBody.Text)
+                    new Core.Message(CurrentUser.Username, FieldRecieverUsername.Text, FieldBody.Text)
                     ); // this.Username -> sender, username -> receiver, body -> message
             }
             else
@@ -343,16 +344,17 @@ namespace GUI
         private static bool isReported = false;
         private void SearchReported_Click(object sender, EventArgs e)
         {
+            isReported = false;
             Table? table = Database.Instance.GetTable("users") ?? throw new Exception($"Table '{"users"}' not found.");
+
             foreach (object? row in table.Rows.Values)
             {
                 User? u = (User)row;
-                if (u.Username == FieldMessageUsername.Text)
+                if (u.Username == FieldRecieverUsername.Text)
                 {
                     isReported = true;
                 }
             }
-            isReported = false;
         }
 
         private void ButtonReport_Click(object sender, EventArgs e)
